@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:24:14 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/01/24 13:09:56 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/01/24 13:18:42 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int		main(int argc, char **argv)
 	{
 		l = open(*argv, O_RDONLY);
 		line = get_next_line(l, &r_line);
+		printf("%d", line);
 		if (line == 1)
 		{
 			printf("%s", r_line);
