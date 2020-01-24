@@ -1,17 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/24 12:24:14 by agarzon-          #+#    #+#             */
+/*   Updated: 2020/01/24 13:09:56 by agarzon-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-int main (int argc, char **argv)
+int		main(int argc, char **argv)
 {
-	int fd;
 	int l;
-	char *line;
-	int *ancho = (int)640;
-	int *alto = (int)360;
-
-	fd = open(*argv, O_RDONLY);
-	l = get_next_line(fd, &line);
-	mlx_xpm_to_image(argv, argv, ancho, alto);
-	printf("%d\n", l);
-	printf("%s\n", line);
-
+	char *r_line;
+	int line;
+	
+	if (argc == 2)
+	{
+		l = open(*argv, O_RDONLY);
+		line = get_next_line(l, &r_line);
+		if (line == 1)
+		{
+			printf("%s", r_line);
+		}
+	}
+	return (0);
 }
