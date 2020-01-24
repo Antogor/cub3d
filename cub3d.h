@@ -21,6 +21,7 @@
 # include <stdio.h>
 # include <string.h>
 # include <math.h>
+# include "./minilibx_mms_20191025_beta/mlx.h"
 
 typedef struct	s_lib_cub3d
 {

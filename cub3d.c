@@ -12,21 +12,31 @@
 
 #include "cub3d.h"
 
-int		main(int argc, char **argv)
+/*int		deal_key(int key, void *param)
 {
-	int l;
-	char *r_line;
-	int line;
-	
-	if (argc == 2)
-	{
-		l = open(*argv, O_RDONLY);
-		line = get_next_line(l, &r_line);
-		printf("%d", line);
-		if (line == 1)
-		{
-			printf("%s", r_line);
-		}
-	}
+
+	return(0);
+}*/
+int		main()
+{
+	void *mlx_ptr;
+	void *window;
+	int *image;
+	char *image_data;
+	int bpp;
+	int size_line;
+	int endian;
+
+	mlx_ptr = mlx_init();
+	window = mlx_new_window(mlx_ptr, 640, 360, "cub3d");
+	image = mlx_new_image(mlx_ptr, 5, 5);
+	image_data = mlx_get_data_addr(image, &bpp, &size_line, &endian);
+	image_data[40] = 0;
+	image_data[41] = 255;
+	image_data[42] = 200;
+	mlx_put_image_to_window(mlx_ptr, window, image, 0, 2);
+	//mlx_key_hook(window, deal_key, (void*)0);
+	mlx_loop(mlx_ptr);
+
 	return (0);
 }
