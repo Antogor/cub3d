@@ -19,13 +19,6 @@ int		deal_key(int key, void *param)
 }
 int		main()
 {
-	void *mlx_ptr;
-	void *window;
-	int *image;
-	char *image_data;
-	int bpp;
-	int size_line;
-	int endian;
 	t_mlx *tab;
 
 	tab->mlx_ptr = mlx_init();
