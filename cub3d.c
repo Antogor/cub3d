@@ -12,15 +12,16 @@
 
 #include "cub3d.h"
 
-int		deal_key(int key, void *param)
+/*int		deal_key(int key, void *param)
 {
 	
 	return(0);
-}
+}*/
 int		main()
 {
 	t_mlx *tab;
 
+	tab = (t_mlx *)malloc(sizeof(t_mlx *));
 	tab->mlx_ptr = mlx_init();
 	tab->window = mlx_new_window(tab->mlx_ptr, 640, 360, "cub3d");
 	tab->image = mlx_new_image(tab->mlx_ptr, 5, 5);
@@ -29,7 +30,7 @@ int		main()
 	tab->image_data[41] = 255;
 	tab->image_data[42] = 200;
 	mlx_put_image_to_window(tab->mlx_ptr, tab->window, tab->image, 0, 2);
-	mlx_key_hook(tab->window, deal_key, (void*)tab);
+//	mlx_key_hook(tab->window, deal_key, (void*)tab);
 	mlx_loop(tab->mlx_ptr);
 
 	return (0);
