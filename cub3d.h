@@ -29,4 +29,15 @@ typedef struct	s_lib_cub3d
 	float		y;
 }				t_vetor;
 
+typedef struct	s_lib_mlx
+{
+	void *mlx_ptr;
+	void *window;
+	int *image;
+	char *image_data;
+	int bpp;
+	int size_line;
+	int endian;
+}				t_mlx;
+
 #endif
