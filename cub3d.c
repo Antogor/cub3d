@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:24:14 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/01/24 13:18:42 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/01/26 13:28:22 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int		main()
 	mlx_put_image_to_window(tab->mlx_ptr, tab->window, tab->image, 0, 2);
 //	mlx_key_hook(tab->window, deal_key, (void*)tab);
 	mlx_loop(tab->mlx_ptr);
+	free(tab);
+	tab = NULL;
 
 	return (0);
 }
