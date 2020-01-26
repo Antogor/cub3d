@@ -31,7 +31,7 @@ int		main()
 	tab = (t_mlx *)malloc(sizeof(t_mlx *));
 	tab->mlx_ptr = mlx_init();
 	tab->window = mlx_new_window(tab->mlx_ptr, 640, 360, "cub3d");
-	mlx_string_put (tab->mlx_ptr, tab->window, 50, 300, 0xFFFFFF, "CTHULHU");
+	mlx_string_put (tab->mlx_ptr, tab->window, 50, 300, 0x23BAC4, "CTHULHU");
 //	mlx_xpm_file_to_image (tab->mlx_ptr, "cthulhu", (int *)50, (int *)50);
 //	mlx_pixel_put(tab->mlx_ptr, tab->window, 50, 50, 0xFFFFFF);
 //	tab->image = mlx_new_image(tab->mlx_ptr, 50, 50);
