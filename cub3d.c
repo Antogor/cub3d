@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:24:14 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/01/26 13:28:22 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/01/26 19:02:43 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,15 @@
 int		main()
 {
 	t_mlx *tab;
+	int bpp;
+	int size_line;
+	int endian;
 
 	tab = (t_mlx *)malloc(sizeof(t_mlx *));
 	tab->mlx_ptr = mlx_init();
 	tab->window = mlx_new_window(tab->mlx_ptr, 640, 360, "cub3d");
 	tab->image = mlx_new_image(tab->mlx_ptr, 5, 5);
-	tab->image_data = mlx_get_data_addr(tab->image, &tab->bpp, &tab->size_line, &tab->endian);
+	tab->image_data = mlx_get_data_addr(tab->image, &bpp, &size_line, &endian);
 	tab->image_data[40] = 0;
 	tab->image_data[41] = 255;
 	tab->image_data[42] = 200;
