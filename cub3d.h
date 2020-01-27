@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:24:33 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/01/26 19:01:54 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/01/27 11:45:14 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <string.h>
 # include <math.h>
 # include "./minilibx_opengl_20191021/mlx.h"
+//# include "./minilibx/mlx.h"
 
 typedef struct	s_lib_cub3d
 {
