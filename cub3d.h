@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:24:33 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/01/27 13:32:53 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/01/27 15:44:28 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # define LEFT 123
 # define RIGTH 124
 # define ESC 53
+# define X 1920
+# define Y 1080
 
 # include "./libft/libft.h"
 # include "./GNL/get_next_line.h"
@@ -29,7 +31,7 @@
 # include <string.h>
 # include <math.h>
 # include "./minilibx_opengl_20191021/mlx.h"
-//# include "./minilibx/mlx.h"
+# include "./minilibx_mms_20191025_beta/mlx.h"
 
 typedef struct	s_lib_cub3d
 {
@@ -42,8 +44,11 @@ typedef struct	s_lib_mlx
 {
 	void *mlx_ptr;
 	void *window;
-	int *image;
-	char *image_data;
+	void *image;
+	int *image_data;
+	int bpp;
+	int size_l;
+	int endian;
 
 }				t_mlx;
 
