@@ -1,8 +1,8 @@
-R 10 5
-NO ./textures/blue.bpm
-SO ./textures/blue.bpm
-WE ./textures/blue.bpm
-EA ./textures/blue.bpm
+R 1920 1080
+NO ./cthulhu.xpm
+SO ./cthulhu.xpm
+WE ./cthulhu.xpm
+EA ./cthulhu.xpm
 F 220, 100, 0
 C 225, 30, 0
 
