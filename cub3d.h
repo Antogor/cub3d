@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:24:33 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/01/27 15:44:28 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/01/28 14:36:03 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,12 @@
 
 typedef struct	s_lib_cub3d
 {
-	float		x;
-	float		y;
-	char		**map;
+	double		posx;
+	double		posy;
+	double		dirx;
+	double		diry;
+	double		planex;
+	double		planey;
 }				t_vetor;
 
 typedef struct	s_lib_mlx
@@ -45,7 +48,7 @@ typedef struct	s_lib_mlx
 	void *mlx_ptr;
 	void *window;
 	void *image;
-	int *image_data;
+	char *image_data;
 	int bpp;
 	int size_l;
 	int endian;
