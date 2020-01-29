@@ -5,15 +5,23 @@ FLAGS = gcc -Wall -Wextra -Werror
 MINILIBX =   -L ./minilibx_opengl_20191021 -l mlx -framework OpenGL -framework AppKit
 MINILIBX2 = -L ./minilibx_mms_20191025_beta -l mlx -framework OpenGL -framework AppKit
 
-FUN = cub3d.c ./GNL/get_next_line.c ./GNL/get_next_line_utils.c ./libft/ft_putnbr_fd.c ./libft/ft_putchar_fd.c
+FUN = cub3d.c
 
-OBJ = cub3d.o ./GNL/get_next_line.o ./GNL/get_next_line_utils.o ./libft/ft_putnbr_fd.o ./libft/ft_putchar_fd.o
+OBJ = cub3d.o
+
+FUNGNL = ./GNL/get_next_line.c ./GNL/get_next_line_utils.c ./libft/ft_putnbr_fd.c 
+
+OBJGNL = ./GNL/get_next_line.o ./GNL/get_next_line_utils.o ./libft/ft_putnbr_fd.o 
+
+FUNLIB = ./libft/ft_putchar_fd.c ./libft/ft_atoi.c ./libft/ft_strncmp.c
+
+OBJLIB = ./libft/ft_putchar_fd.o ./libft/ft_atoi.o ./libft/ft_strncmp.o
 
 all: $(NAME)
 
-$(NAME): $(OBJ) cub3d.h ./minilibx_opengl_20191021/mlx.h ./libft/libft.h ./minilibx_mms_20191025_beta/mlx.h
-	@$(FLAGS) $(FUN) $(MINILIBX) $(MINILIBX2)
-	@ar rc $(NAME) $(OBJ)
+$(NAME): $(OBJ) $(OBJGNL) $(OBJLIB) cub3d.h ./minilibx_opengl_20191021/mlx.h ./libft/libft.h ./minilibx_mms_20191025_beta/mlx.h
+	@$(FLAGS) $(FUN) $(FUNGNL) $(FUNLIB) $(MINILIBX) $(MINILIBX2)
+	@ar rc $(NAME) $(OBJ) $(OBJGNL) $(OBJLIB)
 	@ranlib $(NAME)
 
 clean:
