@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:24:33 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/01/29 16:28:31 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/01/30 11:37:14 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,25 +31,32 @@
 # include "./minilibx_opengl_20191021/mlx.h"
 # include "./minilibx_mms_20191025_beta/mlx.h"
 
-typedef struct	s_lib_cub3d
-{
-	double		posx;
-	double		posy;
-	double		dirx;
-	double		diry;
-	double		planex;
-	double		planey;
-}				t_vetor;
-
 typedef struct	s_lib_mlx
 {
-	void *mlx_ptr;
-	void *window;
-	void *image;
-	char *image_data;
-	int bpp;
-	int size_l;
-	int endian;
+	void		*mlx_ptr;
+	void		*window;
+	void		*image;
+	char		*image_data;
+	int			bpp;
+	int			size_l;
+	int			endian;
 }				t_mlx;
 
+typedef struct	s_lib_cub3d
+{
+	char		**resolution;
+	char		*text_n;
+	char		*text_s;
+	char		*text_e;
+	char		*text_o;
+	char		**floor_colors;
+	char		**celling_colors;
+	char		**map;
+	int			x;
+	int			y;
+	t_mlx		*mlx;
+}				t_cub3d;
+
+int				ft_keys(t_cub3d *tab);
+int				ft_map(char *path_map, t_cub3d *map);
 #endif
