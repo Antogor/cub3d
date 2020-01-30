@@ -15,16 +15,11 @@
 int		main(int argc, char **argv)
 {
 	t_cub3d	*tab;
-	int		l;
-	int		x;
-	int		y;
 
-	x = 0;
-	y = 0;
-	l = 0;
 	(void)argc;
 	tab = (t_cub3d *)malloc(sizeof(t_cub3d *));
-	ft_map(argv[1], tab);
+	tab->fd = open(argv[1], 1);
+	ft_map(tab);
 /*	if (argc == 2 || argc == 3)
 	{
 //		if (ft_strncmp(argv[1], ".cub", 100) == 0)

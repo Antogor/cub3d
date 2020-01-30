@@ -54,9 +54,10 @@ typedef struct	s_lib_cub3d
 	char		**map;
 	int			x;
 	int			y;
+	int			fd;
 	t_mlx		*mlx;
 }				t_cub3d;
 
 int				ft_keys(t_cub3d *tab);
-int				ft_map(char *path_map, t_cub3d *map);
+int				ft_map(t_cub3d *map);
 #endif

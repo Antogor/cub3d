@@ -1,0 +1,13 @@
+R 1920 1080
+NO ./cthulhu.xpm
+SO ./cthulhu.xpm
+WE ./cthulhu.xpm
+EA ./cthulhu.xpm
+F 220, 100, 0
+C 225, 30, 0
+
+1111111111
+1000000001
+1000000N01
+1000000001
+1111111111
