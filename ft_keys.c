@@ -6,13 +6,13 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 10:38:59 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/01/30 11:02:29 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/01/31 12:59:00 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/*int		deal_key(int key, t_mlx *tab)
+int		deal_key(int key, t_mlx *tab)
 {
 	if (key == ESC)
 		exit(ESC);
@@ -31,7 +31,7 @@ int 	ft_print(int button, int x, int y, t_mlx *tab)
 	return (0);
 }
 
-int		ft_keys(t_cub3d *tab)
+/*int		ft_keys(t_cub3d *tab)
 {
 	tab->mlx_ptr = mlx_init();
 	tab->window = mlx_new_window(tab->mlx_ptr, x, y, "cub3d");
