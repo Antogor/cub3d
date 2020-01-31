@@ -1,8 +1,10 @@
 R 1920 1080
 NO ./cthulhu.xpm
-SO ./cthulhu.xpm
-WE ./cthulhu.xpm
-EA ./cthulhu.xpm
+SO ./textures/cthulhu.xpm
+WE ./textures/eagle.xpm
+EA ./textures/cthulhu.xpm
+
+S
 F 220, 100, 0
 C 225, 30, 0
 

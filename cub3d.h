@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:24:33 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/01/31 12:47:00 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/01/31 15:35:36 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct	s_lib_cub3d
 	char		*text_s;
 	char		*text_e;
 	char		*text_o;
+	char		*text_sprite;
 	char		**floor_colors;
 	char		**celling_colors;
 	char		**map;

@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:24:14 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/01/31 13:23:20 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/01/31 15:46:32 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ int		main(int argc, char **argv)
 		perror("No map");*/
 	free(tab);
 	tab = NULL;
-//	system("leaks a");
+//	system("leaks");
 	return (0);
 }
