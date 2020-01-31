@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 10:43:55 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/01/31 15:48:12 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/01/31 15:51:34 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ char	*ft_text(char *data, t_cub3d *textures)
 	textures->text_o = ft_substr(data, 3, ft_strlen(data));
 	gnl = get_next_line(textures->fd, &data);
 	textures->text_e = ft_substr(data, 3, ft_strlen(data));
-//	gnl = get_next_line(textures->fd, &data);
-//	textures->text_sprite = ft_substr(data, 3, ft_strlen(data));
 	return (data);
 }
 
