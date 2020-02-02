@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:24:14 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/02 16:56:52 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/02 19:36:34 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ int		main(int argc, char **argv)
 	int mapY;
 	int hit;
 	int side;
+	int rayDirX;
+	int rayDirY;
 	void *ptr;
 	void *window;
 
@@ -76,8 +78,8 @@ int		main(int argc, char **argv)
 	x = 0;
 	raydirX = 0;
 	raydirY = 0;
-	mapX = (int)posX;
-	mapY = (int)posY;
+	mapX = 0;
+	mapY = 0;
 	sideDistX = 0;
 	sideDistY = 0;
 	perpWallDist = 0;
@@ -85,6 +87,8 @@ int		main(int argc, char **argv)
 	stepY = 0;
 	hit = 0;
 	side = 0;
+	rayDirX = 0;
+	rayDirY = 0;
 	ptr = mlx_init();
 	window = mlx_new_window(ptr, screenWidth, screenHeight, "cub3d");
 	while(x < mapWidth)
@@ -92,8 +96,48 @@ int		main(int argc, char **argv)
 		cameraX = 2 * x / (double)mapWidth -1;
 		raydirX = dirX + planeX * cameraX;
 		raydirY = dirY + planeY * cameraX;
+		mapX = (int)posX;
+		mapY = (int)posY;
 		deltaDistX = abs(1 / raydirX);
 		deltaDistY = abs(1 / raydirY);
+		if (rayDirX < 0)
+      	{
+			  stepX = -1;
+			  sideDistX = (posX - mapX) * deltaDistX;
+      	}
+      	else
+     	{
+        	stepX = 1;
+        	sideDistX = (mapX + 1.0 - posX) * deltaDistX;
+      	}
+     	 if (rayDirY < 0)
+      	{
+        	stepY = -1;
+        	sideDistY = (posY - mapY) * deltaDistY;
+      	}
+		else
+     	 {
+     		stepY = 1;
+        	sideDistY = (mapY + 1.0 - posY) * deltaDistY;
+     	 }
+		while (hit == 0)
+    	{
+        	if (sideDistX < sideDistY)
+        	{
+          		sideDistX += deltaDistX;
+          		mapX += stepX;
+          		side = 0;
+        	}
+        	else
+        	{
+          		sideDistY += deltaDistY;
+          		mapY += stepY;
+          		side = 1;
+        	}
+        	if (worldMap[mapX][mapY] > 0)
+				hit = 1;
+      	}
+		
 		x++;
 	}
 	mlx_loop(ptr);
