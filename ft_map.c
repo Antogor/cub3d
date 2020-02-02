@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 10:43:55 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/02 15:28:57 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/02 15:46:51 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int		ft_map(t_cub3d *map)
 	int		gnl;
 
 	gnl = get_next_line(map->fd, &data);
+	free(data);
 	map->resolution[0] = ft_substr(data, 2, 4);
 	map->resolution[1] = ft_substr(data, 7, 4);
 	map->x = ft_atoi(map->resolution[0]);
