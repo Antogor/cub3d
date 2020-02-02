@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:24:14 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/02 16:34:11 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/02 16:56:52 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ int		main(int argc, char **argv)
 		cameraX = 2 * x / (double)mapWidth -1;
 		raydirX = dirX + planeX * cameraX;
 		raydirY = dirY + planeY * cameraX;
-		deltaDistX = (1 / raydirX);
-		deltaDistY = (1 / raydirY);
+		deltaDistX = abs(1 / raydirX);
+		deltaDistY = abs(1 / raydirY);
 		x++;
 	}
 	mlx_loop(ptr);
