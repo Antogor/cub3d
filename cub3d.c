@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/03 14:22:36 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/03 17:24:37 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,52 +51,31 @@ int worldMap[mapWidth][mapHeight]=
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
-int		deal_key(int key, t_mlx *tab)
-{
-	if (key == ESC)
-		exit(ESC);
-	else if (key == W)
-	{
-		if(worldMap[int(posX + dirX * moveSpeed)][int(posY)] == false) posX += dirX * moveSpeed;
-      	if(worldMap[int(posX)][int(posY + dirY * moveSpeed)] == false) posY += dirY * moveSpeed;
-	}
-	else if (key == S)
-	{
-		f(worldMap[int(posX - dirX * moveSpeed)][int(posY)] == false) posX -= dirX * moveSpeed;
-      	if(worldMap[int(posX)][int(posY - dirY * moveSpeed)] == false) posY -= dirY * moveSpeed;
-	}
-	else if (key == A)
-	{
-		double oldDirX = dirX;
-      	dirX = dirX * cos(-rotSpeed) - dirY * sin(-rotSpeed);
-      	dirY = oldDirX * sin(-rotSpeed) + dirY * cos(-rotSpeed);
-      	double oldPlaneX = planeX;
-      	planeX = planeX * cos(-rotSpeed) - planeY * sin(-rotSpeed);
-      	planeY = oldPlaneX * sin(-rotSpeed) + planeY * cos(-rotSpeed);
-	}
-	else if (key == D)
-	{
-		double oldDirX = dirX;
-      	dirX = dirX * cos(rotSpeed) - dirY * sin(rotSpeed);
-      	dirY = oldDirX * sin(rotSpeed) + dirY * cos(rotSpeed);
-      	double oldPlaneX = planeX;
-      	planeX = planeX * cos(rotSpeed) - planeY * sin(rotSpeed);
-      	planeY = oldPlaneX * sin(rotSpeed) + planeY * cos(rotSpeed);
-	}
-	
-	return(0);
-}
+typedef struct  s_data {
+    void        *img;
+    char        *addr;
+    int         bits_per_pixel;
+    int         line_length;
+    int         endian;
+}               t_data;
 
+void my_mlx_put_pixel(t_data *image, int x, int y, int color)
+{
+	char *dst;
+	
+	dst = image->addr + (y * image->line_length + x * (image->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
+}
 int		main(int argc, char **argv)
 {
-	double posX = 22;
-	double posY = 22;
-	double dirX = -1; //a donde mira el jugador
-	double dirY = 0;
-	double planeX = 0; //el ancho de la camara
-	double planeY = 0.66;
-	double time = 0; //frame actual
-	double oldtime = 0; //el tiempo del frame anterior
+	double posX;
+	double posY;
+	double dirX;
+	double dirY;
+	double planeX;
+	double planeY;
+	double time;
+	double oldtime;
 	double cameraX;
 	double raydirX;
 	double raydirY;
@@ -124,23 +103,16 @@ int		main(int argc, char **argv)
 	int color;
 	void *ptr;
 	void *window;
-
-	cameraX = 0;
-	x = 0;
-	raydirX = 0;
-	raydirY = 0;
-	mapX = 0;
-	mapY = 0;
-	sideDistX = 0;
-	sideDistY = 0;
-	perpWallDist = 0;
-	stepX = 0;
-	stepY = 0;
-	hit = 0;
-	side = 0;
-	rayDirX = 0;
-	rayDirY = 0;
-	h = 0;
+	t_data data;
+	
+	posX = 22;
+	posY = 22;
+	dirX = -1;
+	dirY = 0;
+	planeX = 0;
+	planeY = 0.66;
+	time = 0;
+	oldtime = 0;
 	ptr = mlx_init();
 	window = mlx_new_window(ptr, screenWidth, screenHeight, "cub3d");
 	while(x < screenWidth)
@@ -200,7 +172,14 @@ int		main(int argc, char **argv)
       	drawEnd = lineHeight / 2 + screenHeight / 2;
       	if(drawEnd >= screenHeight)
 			drawEnd = screenHeight - 1;
-      	switch(worldMap[mapX][mapY])
+		
+		x++;
+	}
+		data.img = mlx_new_image(ptr, screenWidth, screenHeight);
+		data.addr = mlx_get_data_addr(ptr, &data.bits_per_pixel, &data.line_length, &data.endian);
+		my_mlx_put_pixel(&data, drawStart, drawEnd, RGB_BLUE);
+		mlx_put_image_to_window(ptr, window, data.img, 0, 0);
+      /*	switch(worldMap[mapX][mapY])
       	{
         	case 1:  color = RGB_RED;  break; //red
         	case 2:  color = RGB_GREEN;  break; //green
@@ -208,21 +187,16 @@ int		main(int argc, char **argv)
         	case 4:  color = RGB_WHITE;  break; //white
         	default: color = RGB_YELLOW; break; //yellow
       	}
-      	//give x and y sides different brightness
       	if (side == 1)
-			color = color / 2;
-      	//draw the pixels of the stripe as a vertical line
-	  	mlx_pixel_put(ptr, window, drawStart, drawEnd, color);
-		x++;
-	}
-	mlx_key_hook(window, deal_key, (void*) 0);
+			color = color / 2;*/
+//	mlx_key_hook(window, deal_key, tab);
 	mlx_loop(ptr);
 	/*
 	t_cub3d	*tab;
 
 	(void)argc;
 	tab = (t_cub3d *)malloc(sizeof(t_cub3d *));
-	tab->fd = open(argv[1], O_RDONLY);
+	fd = open(argv[1], O_RDONLY);
 	ft_map(tab);
 	if (argc == 0 || argc == 0)
 	{
