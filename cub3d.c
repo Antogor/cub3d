@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/24 12:24:14 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/02 19:36:34 by agarzon-         ###   ########.fr       */
+/*   Created: Invalid date        by agarzon-          #+#    #+#             */
+/*   Updated: 2020/02/03 14:22:36 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,19 @@
 #define mapHeight 24
 #define screenWidth 640
 #define screenHeight 480
+#define GREY 808080
+#define RGB_RED 0xFF0000
+#define RGB_GREEN 0x008000
+#define RGB_BLUE 0x0000FF
+#define RGB_WHITE 0xFFFFFF
+#define RGB_YELLOW 0xFFFF00
+
 int worldMap[mapWidth][mapHeight]=
 {
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
@@ -34,15 +36,56 @@ int worldMap[mapWidth][mapHeight]=
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
+
+int		deal_key(int key, t_mlx *tab)
+{
+	if (key == ESC)
+		exit(ESC);
+	else if (key == W)
+	{
+		if(worldMap[int(posX + dirX * moveSpeed)][int(posY)] == false) posX += dirX * moveSpeed;
+      	if(worldMap[int(posX)][int(posY + dirY * moveSpeed)] == false) posY += dirY * moveSpeed;
+	}
+	else if (key == S)
+	{
+		f(worldMap[int(posX - dirX * moveSpeed)][int(posY)] == false) posX -= dirX * moveSpeed;
+      	if(worldMap[int(posX)][int(posY - dirY * moveSpeed)] == false) posY -= dirY * moveSpeed;
+	}
+	else if (key == A)
+	{
+		double oldDirX = dirX;
+      	dirX = dirX * cos(-rotSpeed) - dirY * sin(-rotSpeed);
+      	dirY = oldDirX * sin(-rotSpeed) + dirY * cos(-rotSpeed);
+      	double oldPlaneX = planeX;
+      	planeX = planeX * cos(-rotSpeed) - planeY * sin(-rotSpeed);
+      	planeY = oldPlaneX * sin(-rotSpeed) + planeY * cos(-rotSpeed);
+	}
+	else if (key == D)
+	{
+		double oldDirX = dirX;
+      	dirX = dirX * cos(rotSpeed) - dirY * sin(rotSpeed);
+      	dirY = oldDirX * sin(rotSpeed) + dirY * cos(rotSpeed);
+      	double oldPlaneX = planeX;
+      	planeX = planeX * cos(rotSpeed) - planeY * sin(rotSpeed);
+      	planeY = oldPlaneX * sin(rotSpeed) + planeY * cos(rotSpeed);
+	}
+	
+	return(0);
+}
 
 int		main(int argc, char **argv)
 {
@@ -71,6 +114,14 @@ int		main(int argc, char **argv)
 	int side;
 	int rayDirX;
 	int rayDirY;
+	int h;
+	int lineHeight;
+    int drawStart;
+	int drawEnd;
+	double frameTime;
+	double moveSpeed;
+	double rotSpeed;
+	int color;
 	void *ptr;
 	void *window;
 
@@ -89,17 +140,18 @@ int		main(int argc, char **argv)
 	side = 0;
 	rayDirX = 0;
 	rayDirY = 0;
+	h = 0;
 	ptr = mlx_init();
 	window = mlx_new_window(ptr, screenWidth, screenHeight, "cub3d");
-	while(x < mapWidth)
+	while(x < screenWidth)
 	{
-		cameraX = 2 * x / (double)mapWidth -1;
+		cameraX = 2 * x / (double)screenWidth -1;
 		raydirX = dirX + planeX * cameraX;
 		raydirY = dirY + planeY * cameraX;
 		mapX = (int)posX;
 		mapY = (int)posY;
-		deltaDistX = abs(1 / raydirX);
-		deltaDistY = abs(1 / raydirY);
+		deltaDistX = fabs(1 / raydirX);
+		deltaDistY = fabs(1 / raydirY);
 		if (rayDirX < 0)
       	{
 			  stepX = -1;
@@ -137,9 +189,33 @@ int		main(int argc, char **argv)
         	if (worldMap[mapX][mapY] > 0)
 				hit = 1;
       	}
-		
+		if (side == 0)
+			perpWallDist = (mapX - posX + (1 - stepX) / 2) / rayDirX;
+      	else
+		  	perpWallDist = (mapY - posY + (1 - stepY) / 2) / rayDirY;
+		lineHeight = (int)(screenHeight / perpWallDist);
+      	drawStart = -lineHeight / 2 + screenHeight / 2;
+     	if(drawStart < 0)
+			drawStart = 0;
+      	drawEnd = lineHeight / 2 + screenHeight / 2;
+      	if(drawEnd >= screenHeight)
+			drawEnd = screenHeight - 1;
+      	switch(worldMap[mapX][mapY])
+      	{
+        	case 1:  color = RGB_RED;  break; //red
+        	case 2:  color = RGB_GREEN;  break; //green
+        	case 3:  color = RGB_BLUE;   break; //blue
+        	case 4:  color = RGB_WHITE;  break; //white
+        	default: color = RGB_YELLOW; break; //yellow
+      	}
+      	//give x and y sides different brightness
+      	if (side == 1)
+			color = color / 2;
+      	//draw the pixels of the stripe as a vertical line
+	  	mlx_pixel_put(ptr, window, drawStart, drawEnd, color);
 		x++;
 	}
+	mlx_key_hook(window, deal_key, (void*) 0);
 	mlx_loop(ptr);
 	/*
 	t_cub3d	*tab;
@@ -148,7 +224,7 @@ int		main(int argc, char **argv)
 	tab = (t_cub3d *)malloc(sizeof(t_cub3d *));
 	tab->fd = open(argv[1], O_RDONLY);
 	ft_map(tab);
-	if (argc == 2 || argc == 3)
+	if (argc == 0 || argc == 0)
 	{
 		if (ft_strncmp(argv[1], ".cub", 100) == 0)
 		

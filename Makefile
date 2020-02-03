@@ -1,4 +1,4 @@
-NAME = cub3D.out
+NAME = cub3D
 
 FLAGS = gcc -Wall -Wextra -Werror
 
@@ -20,7 +20,7 @@ OBJLIB = ./libft/ft_putchar_fd.o ./libft/ft_atoi.o ./libft/ft_strncmp.o
 all: $(NAME)
 
 $(NAME): $(OBJ) $(OBJGNL) $(OBJLIB) cub3d.h ./minilibx_opengl_20191021/mlx.h ./libft/libft.h ./minilibx_mms_20191025_beta/mlx.h
-	@$(FLAGS) $(FUN) $(FUNGNL) $(FUNLIB) $(MINILIBX) $(MINILIBX2)
+	@$(FLAGS) $(FUN) $(FUNGNL) $(FUNLIB) $(MINILIBX) $(MINILIBX2) -o $(NAME)
 	@ar rc $(NAME) $(OBJ) $(OBJGNL) $(OBJLIB)
 	@ranlib $(NAME)
 
