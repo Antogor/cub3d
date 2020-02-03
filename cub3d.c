@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/03 17:24:37 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/03 17:25:46 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,21 +175,10 @@ int		main(int argc, char **argv)
 		
 		x++;
 	}
-		data.img = mlx_new_image(ptr, screenWidth, screenHeight);
-		data.addr = mlx_get_data_addr(ptr, &data.bits_per_pixel, &data.line_length, &data.endian);
-		my_mlx_put_pixel(&data, drawStart, drawEnd, RGB_BLUE);
-		mlx_put_image_to_window(ptr, window, data.img, 0, 0);
-      /*	switch(worldMap[mapX][mapY])
-      	{
-        	case 1:  color = RGB_RED;  break; //red
-        	case 2:  color = RGB_GREEN;  break; //green
-        	case 3:  color = RGB_BLUE;   break; //blue
-        	case 4:  color = RGB_WHITE;  break; //white
-        	default: color = RGB_YELLOW; break; //yellow
-      	}
-      	if (side == 1)
-			color = color / 2;*/
-//	mlx_key_hook(window, deal_key, tab);
+	data.img = mlx_new_image(ptr, screenWidth, screenHeight);
+	data.addr = mlx_get_data_addr(ptr, &data.bits_per_pixel, &data.line_length, &data.endian);
+	my_mlx_put_pixel(&data, drawStart, drawEnd, RGB_BLUE);
+	mlx_put_image_to_window(ptr, window, data.img, 0, 0);
 	mlx_loop(ptr);
 	/*
 	t_cub3d	*tab;
