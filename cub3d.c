@@ -31,27 +31,27 @@ int worldMap[mapWidth][mapHeight]=
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+  {1,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
-typedef struct  s_data {
+/*typedef struct  s_data {
     void        *img;
     char        *addr;
     int         bits_per_pixel;
@@ -65,7 +65,8 @@ void my_mlx_put_pixel(t_data *image, int x, int y, int color)
 	
 	dst = image->addr + (y * image->line_length + x * (image->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
-}
+}*/
+
 int		main(int argc, char **argv)
 {
 	double posX;
@@ -103,47 +104,60 @@ int		main(int argc, char **argv)
 	int color;
 	void *ptr;
 	void *window;
-	t_data data;
+//	t_data data;
 	
 	posX = 22;
-	posY = 22;
+	posY = 12;
 	dirX = -1;
 	dirY = 0;
 	planeX = 0;
 	planeY = 0.66;
 	time = 0;
 	oldtime = 0;
-	ptr = mlx_init();
-	window = mlx_new_window(ptr, screenWidth, screenHeight, "cub3d");
+	hit = 0;
+//	ptr = mlx_init();
+//	window = mlx_new_window(ptr, screenWidth, screenHeight, "cub3d");
 	while(x < screenWidth)
 	{
 		cameraX = 2 * x / (double)screenWidth -1;
 		raydirX = dirX + planeX * cameraX;
 		raydirY = dirY + planeY * cameraX;
+		printf("CAMERA: %f\n", cameraX);
+		printf("RAYDIRX: %d\n", rayDirX);
+		printf("RAYDIRY: %d\n", rayDirY);
 		mapX = (int)posX;
 		mapY = (int)posY;
+		printf("MAPX: %d\n", mapX);
+		printf("MAPY: %d\n", mapY);
 		deltaDistX = fabs(1 / raydirX);
 		deltaDistY = fabs(1 / raydirY);
+		printf("deltaDistX: %f\n", deltaDistX);
+		printf("deltaDistY: %f\n", deltaDistY);
 		if (rayDirX < 0)
       	{
 			  stepX = -1;
 			  sideDistX = (posX - mapX) * deltaDistX;
+			  printf("sideDisX: %f\n", sideDistX);
       	}
       	else
      	{
         	stepX = 1;
         	sideDistX = (mapX + 1.0 - posX) * deltaDistX;
+			printf("sideDisX: %f\n", sideDistX);
       	}
      	 if (rayDirY < 0)
       	{
         	stepY = -1;
         	sideDistY = (posY - mapY) * deltaDistY;
+			printf("sideDisY: %f\n", sideDistY);
       	}
 		else
      	 {
      		stepY = 1;
         	sideDistY = (mapY + 1.0 - posY) * deltaDistY;
+			printf("sideDisY: %f\n", sideDistY);
      	 }
+		printf("HASTA QUE CHOQUE MURO:\n");
 		while (hit == 0)
     	{
         	if (sideDistX < sideDistY)
@@ -151,12 +165,16 @@ int		main(int argc, char **argv)
           		sideDistX += deltaDistX;
           		mapX += stepX;
           		side = 0;
+				printf("sideDisX: %f\n", sideDistX);
+				printf("mapX: %d\n", mapX);
         	}
         	else
         	{
           		sideDistY += deltaDistY;
           		mapY += stepY;
           		side = 1;
+				printf("sideDisY: %f\n", sideDistY);
+				printf("mapY: %d\n", mapX);
         	}
         	if (worldMap[mapX][mapY] > 0)
 				hit = 1;
@@ -175,11 +193,11 @@ int		main(int argc, char **argv)
 		
 		x++;
 	}
-	data.img = mlx_new_image(ptr, screenWidth, screenHeight);
+/*	data.img = mlx_new_image(ptr, screenWidth, screenHeight);
 	data.addr = mlx_get_data_addr(ptr, &data.bits_per_pixel, &data.line_length, &data.endian);
 	my_mlx_put_pixel(&data, drawStart, drawEnd, RGB_BLUE);
-	mlx_put_image_to_window(ptr, window, data.img, 0, 0);
-	mlx_loop(ptr);
+	mlx_put_image_to_window(ptr, window, data.img, 0, 0);*/
+//	mlx_loop(ptr);
 	/*
 	t_cub3d	*tab;
 

@@ -20,14 +20,14 @@
 # define RIGTH 124
 # define ESC 53
 
-# include "./libft/libft.h"
-# include "./GNL/get_next_line.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdio.h>
 # include <string.h>
 # include <math.h>
+# include "./libft/libft.h"
+# include "./GNL/get_next_line.h"
 # include "./minilibx_opengl_20191021/mlx.h"
 # include "./minilibx_mms_20191025_beta/mlx.h"
 
