@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 11:43:22 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/05 13:39:30 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/05 14:05:00 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void            my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 int create_trgb(int t, int r, int g, int b)
 {
-	return(b << 24 | g << 16 | r << 8 | t);
+	return(t | b << 24 | r << 16 | g << 8);
 }
 
 int		get_t(int trgb)
@@ -68,24 +68,25 @@ int main (void)
 	mlx_window = mlx_new_window(mlx, 1920, 1080, "test");
 	img.img = mlx_new_image(mlx, 1920, 1080);
 	img.addr = mlx_get_data_addr(mlx, &img.bits_per_pixel, &img.line_length, &img.endian);
-	int t = get_t(25525500);
-	int r = get_r(25525500);
-	int g = get_g(25525500);
-	int b = get_b(25525500);
-	color = create_trgb(t, r, g, b);
-	my_mlx_pixel_put(&img, 5, 5, 0x23BAC4);
+	int t = get_t(000);
+	int r = get_r(255);
+	int g = get_g(000);
+	int b = get_b(000);
+	color = create_trgb(255, 0, 255, 0);
+/*	my_mlx_pixel_put(&img, 5, 5, 0x23BAC4);
 	my_mlx_pixel_put(&img, 5, 9, 0x23BAC4);
 	my_mlx_pixel_put(&img, 5, 6, 0x23BAC4);
 	my_mlx_pixel_put(&img, 5, 7, 0x23BAC4);
-	my_mlx_pixel_put(&img, 5, 8, 0x23BAC4);
-/*	mlx_pixel_put(mlx, mlx_window, 5, 6, 0x23BAC4);
+	my_mlx_pixel_put(&img, 5, 8, 0x23BAC4);*/
+	mlx_pixel_put(mlx, mlx_window, 5, 6, 0x23BAC4);
 	mlx_pixel_put(mlx, mlx_window, 5, 7, 0x23BAC4);
 	mlx_pixel_put(mlx, mlx_window, 5, 8, 0x23BAC4);
 	mlx_pixel_put(mlx, mlx_window, 5, 9, 0x23BAC4);
 	mlx_pixel_put(mlx, mlx_window, 5, 10, 0x23BAC4);
 	mlx_pixel_put(mlx, mlx_window, 5, 11, 0x23BAC4);
 	mlx_pixel_put(mlx, mlx_window, 5, 12, 0x23BAC4);
-	mlx_pixel_put(mlx, mlx_window, 5, 13, 0x23BAC4);*/
+	mlx_pixel_put(mlx, mlx_window, 5, 13, 0x23BAC4);
 	mlx_put_image_to_window(mlx, mlx_window, img.img, 5, 5);
+	mlx_string_put(mlx, mlx_window, 5, 5, color, "AAAAAAA");
 	mlx_loop(mlx);
 }
