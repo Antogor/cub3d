@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 11:43:22 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/05 17:21:30 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/05 17:26:10 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,7 @@ int main (void)
 	printf("%s", dst);
 //	my_mlx_pixel_put(&img, 1000, 500, colorR);
 //	mlx_pixel_put(mlx, mlx_window, 1000, 500, colorR);
-//	mlx_pixel_put(mlx, mlx_window, 1000, 500, 0x8800ff00);
-/*	mlx_pixel_put(mlx, mlx_window, 5, 7, 0x23BAC4);
-	mlx_pixel_put(mlx, mlx_window, 5, 8, 0x23BAC4);
-	mlx_pixel_put(mlx, mlx_window, 5, 9, 0x23BAC4);
-	mlx_pixel_put(mlx, mlx_window, 5, 10, 0x23BAC4);
-	mlx_pixel_put(mlx, mlx_window, 5, 11, 0x23BAC4);
-	mlx_pixel_put(mlx, mlx_window, 5, 12, 0x23BAC4);
-	mlx_pixel_put(mlx, mlx_window, 300, 300, colorB);
-	mlx_string_put(mlx, mlx_window, 6, 6, colorR, "ROJO");
+/*	mlx_string_put(mlx, mlx_window, 6, 6, colorR, "ROJO");
 	mlx_string_put(mlx, mlx_window, 100, 100, colorG, "VERDE");
 	mlx_string_put(mlx, mlx_window, 300, 300, colorB, "AZUL");*/
 //	mlx_put_image_to_window(mlx, mlx_window, img.img, 5, 5);
