@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/03 17:25:46 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/05 11:36:33 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,11 +115,15 @@ int		main(int argc, char **argv)
 	time = 0;
 	oldtime = 0;
 	hit = 0;
+	rayDirX = 0;
+	rayDirY = 0;
+	deltaDistX = 0;
+	deltaDistY = 0;
 //	ptr = mlx_init();
 //	window = mlx_new_window(ptr, screenWidth, screenHeight, "cub3d");
 	while(x < screenWidth)
 	{
-		cameraX = 2 * x / (double)screenWidth -1;
+		cameraX = 2 * x / screenWidth -1;
 		raydirX = dirX + planeX * cameraX;
 		raydirY = dirY + planeY * cameraX;
 		printf("CAMERA: %f\n", cameraX);
@@ -157,9 +161,9 @@ int		main(int argc, char **argv)
         	sideDistY = (mapY + 1.0 - posY) * deltaDistY;
 			printf("sideDisY: %f\n", sideDistY);
      	 }
-		printf("HASTA QUE CHOQUE MURO:\n");
 		while (hit == 0)
     	{
+			printf("ASMAMSKSAK\n");
         	if (sideDistX < sideDistY)
         	{
           		sideDistX += deltaDistX;
@@ -179,18 +183,24 @@ int		main(int argc, char **argv)
         	if (worldMap[mapX][mapY] > 0)
 				hit = 1;
       	}
+		printf("HIT: %d\n", hit);
 		if (side == 0)
 			perpWallDist = (mapX - posX + (1 - stepX) / 2) / rayDirX;
       	else
 		  	perpWallDist = (mapY - posY + (1 - stepY) / 2) / rayDirY;
+		printf("WALL: %f\n", perpWallDist);
 		lineHeight = (int)(screenHeight / perpWallDist);
-      	drawStart = -lineHeight / 2 + screenHeight / 2;
+		printf("LINEHEIGHT: %d\n", lineHeight);
+      	drawStart = lineHeight / 2 + screenHeight / 2;
+		printf("DRAWSTART: %d\n", drawStart);
      	if(drawStart < 0)
 			drawStart = 0;
       	drawEnd = lineHeight / 2 + screenHeight / 2;
       	if(drawEnd >= screenHeight)
 			drawEnd = screenHeight - 1;
-		
+		printf("DRAWSTART: %d\n", drawStart);
+		printf("DRAWEND: %d\n", drawEnd);
+		break ;
 		x++;
 	}
 /*	data.img = mlx_new_image(ptr, screenWidth, screenHeight);
