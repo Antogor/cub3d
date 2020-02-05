@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 11:43:22 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/05 14:05:00 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/05 17:21:30 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,63 +30,46 @@ void            my_mlx_pixel_put(t_data *data, int x, int y, int color)
     *(unsigned int*)dst = color;
 }
 
-int create_trgb(int t, int r, int g, int b)
+int		create_trgb(int t, int r, int g, int b)
 {
-	return(t | b << 24 | r << 16 | g << 8);
-}
-
-int		get_t(int trgb)
-{
-	return (trgb & 0xFF);
-}
-
-int		get_r(int trgb)
-{
-	return (trgb & 0xFF00);
-}
-
-int		get_g(int trgb)
-{
-	return (trgb & 0xFF0000);
-}
-
-int		get_b(int trgb)
-{
-	return (trgb & 0xFF000000);
+	return(t << 24 | r << 16 | g << 8 | b);
 }
 
 int main (void)
 {
 	void *mlx;
 	void *mlx_window;
-	int color;
+	int colorR;
+	int colorG;
+	int colorB;
+	int colorT;
 	t_data img;
 	char    *dst;
-	img.line_length = 0;
 	
 	mlx = mlx_init();
 	mlx_window = mlx_new_window(mlx, 1920, 1080, "test");
 	img.img = mlx_new_image(mlx, 1920, 1080);
 	img.addr = mlx_get_data_addr(mlx, &img.bits_per_pixel, &img.line_length, &img.endian);
-	int t = get_t(000);
-	int r = get_r(255);
-	int g = get_g(000);
-	int b = get_b(000);
-	color = create_trgb(255, 0, 255, 0);
-/*	my_mlx_pixel_put(&img, 5, 5, 0x23BAC4);
-	my_mlx_pixel_put(&img, 5, 9, 0x23BAC4);
-	my_mlx_pixel_put(&img, 5, 6, 0x23BAC4);
-	my_mlx_pixel_put(&img, 5, 7, 0x23BAC4);
-	my_mlx_pixel_put(&img, 5, 8, 0x23BAC4);*/
-	mlx_pixel_put(mlx, mlx_window, 5, 6, 0x23BAC4);
-	mlx_pixel_put(mlx, mlx_window, 5, 7, 0x23BAC4);
+	colorR = create_trgb(0, 255, 0, 0);
+	colorG = create_trgb(0, 0, 255, 0);
+	colorB = create_trgb(0, 0, 0, 255);
+	colorT = create_trgb(255, 0, 0, 0);
+	dst = img.addr + (5 * img.line_length + 5 * (img.bits_per_pixel / 8));
+   *(unsigned int*)dst = colorR;
+	printf("%s", dst);
+//	my_mlx_pixel_put(&img, 1000, 500, colorR);
+//	mlx_pixel_put(mlx, mlx_window, 1000, 500, colorR);
+//	mlx_pixel_put(mlx, mlx_window, 1000, 500, 0x8800ff00);
+/*	mlx_pixel_put(mlx, mlx_window, 5, 7, 0x23BAC4);
 	mlx_pixel_put(mlx, mlx_window, 5, 8, 0x23BAC4);
 	mlx_pixel_put(mlx, mlx_window, 5, 9, 0x23BAC4);
 	mlx_pixel_put(mlx, mlx_window, 5, 10, 0x23BAC4);
 	mlx_pixel_put(mlx, mlx_window, 5, 11, 0x23BAC4);
 	mlx_pixel_put(mlx, mlx_window, 5, 12, 0x23BAC4);
-	mlx_pixel_put(mlx, mlx_window, 5, 13, 0x23BAC4);
-	mlx_put_image_to_window(mlx, mlx_window, img.img, 5, 5);
-	mlx_string_put(mlx, mlx_window, 5, 5, color, "AAAAAAA");
+	mlx_pixel_put(mlx, mlx_window, 300, 300, colorB);
+	mlx_string_put(mlx, mlx_window, 6, 6, colorR, "ROJO");
+	mlx_string_put(mlx, mlx_window, 100, 100, colorG, "VERDE");
+	mlx_string_put(mlx, mlx_window, 300, 300, colorB, "AZUL");*/
+//	mlx_put_image_to_window(mlx, mlx_window, img.img, 5, 5);
 	mlx_loop(mlx);
 }
