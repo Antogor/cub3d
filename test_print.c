@@ -81,8 +81,9 @@ int             main(void)
 	int colorG;
 	int colorB;
 	int colorT;
+	int **color_buff;
 
-	
+	color_buff = bi_array(color_buff, 520, 360);
     mlx = mlx_init();
     mlx_win = mlx_new_window(mlx, 520, 360, "cub3D");
     img.img = mlx_new_image(mlx, 520, 360);
