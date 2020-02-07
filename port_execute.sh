@@ -1,0 +1,1 @@
+gcc test_print.c -lmlx -lXext -lX11 -o TEST3D_port && ./TEST3D_port

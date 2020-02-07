@@ -84,15 +84,15 @@ int             main(void)
 
 	
     mlx = mlx_init();
-    mlx_win = mlx_new_window(mlx, 1920, 1080, "cub3D");
-    img.img = mlx_new_image(mlx, 1920, 1080);
+    mlx_win = mlx_new_window(mlx, 520, 360, "cub3D");
+    img.img = mlx_new_image(mlx, 520, 360);
     img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
                                  &img.endian);
 	colorR = create_trgb(0, 255, 0, 0);
 	colorG = create_trgb(0, 0, 255, 0);
 	colorB = create_trgb(0, 0, 0, 255);
 	colorT = create_trgb(255, 0, 0, 0);
-	my_mlx_pixel_put(&img, 1000, 500, colorR);
+	my_mlx_pixel_put(&img, 260, 180, colorR);
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 
     mlx_loop(mlx);
