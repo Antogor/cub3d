@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/05 11:36:33 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/10 11:42:18 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,22 +50,6 @@ int worldMap[mapWidth][mapHeight]=
   {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
-
-/*typedef struct  s_data {
-    void        *img;
-    char        *addr;
-    int         bits_per_pixel;
-    int         line_length;
-    int         endian;
-}               t_data;
-
-void my_mlx_put_pixel(t_data *image, int x, int y, int color)
-{
-	char *dst;
-	
-	dst = image->addr + (y * image->line_length + x * (image->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}*/
 
 int		main(int argc, char **argv)
 {

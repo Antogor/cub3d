@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:24:33 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/03 16:56:37 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/10 11:55:18 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,30 @@
 # include <stdio.h>
 # include <string.h>
 # include <math.h>
+# include <mlx.h>
 # include "./libft/libft.h"
 # include "./GNL/get_next_line.h"
-# include "./minilibx_opengl_20191021/mlx.h"
-# include "./minilibx_mms_20191025_beta/mlx.h"
+//# include "./minilibx_opengl_20191021/mlx.h"
+//# include "./minilibx_mms_20191025_beta/mlx.h"
 
 typedef struct	s_lib_mlx
 {
 	void		*mlx_ptr;
 	void		*window;
-	void		*image;
-	char		*image_data;
+	void		*img;
+	char		*img_data;
 	int			bpp;
 	int			size_l;
 	int			endian;
 }				t_mlx;
+
+typedef struct	s_lib_color
+{
+	int colorR;
+	int colorG;
+	int colorB;
+	int colorT;
+}				t_color;
 
 typedef struct	s_lib_cub3d
 {
@@ -50,15 +59,18 @@ typedef struct	s_lib_cub3d
 	char		*text_e;
 	char		*text_o;
 	char		*text_sprite;
-	char		**floor_colors;
-	char		**celling_colors;
+	int			floor_colors;
+	int			celling_colors;
 	char		**map;
 	int			x;
 	int			y;
 	int			fd;
 	t_mlx		*mlx;
+	t_color		*color;
 }				t_cub3d;
 
 int				ft_keys(t_cub3d *tab);
 int				ft_map(t_cub3d *map);
+void			paint(t_mlx *print, int color, int fin_x, int fin_y);
+int				create_trgb(int t, int r, int g, int b);
 #endif
