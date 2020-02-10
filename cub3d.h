@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:24:33 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/10 11:55:18 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/10 13:53:04 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef struct	s_lib_mlx
 	int			bpp;
 	int			size_l;
 	int			endian;
+	int x;
+	int y;
 }				t_mlx;
 
 typedef struct	s_lib_color

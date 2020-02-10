@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   test_raycasting.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/10 11:42:18 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/10 14:45:32 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int		main(int argc, char **argv)
 //	t_data data;
 	
 	posX = 22;
-	posY = 12;
+	posY = 3;
 	dirX = -1;
 	dirY = 0;
 	planeX = 0;
@@ -103,13 +103,18 @@ int		main(int argc, char **argv)
 	rayDirY = 0;
 	deltaDistX = 0;
 	deltaDistY = 0;
-//	ptr = mlx_init();
-//	window = mlx_new_window(ptr, screenWidth, screenHeight, "cub3d");
+	t_mlx	*img;
+	t_color	*color2;
+
+	img = (t_mlx *)malloc(sizeof(t_mlx));
+	color2 = (t_color *)malloc(sizeof(t_color));
+	img->mlx_ptr = mlx_init();
+    img->window = mlx_new_window(img->mlx_ptr, screenWidth, screenHeight, "cub3D");
 	while(x < screenWidth)
 	{
 		cameraX = 2 * x / screenWidth -1;
-		raydirX = dirX + planeX * cameraX;
-		raydirY = dirY + planeY * cameraX;
+		rayDirX = dirX + planeX * cameraX;
+		rayDirY = dirY + planeY * cameraX;
 		printf("CAMERA: %f\n", cameraX);
 		printf("RAYDIRX: %d\n", rayDirX);
 		printf("RAYDIRY: %d\n", rayDirY);
@@ -184,14 +189,20 @@ int		main(int argc, char **argv)
 			drawEnd = screenHeight - 1;
 		printf("DRAWSTART: %d\n", drawStart);
 		printf("DRAWEND: %d\n", drawEnd);
-		break ;
 		x++;
+		printf("X = %d\n", x);
+		printf("\n");
 	}
-/*	data.img = mlx_new_image(ptr, screenWidth, screenHeight);
-	data.addr = mlx_get_data_addr(ptr, &data.bits_per_pixel, &data.line_length, &data.endian);
-	my_mlx_put_pixel(&data, drawStart, drawEnd, RGB_BLUE);
-	mlx_put_image_to_window(ptr, window, data.img, 0, 0);*/
-//	mlx_loop(ptr);
+	img->img = mlx_new_image(img->mlx_ptr, 520, 360);
+    img->img_data = mlx_get_data_addr(img->img, &img->bpp, &img->size_l,
+                                 &img->endian);
+	color2->colorR = create_trgb(0, 255, 0, 0);
+	color2->colorG = create_trgb(0, 0, 255, 0);
+	color2->colorB = create_trgb(0, 0, 0, 255);
+	color2->colorT = create_trgb(255, 0, 0, 0);
+	paint(img, color2->colorR, drawEnd, drawStart);
+	mlx_put_image_to_window(img->mlx_ptr, img->window, img->img, drawEnd, drawStart);
+	mlx_loop(img->mlx_ptr);
 	/*
 	t_cub3d	*tab;
 
