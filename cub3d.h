@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:24:33 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/10 13:53:04 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/10 17:02:05 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct	s_lib_mlx
 	void		*mlx_ptr;
 	void		*window;
 	void		*img;
-	char		*img_data;
+	int			*img_data;
 	int			bpp;
 	int			size_l;
 	int			endian;

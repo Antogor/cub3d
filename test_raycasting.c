@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/10 14:45:32 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/10 17:38:32 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,16 @@ int worldMap[mapWidth][mapHeight]=
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
+void            my_mlx_pixel_put(t_mlx *data, int x, int y, int color)
+{
+    int    *dst;
+
+    dst = data->img_data + (y * data->size_l + x * (data->bpp / 8));
+
+		*(unsigned int*)dst = color;
+
+}
+
 int		main(int argc, char **argv)
 {
 	double posX;
@@ -91,7 +101,7 @@ int		main(int argc, char **argv)
 //	t_data data;
 	
 	posX = 22;
-	posY = 3;
+	posY = 12;
 	dirX = -1;
 	dirY = 0;
 	planeX = 0;
@@ -108,8 +118,15 @@ int		main(int argc, char **argv)
 
 	img = (t_mlx *)malloc(sizeof(t_mlx));
 	color2 = (t_color *)malloc(sizeof(t_color));
+	color2->colorR = create_trgb(0, 255, 0, 0);
+	color2->colorG = create_trgb(0, 0, 255, 0);
+	color2->colorB = create_trgb(0, 0, 0, 255);
+	color2->colorT = create_trgb(255, 0, 0, 0);
 	img->mlx_ptr = mlx_init();
     img->window = mlx_new_window(img->mlx_ptr, screenWidth, screenHeight, "cub3D");
+	img->img = mlx_new_image(img->mlx_ptr, 520, 360);
+    img->img_data = (int*)mlx_get_data_addr(img->img, &img->bpp, &img->size_l,
+                                 &img->endian);
 	while(x < screenWidth)
 	{
 		cameraX = 2 * x / screenWidth -1;
@@ -122,8 +139,8 @@ int		main(int argc, char **argv)
 		mapY = (int)posY;
 		printf("MAPX: %d\n", mapX);
 		printf("MAPY: %d\n", mapY);
-		deltaDistX = fabs(1 / raydirX);
-		deltaDistY = fabs(1 / raydirY);
+		deltaDistX = (rayDirY == 0) ? 0 : ((rayDirX == 0) ? 1 : abs(1 / rayDirX));
+    	deltaDistY = (rayDirX == 0) ? 0 : ((rayDirY == 0) ? 1 : abs(1 / rayDirY));
 		printf("deltaDistX: %f\n", deltaDistX);
 		printf("deltaDistY: %f\n", deltaDistY);
 		if (rayDirX < 0)
@@ -192,16 +209,9 @@ int		main(int argc, char **argv)
 		x++;
 		printf("X = %d\n", x);
 		printf("\n");
+		my_mlx_pixel_put(img, 0, 0, color2->colorR);
+		mlx_put_image_to_window(img->mlx_ptr, img->window, img->img, 180, 260);
 	}
-	img->img = mlx_new_image(img->mlx_ptr, 520, 360);
-    img->img_data = mlx_get_data_addr(img->img, &img->bpp, &img->size_l,
-                                 &img->endian);
-	color2->colorR = create_trgb(0, 255, 0, 0);
-	color2->colorG = create_trgb(0, 0, 255, 0);
-	color2->colorB = create_trgb(0, 0, 0, 255);
-	color2->colorT = create_trgb(255, 0, 0, 0);
-	paint(img, color2->colorR, drawEnd, drawStart);
-	mlx_put_image_to_window(img->mlx_ptr, img->window, img->img, drawEnd, drawStart);
 	mlx_loop(img->mlx_ptr);
 	/*
 	t_cub3d	*tab;

@@ -6,11 +6,22 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 11:43:22 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/10 14:25:45 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/10 17:47:23 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void            my_mlx_pixel_put(t_mlx *data, int x, int y, int color)
+{
+    int    *dst;
+
+	dst = data->img_data + (y * data->size_l + x * (data->bpp / 8));
+	*(unsigned int*)dst = color;
+
+   
+	
+}
 
 int cross(int button, t_mlx *mlx)
 {
@@ -58,9 +69,7 @@ int move_y(int keycde, t_mlx *mlx)
 
 int     render_next_frame(t_mlx *img)
 {
-
-	mlx_put_image_to_window(img->mlx_ptr, img->window, img->img, img->x, img->y);
-
+	mlx_put_image_to_window(img->mlx_ptr, img->window, img->img, 260, 180);
 	return (0);
 }
 
@@ -80,14 +89,15 @@ int		main(void)
 	img->x += mlx_hook(img->window, 2, 1L<<0, move_x, img);
 	img->y += mlx_hook(img->window, 2, 1L<<0, move_y, img);
 	img->img = mlx_new_image(img->mlx_ptr, 520, 360);
-    img->img_data = mlx_get_data_addr(img->img, &img->bpp, &img->size_l,
+    img->img_data = (int *)mlx_get_data_addr(img->img, &img->bpp, &img->size_l,
                                  &img->endian);
 	color->colorR = create_trgb(0, 255, 0, 0);
 	color->colorG = create_trgb(0, 0, 255, 0);
 	color->colorB = create_trgb(0, 0, 0, 255);
 	color->colorT = create_trgb(255, 0, 0, 0);
-	paint(img, color->colorB, 50, 50);
-	
+//	paint(img, color->colorB, 50, 50);
+	my_mlx_pixel_put(img, 0, 0, color->colorR);
+//	mlx_put_image_to_window(img->mlx_ptr, img->window, img->img, 100, 100);
 	mlx_loop_hook(img->mlx_ptr, render_next_frame, img);
 	
 	
