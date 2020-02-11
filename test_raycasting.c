@@ -92,7 +92,7 @@ int		main(int argc, char **argv)
 //	t_data data;
 	
 	posX = 3;
-	posY = 1;
+	posY = 3;
 	dirX = 0;
 	dirY = 1;
 	planeX = 0;
@@ -197,10 +197,10 @@ int		main(int argc, char **argv)
 				perpWallDist = (((mapY - posY) + (1 - stepY)) / 2) / rayDirY;
 		}
 		printf("WALL: %f\n", perpWallDist);
-		if (perpWallDist == 0)
-			lineHeight = 0;
-		else
-			lineHeight = (int)(screenHeight / perpWallDist);
+		//if (perpWallDist == 0)
+		//	lineHeight = 0;
+		//else
+		//	lineHeight = (int)(screenHeight / perpWallDist);
 		printf("LINEHEIGHT: %d\n", lineHeight);
       	drawStart = ((lineHeight * -1) / 2) + (screenHeight / 2);
 		printf("DRAWSTART: %d\n", drawStart);
@@ -214,7 +214,7 @@ int		main(int argc, char **argv)
 		
 		printf("X = %d\n", x);
 		printf("\n");
-		my_mlx_pixel_put(img, 0, drawStart, color2, drawEnd);
+		my_mlx_pixel_put(img, x, drawStart, color2, drawEnd);
 		mlx_loop_hook(img->mlx_ptr, frame, img);
 		x++;
 	}
