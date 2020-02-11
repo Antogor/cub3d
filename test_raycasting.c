@@ -35,19 +35,20 @@ int worldMap[mapWidth][mapHeight]=
 void            my_mlx_pixel_put(t_mlx *data, int x, int start, t_color *color2, int end)
 {
 	int i = 0;
+	int y = 0;
 	while(i < start)
 	{
-		data->img_data[(((x + i) * data->size_l) / 4)] = color2->colorR;
+		*(data->img_data + x + i * data->size_l / 4) = color2->colorR;
 		i++;
 	}
 	while (i < end)
 	{
-		data->img_data[((x + i) * data->size_l) / 4] = color2->colorG;
+		*(data->img_data + x + i * data->size_l / 4) = color2->colorG;
 		i++;
 	}
 	while (i < screenHeight)
 	{
-		data->img_data[((x + i) * data->size_l) / 4] = color2->colorB;
+		*(data->img_data + x + i * data->size_l / 4) = color2->colorB;
 		i++;
 	}
 	
@@ -91,12 +92,12 @@ int		main(int argc, char **argv)
 	void *window;
 //	t_data data;
 	
-	posX = 3;
-	posY = 3;
-	dirX = -1;
-	dirY = 0;
-	planeX = 0;
-	planeY = 0.66;
+	posX = 1.8;
+	posY = 1;
+	dirX = 0;
+	dirY = 1;
+	planeX = 0.66;
+	planeY = 0;
 	hit = 0;
 	t_mlx	*img;
 	t_color	*color2;
@@ -105,7 +106,7 @@ int		main(int argc, char **argv)
 	color2 = (t_color *)malloc(sizeof(t_color));
 	color2->colorR = create_trgb(0, 255, 0, 0);
 	color2->colorG = create_trgb(0, 0, 255, 0);
-	color2->colorB = create_trgb(0, 0, 0, 255);
+	color2->colorB = create_trgb(255, 0, 0, 255);
 	color2->colorT = create_trgb(255, 0, 0, 0);
 	img->mlx_ptr = mlx_init();
     img->window = mlx_new_window(img->mlx_ptr, screenWidth, screenHeight, "cub3D");
@@ -206,12 +207,12 @@ int		main(int argc, char **argv)
 			drawEnd = screenHeight - 1;
 		printf("DRAWSTART: %d\n", drawStart);
 		printf("DRAWEND: %d\n", drawEnd);
-		
-		printf("X = %d\n", x);
-		printf("\n");
-		my_mlx_pixel_put(img, mapX, drawStart, color2, drawEnd);
+		printf("SSSS\n");
+		my_mlx_pixel_put(img, x, drawStart, color2, drawEnd);
 		mlx_loop_hook(img->mlx_ptr, frame, img);
 		x++;
+		printf("X = %d\n", x);
+		printf("\n");
 	}
 	mlx_loop(img->mlx_ptr);
 	/*
