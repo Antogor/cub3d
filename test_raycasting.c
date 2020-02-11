@@ -37,7 +37,7 @@ void            my_mlx_pixel_put(t_mlx *data, int x, int y, t_color *color2, int
 	int i = 0;
 	while(i < y)
 	{
-		data->img_data[((x + i) * data->size_l) / 4] = color2->colorR;
+		data->img_data[(((x + i) * data->size_l) / 4)] = color2->colorR;
 		i++;
 	}
 	/*while (i < end)
@@ -214,7 +214,7 @@ int		main(int argc, char **argv)
 		
 		printf("X = %d\n", x);
 		printf("\n");
-		my_mlx_pixel_put(img, x, drawStart, color2, drawEnd);
+		my_mlx_pixel_put(img, 0, drawStart, color2, drawEnd);
 		mlx_loop_hook(img->mlx_ptr, frame, img);
 		x++;
 	}
