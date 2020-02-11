@@ -14,8 +14,8 @@
 
 #define mapWidth 5
 #define mapHeight 5
-#define screenWidth 640
-#define screenHeight 480
+#define screenWidth 520
+#define screenHeight 360
 #define GREY 808080
 #define RGB_RED 0xFF0000
 #define RGB_GREEN 0x008000
@@ -32,10 +32,10 @@ int worldMap[mapWidth][mapHeight]=
   {1,1,1,1,1}
 };
 
-void            my_mlx_pixel_put(t_mlx *data, int x, int y, t_color *color2, int end)
+void            my_mlx_pixel_put(t_mlx *data, int x, int start, t_color *color2, int end)
 {
 	int i = 0;
-	while(i < y)
+	while(i < start)
 	{
 		data->img_data[(((x + i) * data->size_l) / 4)] = color2->colorR;
 		i++;
@@ -65,8 +65,6 @@ int		main(int argc, char **argv)
 	double dirY;
 	double planeX;
 	double planeY;
-	double time;
-	double oldtime;
 	double cameraX;
 	double raydirX;
 	double raydirY;
@@ -88,9 +86,6 @@ int		main(int argc, char **argv)
 	int lineHeight;
     int drawStart;
 	int drawEnd;
-	double frameTime;
-	double moveSpeed;
-	double rotSpeed;
 	int color;
 	void *ptr;
 	void *window;
@@ -98,17 +93,11 @@ int		main(int argc, char **argv)
 	
 	posX = 3;
 	posY = 3;
-	dirX = 0;
-	dirY = 1;
+	dirX = -1;
+	dirY = 0;
 	planeX = 0;
 	planeY = 0.66;
-	time = 0;
-	oldtime = 0;
 	hit = 0;
-	rayDirX = 0;
-	rayDirY = 0;
-	deltaDistX = 0;
-	deltaDistY = 0;
 	t_mlx	*img;
 	t_color	*color2;
 
@@ -164,6 +153,7 @@ int		main(int argc, char **argv)
         	sideDistY = ((mapY + 1.0) - posY) * deltaDistY;
 			printf("sideDisY: %f\n", sideDistY);
      	 }
+		hit = 0;
 		while (hit == 0)
     	{
 			printf("ASMAMSKSAK\n");
@@ -192,26 +182,26 @@ int		main(int argc, char **argv)
 			if (rayDirX == 0)
 				perpWallDist = 0;
 			else
-				perpWallDist = (((mapX - posX) + (1 - stepX)) / 2) / rayDirX;
+				perpWallDist = (mapX - posX + (1 - stepX) / 2) / rayDirX;
 		}
       	else
 		{
 			if (rayDirY == 0)
 				perpWallDist = 0;
 			else
-				perpWallDist = (((mapY - posY) + (1 - stepY)) / 2) / rayDirY;
+				perpWallDist = (mapY - posY + (1 - stepY) / 2) / rayDirY;
 		}
 		printf("WALL: %f\n", perpWallDist);
 		//if (perpWallDist == 0)
 		//	lineHeight = 0;
 		//else
-		//	lineHeight = (int)(screenHeight / perpWallDist);
+		lineHeight = (int)(screenHeight / perpWallDist);
 		printf("LINEHEIGHT: %d\n", lineHeight);
-      	drawStart = ((lineHeight * -1) / 2) + (screenHeight / 2);
+      	drawStart = (lineHeight * -1) / 2 + screenHeight / 2;
 		printf("DRAWSTART: %d\n", drawStart);
      	if(drawStart < 0)
 			drawStart = 0;
-      	drawEnd = (lineHeight / 2 ) + (screenHeight / 2);
+      	drawEnd = lineHeight / 2 + screenHeight / 2;
       	if(drawEnd >= screenHeight)
 			drawEnd = screenHeight - 1;
 		printf("DRAWSTART: %d\n", drawStart);
@@ -219,7 +209,7 @@ int		main(int argc, char **argv)
 		
 		printf("X = %d\n", x);
 		printf("\n");
-		my_mlx_pixel_put(img, x, drawStart, color2, drawEnd);
+		my_mlx_pixel_put(img, mapX, drawStart, color2, drawEnd);
 		mlx_loop_hook(img->mlx_ptr, frame, img);
 		x++;
 	}
