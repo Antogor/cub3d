@@ -40,11 +40,16 @@ void            my_mlx_pixel_put(t_mlx *data, int x, int y, t_color *color2, int
 		data->img_data[(((x + i) * data->size_l) / 4)] = color2->colorR;
 		i++;
 	}
-	/*while (i < end)
+	while (i < end)
 	{
 		data->img_data[((x + i) * data->size_l) / 4] = color2->colorG;
 		i++;
-	}*/
+	}
+	while (i < screenHeight)
+	{
+		data->img_data[((x + i) * data->size_l) / 4] = color2->colorB;
+		i++;
+	}
 	
 }
 
