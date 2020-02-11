@@ -12,15 +12,26 @@
 
 #include "cub3d.h"
 
-void            my_mlx_pixel_put(t_mlx *data, int x, int y, int color)
+void            my_mlx_pixel_put(t_mlx *data, int x, int y, t_color *color)
 {
-    int    *dst;
-
-	dst = data->img_data + (y * data->size_l + x * (data->bpp / 8));
-	*(unsigned int*)dst = color;
-
-   
-	
+	int i = 0;
+	int q = 0;
+	int pos = (520 * 360) * 4;
+	while (q < 520)
+	{
+		while(i < 180)
+		{
+			data->img_data[((x + i) * data->size_l) / 4] = color->colorR;
+			i++;
+		}
+		while(i < 360)
+		{
+			data->img_data[((x + i) * data->size_l) / 4] = color->colorG;
+			i++;
+		}
+	q++;
+	}
+	//data->img_data [(((x * 4) + data->size_l) * y)] = color;
 }
 
 int cross(int button, t_mlx *mlx)
@@ -69,7 +80,7 @@ int move_y(int keycde, t_mlx *mlx)
 
 int     render_next_frame(t_mlx *img)
 {
-	mlx_put_image_to_window(img->mlx_ptr, img->window, img->img, 260, 180);
+	mlx_put_image_to_window(img->mlx_ptr, img->window, img->img, 0, 0);
 	return (0);
 }
 
@@ -96,7 +107,7 @@ int		main(void)
 	color->colorB = create_trgb(0, 0, 0, 255);
 	color->colorT = create_trgb(255, 0, 0, 0);
 //	paint(img, color->colorB, 50, 50);
-	my_mlx_pixel_put(img, 0, 0, color->colorR);
+	my_mlx_pixel_put(img, 0, 0, color);
 //	mlx_put_image_to_window(img->mlx_ptr, img->window, img->img, 100, 100);
 	mlx_loop_hook(img->mlx_ptr, render_next_frame, img);
 	

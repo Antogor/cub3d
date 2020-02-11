@@ -12,8 +12,8 @@
 
 #include "cub3d.h"
 
-#define mapWidth 24
-#define mapHeight 24
+#define mapWidth 5
+#define mapHeight 5
 #define screenWidth 640
 #define screenHeight 480
 #define GREY 808080
@@ -25,42 +25,33 @@
 
 int worldMap[mapWidth][mapHeight]=
 {
-  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
+  {1,1,1,1,1},
+  {1,0,0,0,1},
+  {1,0,0,0,1},
+  {1,0,0,0,1},
+  {1,1,1,1,1}
 };
 
-void            my_mlx_pixel_put(t_mlx *data, int x, int y, int color)
+void            my_mlx_pixel_put(t_mlx *data, int x, int y, t_color *color2, int end)
 {
-    int    *dst;
-
-    dst = data->img_data + (y * data->size_l + x * (data->bpp / 8));
-
-		*(unsigned int*)dst = color;
-
+	int i = 0;
+	while(i < y)
+	{
+		data->img_data[((x + i) * data->size_l) / 4] = color2->colorR;
+		i++;
+	}
+	/*while (i < end)
+	{
+		data->img_data[((x + i) * data->size_l) / 4] = color2->colorG;
+		i++;
+	}*/
+	
 }
 
+int frame(t_mlx *img)
+{
+	mlx_put_image_to_window(img->mlx_ptr, img->window, img->img, 0, 0);
+}
 int		main(int argc, char **argv)
 {
 	double posX;
@@ -100,10 +91,10 @@ int		main(int argc, char **argv)
 	void *window;
 //	t_data data;
 	
-	posX = 22;
-	posY = 12;
-	dirX = -1;
-	dirY = 0;
+	posX = 3;
+	posY = 1;
+	dirX = 0;
+	dirY = 1;
 	planeX = 0;
 	planeY = 0.66;
 	time = 0;
@@ -127,9 +118,10 @@ int		main(int argc, char **argv)
 	img->img = mlx_new_image(img->mlx_ptr, 520, 360);
     img->img_data = (int*)mlx_get_data_addr(img->img, &img->bpp, &img->size_l,
                                  &img->endian);
+	x = 0;
 	while(x < screenWidth)
 	{
-		cameraX = 2 * x / screenWidth -1;
+		cameraX = 2 * x / (double)screenWidth -1;
 		rayDirX = dirX + planeX * cameraX;
 		rayDirY = dirY + planeY * cameraX;
 		printf("CAMERA: %f\n", cameraX);
@@ -139,8 +131,8 @@ int		main(int argc, char **argv)
 		mapY = (int)posY;
 		printf("MAPX: %d\n", mapX);
 		printf("MAPY: %d\n", mapY);
-		deltaDistX = (rayDirY == 0) ? 0 : ((rayDirX == 0) ? 1 : abs(1 / rayDirX));
-    	deltaDistY = (rayDirX == 0) ? 0 : ((rayDirY == 0) ? 1 : abs(1 / rayDirY));
+		deltaDistX = (rayDirY == 0) ? 0 : ((rayDirX == 0) ? 1 : fabs(1 / rayDirX));
+    	deltaDistY = (rayDirX == 0) ? 0 : ((rayDirY == 0) ? 1 : fabs(1 / rayDirY));
 		printf("deltaDistX: %f\n", deltaDistX);
 		printf("deltaDistY: %f\n", deltaDistY);
 		if (rayDirX < 0)
@@ -164,7 +156,7 @@ int		main(int argc, char **argv)
 		else
      	 {
      		stepY = 1;
-        	sideDistY = (mapY + 1.0 - posY) * deltaDistY;
+        	sideDistY = ((mapY + 1.0) - posY) * deltaDistY;
 			printf("sideDisY: %f\n", sideDistY);
      	 }
 		while (hit == 0)
@@ -186,31 +178,45 @@ int		main(int argc, char **argv)
 				printf("sideDisY: %f\n", sideDistY);
 				printf("mapY: %d\n", mapX);
         	}
-        	if (worldMap[mapX][mapY] > 0)
+        	if (worldMap[mapX][mapY] == 1)
 				hit = 1;
       	}
 		printf("HIT: %d\n", hit);
 		if (side == 0)
-			perpWallDist = (mapX - posX + (1 - stepX) / 2) / rayDirX;
+		{
+			if (rayDirX == 0)
+				perpWallDist = 0;
+			else
+				perpWallDist = (((mapX - posX) + (1 - stepX)) / 2) / rayDirX;
+		}
       	else
-		  	perpWallDist = (mapY - posY + (1 - stepY) / 2) / rayDirY;
+		{
+			if (rayDirY == 0)
+				perpWallDist = 0;
+			else
+				perpWallDist = (((mapY - posY) + (1 - stepY)) / 2) / rayDirY;
+		}
 		printf("WALL: %f\n", perpWallDist);
-		lineHeight = (int)(screenHeight / perpWallDist);
+		if (perpWallDist == 0)
+			lineHeight = 0;
+		else
+			lineHeight = (int)(screenHeight / perpWallDist);
 		printf("LINEHEIGHT: %d\n", lineHeight);
-      	drawStart = lineHeight / 2 + screenHeight / 2;
+      	drawStart = ((lineHeight * -1) / 2) + (screenHeight / 2);
 		printf("DRAWSTART: %d\n", drawStart);
      	if(drawStart < 0)
 			drawStart = 0;
-      	drawEnd = lineHeight / 2 + screenHeight / 2;
+      	drawEnd = (lineHeight / 2 ) + (screenHeight / 2);
       	if(drawEnd >= screenHeight)
 			drawEnd = screenHeight - 1;
 		printf("DRAWSTART: %d\n", drawStart);
 		printf("DRAWEND: %d\n", drawEnd);
-		x++;
+		
 		printf("X = %d\n", x);
 		printf("\n");
-		my_mlx_pixel_put(img, 0, 0, color2->colorR);
-		mlx_put_image_to_window(img->mlx_ptr, img->window, img->img, 180, 260);
+		my_mlx_pixel_put(img, x, drawStart, color2, drawEnd);
+		mlx_loop_hook(img->mlx_ptr, frame, img);
+		x++;
 	}
 	mlx_loop(img->mlx_ptr);
 	/*
