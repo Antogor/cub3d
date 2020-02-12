@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:14:36 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/12 13:28:15 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/12 13:45:05 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ int main (int argc, char **argv)
 	cub3d->mlx = (t_mlx *)malloc(sizeof(t_mlx));
 	raycasting(cub3d);
 	/*
-	t_cub3d	*tab;
-
 	(void)argc;
 	tab = (t_cub3d *)malloc(sizeof(t_cub3d *));
 	fd = open(argv[1], O_RDONLY);

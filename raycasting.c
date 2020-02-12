@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 12:10:54 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/12 13:25:59 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/12 13:44:15 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 
 int worldMap[mapWidth][mapHeight]=
 {
-  {1,1,1,1,1},
-  {1,0,0,0,1},
-  {1,0,0,0,1},
-  {1,0,0,0,1},
-  {1,1,1,1,1}
+  1,1,1,1,1,
+  1,0,0,0,1,
+  1,0,0,0,1,
+  1,0,0,0,1,
+  1,1,1,1,1
 };
 
 int frame(t_mlx *img)
@@ -47,8 +47,7 @@ int		raycasting(t_cub3d *cub3d)
 	cub3d->mlx->mlx_ptr = mlx_init();
     cub3d->mlx->window = mlx_new_window(cub3d->mlx->mlx_ptr, screenWidth, screenHeight, "cub3D");
 	cub3d->mlx->img = mlx_new_image(cub3d->mlx->mlx_ptr, 520, 360);
-    cub3d->mlx->img_data = (int*)mlx_get_data_addr(cub3d->mlx->img, &cub3d->mlx->bpp, &cub3d->mlx->size_l,
-                                 &cub3d->mlx->endian);
+    cub3d->mlx->img_data = (int*)mlx_get_data_addr(cub3d->mlx->img, &cub3d->mlx->bpp, &cub3d->mlx->size_l, &cub3d->mlx->endian);
 	cub3d->raycast->x = 0;
 	while(cub3d->raycast->x < screenWidth)
 	{
@@ -62,8 +61,8 @@ int		raycasting(t_cub3d *cub3d)
 		cub3d->raycast->map_y = (int)cub3d->player->pos_y;
 		printf("MAPX: %d\n", cub3d->raycast->map_x);
 		printf("MAPY: %d\n", cub3d->raycast->map_y);
-		cub3d->raycast->delta_dist_x = (cub3d->raycast->ray_dir_y == 0) ? 0 : ((cub3d->raycast->ray_dir_x == 0) ? 1 : abs(1 / cub3d->raycast->ray_dir_x));
-    	cub3d->raycast->delta_dist_x = (cub3d->raycast->ray_dir_x == 0) ? 0 : ((cub3d->raycast->ray_dir_y == 0) ? 1 : abs(1 / cub3d->raycast->ray_dir_y));
+		cub3d->raycast->delta_dist_x = (cub3d->raycast->ray_dir_x/*y*/ == 0) ? 0 : ((cub3d->raycast->ray_dir_x == 0) ? 1 : abs(1 / cub3d->raycast->ray_dir_x));
+    	cub3d->raycast->delta_dist_x = (cub3d->raycast->ray_dir_y/*x*/ == 0) ? 0 : ((cub3d->raycast->ray_dir_y == 0) ? 1 : abs(1 / cub3d->raycast->ray_dir_y));
 		printf("deltaDistX: %f\n", cub3d->raycast->delta_dist_x);
 		printf("deltaDistY: %f\n", cub3d->raycast->delta_dist_x);
 		if (cub3d->raycast->ray_dir_x < 0)
