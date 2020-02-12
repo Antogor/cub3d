@@ -20,7 +20,7 @@ int worldMap[mapWidth][mapHeight]=
 {
   1,1,1,1,1,
   1,0,1,0,1,
-  1,0,1,0,1,
+  1,1,0,0,1,
   1,0,0,0,1,
   1,1,1,1,1
 };
@@ -55,8 +55,8 @@ int		raycasting(t_cub3d *cub3d)
 		cub3d->raycast->ray_dir_x = cub3d->player->dir_x + cub3d->player->plane_x * cub3d->raycast->camera_x;
 		cub3d->raycast->ray_dir_y = cub3d->player->dir_y + cub3d->player->plane_y * cub3d->raycast->camera_x;
 		printf("CAMERA: %f\n", cub3d->raycast->camera_x);
-		printf("RAYDIRX: %d\n", cub3d->raycast->ray_dir_x);
-		printf("RAYDIRY: %d\n", cub3d->raycast->ray_dir_y);
+		printf("RAYDIRX: %f\n", cub3d->raycast->ray_dir_x);
+		printf("RAYDIRY: %f\n", cub3d->raycast->ray_dir_y);
 		cub3d->raycast->map_x = (int)cub3d->player->pos_x;
 		cub3d->raycast->map_y = (int)cub3d->player->pos_y;
 		printf("MAPX: %d\n", cub3d->raycast->map_x);

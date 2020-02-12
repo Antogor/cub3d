@@ -61,8 +61,8 @@ typedef struct	s_lib_color
 typedef struct	s_lib_raycast
 {
 	double		camera_x;
-	int			ray_dir_x;
-	int			ray_dir_y;
+	double		ray_dir_x;
+	double		ray_dir_y;
 	double		side_dist_x;
 	double		side_dist_y;
 	double		delta_dist_x;
