@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 11:43:22 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/10 17:47:23 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/12 13:19:52 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,10 @@ int		main(void)
 	img->img = mlx_new_image(img->mlx_ptr, 520, 360);
     img->img_data = (int *)mlx_get_data_addr(img->img, &img->bpp, &img->size_l,
                                  &img->endian);
-	color->colorR = create_trgb(0, 255, 0, 0);
-	color->colorG = create_trgb(0, 0, 255, 0);
-	color->colorB = create_trgb(0, 0, 0, 255);
-	color->colorT = create_trgb(255, 0, 0, 0);
+	color->color_r = create_trgb(0, 255, 0, 0);
+	color->color_g = create_trgb(0, 0, 255, 0);
+	color->color_b = create_trgb(0, 0, 0, 255);
+	color->color_t = create_trgb(255, 0, 0, 0);
 //	paint(img, color->colorB, 50, 50);
 	my_mlx_pixel_put(img, 0, 0, color);
 //	mlx_put_image_to_window(img->mlx_ptr, img->window, img->img, 100, 100);

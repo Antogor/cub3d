@@ -6,36 +6,36 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 11:19:05 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/10 16:29:39 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/12 13:27:54 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/*void            my_mlx_pixel_put(t_mlx *data, int x, int y, int color)
+void	paint(t_cub3d *cub3d)
 {
-    char    *dst;
+	int l = 0;
 
-    dst = data->img_data + (y * data->size_l + x * (data->bpp / 8));
-    *(unsigned int*)dst = color;
-}
-
-void	paint(t_mlx *print, int color, int fin_x, int fin_y)
-{
-	int x;
-	int y;
-
-	x = 0;
-	y = 0;
-	while (x < fin_x)
+	while(l < cub3d->raycast->draw_start)
 	{
-		my_mlx_pixel_put(print, x, y, color);
-		y = 0;
-		while (y < fin_y)
-		{
-			my_mlx_pixel_put(print, x, y, color);
-			y++;
-		}
-		x++;
+		*(cub3d->mlx->img_data + cub3d->raycast->x + l *
+			cub3d->mlx->size_l / 4) = cub3d->color->color_r;
+		l++;
 	}
-}*/
+	while (l < cub3d->raycast->draw_end)
+	{
+		if (cub3d->raycast->side == 1)
+			*(cub3d->mlx->img_data + cub3d->raycast->x + l *
+				cub3d->mlx->size_l / 4) = cub3d->color->color_g;
+		else
+			*(cub3d->mlx->img_data + cub3d->raycast->x + l *
+				cub3d->mlx->size_l / 4) = cub3d->color->color_w;
+		l++;
+	}
+	while (l < screenHeight)
+	{
+		*(cub3d->mlx->img_data + cub3d->raycast->x + l *
+			cub3d->mlx->size_l / 4) = cub3d->color->color_b;
+		l++;
+	}
+}

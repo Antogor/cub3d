@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:24:33 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/12 10:59:57 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/12 13:25:11 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # define LEFT 123
 # define RIGTH 124
 # define ESC 53
+# define screenWidth 520
+# define screenHeight 360
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -47,12 +49,46 @@ typedef struct	s_lib_mlx
 
 typedef struct	s_lib_color
 {
-	int colorR;
-	int colorG;
-	int colorB;
-	int colorT;
-	int colorW;
+	int			color_r;
+	int			color_g;
+	int			color_b;
+	int			color_t;
+	int			color_w;
+	int			color_floor;
+	int			color_celling;
 }				t_color;
+
+typedef struct	s_lib_raycast
+{
+	double		camera_x;
+	int			ray_dir_x;
+	int			ray_dir_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		wall_dist;
+	int			step_x;
+	int			step_y;
+	int			x;
+	int			map_x;
+	int			map_y;
+	int			hit;
+	int			side;
+	int			line_height;
+    int			draw_start;
+	int			draw_end;
+}				t_raycast;
+
+typedef struct	s_libpalyer
+{
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
+}				t_player;
 
 typedef struct	s_lib_cub3d
 {
@@ -62,18 +98,19 @@ typedef struct	s_lib_cub3d
 	char		*text_e;
 	char		*text_o;
 	char		*text_sprite;
-	int			floor_colors;
-	int			celling_colors;
+	int			**floor_colors;
+	int			**celling_colors;
 	char		**map;
-	int			x;
-	int			y;
 	int			fd;
 	t_mlx		*mlx;
 	t_color		*color;
+	t_raycast	*raycast;
+	t_player	*player;
 }				t_cub3d;
 
+int				raycasting(t_cub3d *cub3d);
 int				ft_keys(t_cub3d *tab);
 int				ft_map(t_cub3d *map);
-void			paint(t_mlx *print, int color, int fin_x, int fin_y);
+void			paint(t_cub3d *cub3d);
 int				create_trgb(int t, int r, int g, int b);
 #endif
