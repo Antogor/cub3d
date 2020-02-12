@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:14:36 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/12 13:45:05 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/12 16:41:45 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int main (int argc, char **argv)
 	free(cub3d->raycast);
 	free(cub3d->color);
 	free(cub3d);
+	system("leaks Raytest");
 	return (0);
 }
 	
