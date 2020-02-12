@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:24:33 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/10 17:02:05 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/12 10:59:57 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct	s_lib_color
 	int colorG;
 	int colorB;
 	int colorT;
+	int colorW;
 }				t_color;
 
 typedef struct	s_lib_cub3d
