@@ -21,7 +21,13 @@ int main (int argc, char **argv)
 	cub3d->raycast = (t_raycast *)malloc(sizeof(t_raycast));
 	cub3d->color = (t_color *)malloc(sizeof(t_color));
 	cub3d->mlx = (t_mlx *)malloc(sizeof(t_mlx));
-	raycasting(cub3d);
+	cub3d->mlx->mlx_ptr = mlx_init();
+    cub3d->mlx->window = mlx_new_window(cub3d->mlx->mlx_ptr, screenWidth, screenHeight, "cub3D");
+	cub3d->mlx->img = mlx_new_image(cub3d->mlx->mlx_ptr, 520, 360);
+    cub3d->mlx->img_data = (int*)mlx_get_data_addr(cub3d->mlx->img, &cub3d->mlx->bpp, &cub3d->mlx->size_l, &cub3d->mlx->endian);
+	mlx_loop_hook(cub3d->mlx->mlx_ptr, raycasting, cub3d);
+//	raycasting(cub3d);
+	mlx_loop(cub3d->mlx->mlx_ptr);
 	/*
 	(void)argc;
 	tab = (t_cub3d *)malloc(sizeof(t_cub3d *));
