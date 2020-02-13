@@ -32,7 +32,7 @@ int worldMap[mapWidth][mapHeight]=
 
 int		raycasting(t_cub3d *cub3d)
 {
-	cub3d->player->pos_x = 8;
+	cub3d->player->pos_x = 5;
 	cub3d->player->pos_y = 5;
 	cub3d->player->dir_x = 0;
 	cub3d->player->dir_y = -1;
