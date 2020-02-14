@@ -19,8 +19,11 @@
 # define LEFT 123
 # define RIGTH 124
 # define ESC 53
+
 # define screenWidth 520
 # define screenHeight 360
+# define mapWidth 10
+# define mapHeight 10
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -88,6 +91,7 @@ typedef struct	s_libpalyer
 	double		dir_y;
 	double		plane_x;
 	double		plane_y;
+	double		speed;
 }				t_player;
 
 typedef struct	s_lib_cub3d
@@ -113,4 +117,5 @@ int				ft_keys(t_cub3d *tab);
 int				ft_map(t_cub3d *map);
 void			paint(t_cub3d *cub3d);
 int				create_trgb(int t, int r, int g, int b);
+int				movement(t_cub3d *cub3d);
 #endif
