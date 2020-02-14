@@ -28,7 +28,6 @@ int worldMap[mapWidth][mapHeight]=
 
 int		raycasting(t_cub3d *cub3d)
 {
-	printf("1 VUELTA");
 	cub3d->color->color_r = create_trgb(0, 50, 50, 0);
 	cub3d->color->color_g = create_trgb(0, 0, 120, 100);
 	cub3d->color->color_b = create_trgb(0, 0, 50, 120);
@@ -86,7 +85,7 @@ int		raycasting(t_cub3d *cub3d)
           		cub3d->raycast->side = 0;
 				printf("sideDisX: %f\n", cub3d->raycast->side_dist_x);
 				printf("mapX: %d\n", cub3d->raycast->map_x);
-				printf("SIDE: %d\n", cub3d->raycast->side);
+				printf("WE: %d\n", cub3d->raycast->side);
         	}
         	else
         	{
@@ -95,7 +94,7 @@ int		raycasting(t_cub3d *cub3d)
           		cub3d->raycast->side = 1;
 				printf("sideDisY: %f\n", cub3d->raycast->side_dist_y);
 				printf("mapY: %d\n", cub3d->raycast->map_y);
-				printf("SIDE: %d\n", cub3d->raycast->side);
+				printf("NS: %d\n", cub3d->raycast->side);
         	}
         	if (worldMap[cub3d->raycast->map_x][cub3d->raycast->map_y] == 1)
 				cub3d->raycast->hit = 1;
@@ -104,16 +103,28 @@ int		raycasting(t_cub3d *cub3d)
 		if (cub3d->raycast->side == 0)
 		{
 			if (cub3d->raycast->ray_dir_x == 0)
+			{
 				cub3d->raycast->wall_dist = 0;
+				printf("SIDE = 0 Y RAY DIR = %f\n", cub3d->raycast->ray_dir_x);
+			}
 			else
+			{
 				cub3d->raycast->wall_dist = (cub3d->raycast->map_x - cub3d->player->pos_x + (1 - cub3d->raycast->step_x) / 2) / cub3d->raycast->ray_dir_x;
+				printf("SIDE = 0 Y RAY DIR = %f\n", cub3d->raycast->ray_dir_x);
+			}
 		}
       	else
 		{
 			if (cub3d->raycast->ray_dir_y == 0)
+			{
 				cub3d->raycast->wall_dist = 0;
+				printf("SIDE = 1 Y RAY DIR = %f\n", cub3d->raycast->ray_dir_y);
+			}
 			else
+			{
 				cub3d->raycast->wall_dist = (cub3d->raycast->map_y - cub3d->player->pos_y + (1 - cub3d->raycast->step_y) / 2) / cub3d->raycast->ray_dir_y;
+				printf("SIDE = 1 Y RAY DIR = %f\n", cub3d->raycast->ray_dir_y);
+			}
 		}
 		printf("WALL: %f\n", cub3d->raycast->wall_dist);
 		cub3d->raycast->line_height = (int)(screenHeight / cub3d->raycast->wall_dist);
