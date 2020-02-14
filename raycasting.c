@@ -110,7 +110,7 @@ int		raycasting(t_cub3d *cub3d)
 			else
 			{
 				cub3d->raycast->wall_dist = (cub3d->raycast->map_x - cub3d->player->pos_x + (1 - cub3d->raycast->step_x) / 2) / cub3d->raycast->ray_dir_x;
-				printf("SIDE = 0 Y RAY DIR = %f\n", cub3d->raycast->ray_dir_x);
+				printf("SIDE = 1 Y RAY DIR X = %f MAP X = %d POS X = %f, STEP X = %d\n", cub3d->raycast->ray_dir_x, cub3d->raycast->map_x, cub3d->player->pos_x, cub3d->raycast->step_x);
 			}
 		}
       	else
@@ -123,7 +123,7 @@ int		raycasting(t_cub3d *cub3d)
 			else
 			{
 				cub3d->raycast->wall_dist = (cub3d->raycast->map_y - cub3d->player->pos_y + (1 - cub3d->raycast->step_y) / 2) / cub3d->raycast->ray_dir_y;
-				printf("SIDE = 1 Y RAY DIR = %f\n", cub3d->raycast->ray_dir_y);
+				printf("SIDE = 1 Y RAY DIR Y = %f MAP Y = %d POS Y = %f, STEP Y = %d\n", cub3d->raycast->ray_dir_y, cub3d->raycast->map_y, cub3d->player->pos_y, cub3d->raycast->step_y);
 			}
 		}
 		printf("WALL: %f\n", cub3d->raycast->wall_dist);
