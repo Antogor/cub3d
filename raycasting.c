@@ -46,8 +46,8 @@ int		raycasting(t_cub3d *cub3d)
 		cub3d->raycast->map_y = (int)cub3d->player->pos_y;
 		printf("MAPX: %d\n", cub3d->raycast->map_x);
 		printf("MAPY: %d\n", cub3d->raycast->map_y);
-		cub3d->raycast->delta_dist_x = (cub3d->raycast->ray_dir_y == 0) ? 0 : ((cub3d->raycast->ray_dir_x == 0) ? 1 : abs(1 / cub3d->raycast->ray_dir_x));
-    	cub3d->raycast->delta_dist_y = (cub3d->raycast->ray_dir_x == 0) ? 0 : ((cub3d->raycast->ray_dir_y == 0) ? 1 : abs(1 / cub3d->raycast->ray_dir_y));
+		cub3d->raycast->delta_dist_x = sqrt(1 + (cub3d->raycast->ray_dir_y * cub3d->raycast->ray_dir_y) / (cub3d->raycast->ray_dir_x * cub3d->raycast->ray_dir_x));//(cub3d->raycast->ray_dir_y == 0) ? 0 : ((cub3d->raycast->ray_dir_x == 0) ? 1 : abs(1 / cub3d->raycast->ray_dir_x));
+    	cub3d->raycast->delta_dist_y = sqrt(1 + (cub3d->raycast->ray_dir_x * cub3d->raycast->ray_dir_x) / (cub3d->raycast->ray_dir_y * cub3d->raycast->ray_dir_y));//(cub3d->raycast->ray_dir_x == 0) ? 0 : ((cub3d->raycast->ray_dir_y == 0) ? 1 : abs(1 / cub3d->raycast->ray_dir_y));
 		printf("deltaDistX: %f\n", cub3d->raycast->delta_dist_x);
 		printf("deltaDistY: %f\n", cub3d->raycast->delta_dist_x);
 		if (cub3d->raycast->ray_dir_x < 0)
@@ -71,7 +71,7 @@ int		raycasting(t_cub3d *cub3d)
 		else
      	 {
      		cub3d->raycast->step_y = 1;
-        	cub3d->raycast->side_dist_y = ((cub3d->raycast->map_y + 1.0) - cub3d->player->pos_y) * cub3d->raycast->delta_dist_y;
+        	cub3d->raycast->side_dist_y = (cub3d->raycast->map_y + 1.0 - cub3d->player->pos_y) * cub3d->raycast->delta_dist_y;
 			printf("sideDisY: %f\n", cub3d->raycast->side_dist_y);
      	 }
 		cub3d->raycast->hit = 0;
@@ -138,7 +138,6 @@ int		raycasting(t_cub3d *cub3d)
 			cub3d->raycast->draw_end = screenHeight - 1;
 		printf("DRAWSTART: %d\n", cub3d->raycast->draw_start);
 		printf("DRAWEND: %d\n", cub3d->raycast->draw_end);
-		printf("SSSS\n");
 		paint(cub3d);
 		cub3d->raycast->x++;
 		printf("X = %d\n", cub3d->raycast->x);
