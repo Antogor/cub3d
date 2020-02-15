@@ -38,7 +38,7 @@ int	movement(t_cub3d *cub3d)
 	cub3d->player->pos_y = 3;
 	cub3d->player->dir_x = 0;
 	cub3d->player->dir_y = -1;
-	cub3d->player->plane_x = 1.66;
+	cub3d->player->plane_x = 0.66;
 	cub3d->player->plane_y = 0;
 	mlx_key_hook(cub3d->mlx->mlx_ptr, keys, cub3d);
 }
