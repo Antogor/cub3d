@@ -28,6 +28,7 @@ int worldMap[mapWidth][mapHeight]=
 
 int		raycasting(t_cub3d *cub3d)
 {
+	
 	cub3d->color->color_r = create_trgb(0, 50, 50, 0);
 	cub3d->color->color_g = create_trgb(0, 0, 120, 100);
 	cub3d->color->color_b = create_trgb(0, 0, 50, 120);

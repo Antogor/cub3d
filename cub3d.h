@@ -92,6 +92,8 @@ typedef struct	s_libpalyer
 	double		plane_x;
 	double		plane_y;
 	double		speed;
+	int			up;
+	int			down;
 }				t_player;
 
 typedef struct	s_lib_cub3d
@@ -118,4 +120,6 @@ int				ft_map(t_cub3d *map);
 void			paint(t_cub3d *cub3d);
 int				create_trgb(int t, int r, int g, int b);
 int				movement(t_cub3d *cub3d);
+int				key_press(int key, t_cub3d * cub3d);
+int				key_release(int key, t_cub3d *cub3d);
 #endif
