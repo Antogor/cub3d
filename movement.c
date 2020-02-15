@@ -18,7 +18,7 @@ int	keys(t_cub3d *cub3d)
 {
 	if (cub3d->player->up)
 	{
-		if (!(worldMap2[(int)cub3d->player->pos_x][(int)(cub3d->player->pos_y + cub3d->player->dir_y * cub3d->player->speed)]))
+		if (!(worldMap2[(int)cub3d->player->pos_x][(int)cub3d->player->pos_y]))
 			cub3d->player->pos_y += cub3d->player->dir_y * cub3d->player->speed;
 	}
 		
@@ -37,9 +37,8 @@ int	movement(t_cub3d *cub3d)
 	cub3d->player->speed = 1.0;
 	if (cub3d->player->up)
 	{
-		if (!(worldMap2[(int)cub3d->player->pos_x][(int)(cub3d->player->pos_y + cub3d->player->dir_y * cub3d->player->speed)]))
+		if (!(worldMap2[(int)cub3d->player->pos_x][(int)cub3d->player->pos_y]))
 			cub3d->player->pos_y += cub3d->player->dir_y * cub3d->player->speed;
-		printf("UP");
 	}
-	keys(cub3d);
+	mlx_key_hook(cub3d->mlx->window, keys, cub3d);
 }

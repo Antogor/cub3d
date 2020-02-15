@@ -42,7 +42,11 @@ typedef struct	s_lib_mlx
 	void		*mlx_ptr;
 	void		*window;
 	void		*img;
+	void		*text;
+	int			text_h;
+	int			text_w;
 	int			*img_data;
+	int			*text_data;
 	int			bpp;
 	int			size_l;
 	int			endian;

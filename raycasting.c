@@ -144,7 +144,7 @@ int		raycasting(t_cub3d *cub3d)
 		printf("X = %d\n", cub3d->raycast->x);
 		printf("\n");
 	}
-	mlx_put_image_to_window(cub3d->mlx->mlx_ptr, cub3d->mlx->window, cub3d->mlx->img, 0, 0);
+	
 	
 	return (0);
 }
