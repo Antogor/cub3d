@@ -35,7 +35,7 @@ int	movement(t_cub3d *cub3d)
 {
 	cub3d->player->speed = 1.0;
 	cub3d->player->pos_x = 5;
-	cub3d->player->pos_y = 3;
+	cub3d->player->pos_y = 8;
 	cub3d->player->dir_x = 0;
 	cub3d->player->dir_y = -1;
 	cub3d->player->plane_x = 0.66;
