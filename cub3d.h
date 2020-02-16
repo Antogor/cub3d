@@ -42,17 +42,30 @@ typedef struct	s_lib_mlx
 	void		*mlx_ptr;
 	void		*window;
 	void		*img;
-	void		*text;
 	int			text_h;
 	int			text_w;
 	int			*img_data;
-	int			*text_data;
 	int			bpp;
 	int			size_l;
 	int			endian;
-	int x;
-	int y;
 }				t_mlx;
+
+typedef struct	s_lib_text
+{
+	char		*text_n;
+	void		*text_n;
+	int			*text_d_n;
+	char		*text_s;
+	void		*text_s;
+	int			*text_d_s;
+	char		*text_e;
+	void		*text_e;
+	int			*text_d_e;
+	char		*text_o;
+	void		*text_o;
+	int			*text_d_o;
+	char		*text_sprite;
+}				t_text;
 
 typedef struct	s_lib_color
 {
@@ -61,6 +74,8 @@ typedef struct	s_lib_color
 	int			color_b;
 	int			color_t;
 	int			color_w;
+	char		**floor_colors;
+	char		**celling_colors;
 	int			color_floor;
 	int			color_celling;
 }				t_color;
@@ -102,20 +117,18 @@ typedef struct	s_libpalyer
 
 typedef struct	s_lib_cub3d
 {
-	char		**resolution;
-	char		*text_n;
-	char		*text_s;
-	char		*text_e;
-	char		*text_o;
-	char		*text_sprite;
-	int			**floor_colors;
-	int			**celling_colors;
+	char		*resolution;
+	int			screen_w;
+	int			screen_h;
 	char		**map;
+	int			map_w;
+	int			map_h;
 	int			fd;
 	t_mlx		*mlx;
 	t_color		*color;
 	t_raycast	*raycast;
 	t_player	*player;
+	t_text		*text;
 }				t_cub3d;
 
 int				raycasting(t_cub3d *cub3d);

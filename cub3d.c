@@ -31,6 +31,8 @@ int main (int argc, char **argv)
 	cub3d->raycast = (t_raycast *)malloc(sizeof(t_raycast));
 	cub3d->color = (t_color *)malloc(sizeof(t_color));
 	cub3d->mlx = (t_mlx *)malloc(sizeof(t_mlx));
+	cub3d->text = (t_text *)malloc(sizeof(t_text));
+	init_game(argc, argv, cub3d);
 	cub3d->player->pos_x = 5;
 	cub3d->player->pos_y = 8;
 	cub3d->player->dir_x = 0;
@@ -70,6 +72,7 @@ int main (int argc, char **argv)
 	free(cub3d->mlx);
 	free(cub3d->raycast);
 	free(cub3d->color);
+	free(cub3d->text);
 	free(cub3d);
 	system("leaks Raytest");
 	return (0);
