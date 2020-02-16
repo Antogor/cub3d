@@ -12,14 +12,28 @@
 
 #include "cub3d.h"
 
+int	init_game(int argc, char **argv, t_cub3d *cub3d)
+{
+	if (argc >= 2 || argc <= 3)
+	{
+		if (ft_strncmp(argv[1], ".cub", 50) < 0)
+		{
+			if (ft_map(argv, cub3d) < 0)
+				return (-1);
+		}
+		/*if (ft_strncmp(argv[2], "--save", 6) == 0)
+			printf("save");*/
+		return (0);
+	}
+	return (-1);
+}
+
 int run_game(t_cub3d *cub3d)
 {
-	
 	movement(cub3d);
 	raycasting(cub3d);
 	mlx_put_image_to_window(cub3d->mlx->mlx_ptr, cub3d->mlx->window, cub3d->mlx->img, 0, 0);
 	return (0);
-
 }
 
 int main (int argc, char **argv)
@@ -32,7 +46,8 @@ int main (int argc, char **argv)
 	cub3d->color = (t_color *)malloc(sizeof(t_color));
 	cub3d->mlx = (t_mlx *)malloc(sizeof(t_mlx));
 	cub3d->text = (t_text *)malloc(sizeof(t_text));
-	init_game(argc, argv, cub3d);
+	if (init_game(argc, argv, cub3d) < 0)
+		perror("Los dioses no lo permiten");
 	cub3d->player->pos_x = 6;
 	cub3d->player->pos_y = 5;
 	cub3d->player->dir_x = 0;
@@ -51,23 +66,7 @@ int main (int argc, char **argv)
 	printf("UP: %d\n", cub3d->player->up);*/
 	mlx_loop_hook(cub3d->mlx->mlx_ptr, run_game, cub3d);
 	mlx_loop(cub3d->mlx->mlx_ptr);
-	/*
-	(void)argc;
-	tab = (t_cub3d *)malloc(sizeof(t_cub3d *));
-	fd = open(argv[1], O_RDONLY);
-	ft_map(tab);
-	if (argc == 0 || argc == 0)
-	{
-		if (ft_strncmp(argv[1], ".cub", 100) == 0)
-		
-		if (ft_strncmp(argv[2], "--save", 6) == 0)
-			printf("FUNCION GUARDAR BMP");
-	}
-	else
-		perror("No map");
-	free(tab);
-	tab = NULL;
-//	system("leaks");*/
+//	system("leaks");
 	free(cub3d->player);
 	free(cub3d->mlx);
 	free(cub3d->raycast);

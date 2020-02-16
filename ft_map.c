@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-char	*ft_text(char *data, t_cub3d *textures)
+/*char	*ft_text(char *data, t_cub3d *textures)
 {
 	int gnl;
 
@@ -39,20 +39,22 @@ int		ft_colors(char *data, t_cub3d *colors)
 //	colors->floor_colors[2] = ft_substr(data, l, 100);
 	
 	return (0);
-}
+}*/
 
-int		ft_map(t_cub3d *map)
+int		ft_map(char **argv, t_cub3d *cub3d)
 {
-	char	*data;
 	int		gnl;
 
-	gnl = get_next_line(map->fd, &data);
-	free(data);
-	map->resolution[0] = ft_substr(data, 2, 4);
-	map->resolution[1] = ft_substr(data, 7, 4);
-	map->x = ft_atoi(map->resolution[0]);
-	map->y = ft_atoi(map->resolution[1]);
-	data = ft_text(data, map);
-	ft_colors(data, map);
+	if (!(cub3d->fd = open(argv[1], O_RDONLY)))
+		return (-1);
+	while (gnl != 0)
+	{
+		gnl = get_next_line(cub3d->fd, cub3d->map_data);
+	}
+	printf("AAAAAA");
+	int l;
+	l = 0;
+	while(l++ < 10)
+		printf("%s", cub3d->map_data[l]);
 	return (0);
 }

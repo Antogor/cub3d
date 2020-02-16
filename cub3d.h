@@ -53,16 +53,16 @@ typedef struct	s_lib_mlx
 typedef struct	s_lib_text
 {
 	char		*text_n;
-	void		*text_nv;
+	void		*text_ptr_n;
 	int			*text_d_n;
 	char		*text_s;
-	void		*text_sv;
+	void		*text_ptr_s;
 	int			*text_d_s;
 	char		*text_e;
-	void		*text_ev;
+	void		*text_ptr_e;
 	int			*text_d_e;
 	char		*text_o;
-	void		*text_ov;
+	void		*text_ptr_o;
 	int			*text_d_o;
 	char		*text_sprite;
 }				t_text;
@@ -117,6 +117,7 @@ typedef struct	s_libpalyer
 
 typedef struct	s_lib_cub3d
 {
+	char		**map_data;
 	char		*resolution;
 	int			screen_w;
 	int			screen_h;
@@ -133,7 +134,7 @@ typedef struct	s_lib_cub3d
 
 int				raycasting(t_cub3d *cub3d);
 int				ft_keys(t_cub3d *tab);
-int				ft_map(t_cub3d *map);
+int				ft_map(char **argv, t_cub3d *map);
 void			paint(t_cub3d *cub3d);
 int				create_trgb(int t, int r, int g, int b);
 int				movement(t_cub3d *cub3d);
