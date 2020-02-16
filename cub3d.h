@@ -53,16 +53,16 @@ typedef struct	s_lib_mlx
 typedef struct	s_lib_text
 {
 	char		*text_n;
-	void		*text_n;
+	void		*text_nv;
 	int			*text_d_n;
 	char		*text_s;
-	void		*text_s;
+	void		*text_sv;
 	int			*text_d_s;
 	char		*text_e;
-	void		*text_e;
+	void		*text_ev;
 	int			*text_d_e;
 	char		*text_o;
-	void		*text_o;
+	void		*text_ov;
 	int			*text_d_o;
 	char		*text_sprite;
 }				t_text;

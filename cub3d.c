@@ -33,8 +33,8 @@ int main (int argc, char **argv)
 	cub3d->mlx = (t_mlx *)malloc(sizeof(t_mlx));
 	cub3d->text = (t_text *)malloc(sizeof(t_text));
 	init_game(argc, argv, cub3d);
-	cub3d->player->pos_x = 5;
-	cub3d->player->pos_y = 8;
+	cub3d->player->pos_x = 6;
+	cub3d->player->pos_y = 5;
 	cub3d->player->dir_x = 0;
 	cub3d->player->dir_y = -1;
 	cub3d->player->plane_x = 0.66;
