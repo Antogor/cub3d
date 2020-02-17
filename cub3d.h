@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:24:33 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/17 14:35:33 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/17 17:54:04 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 # define RIGTH 124
 # define ESC 53
 
-# define screenWidth 520
-# define screenHeight 360
 # define mapWidth 10
 # define mapHeight 10
 
@@ -72,8 +70,6 @@ typedef struct	s_lib_color
 	int			color_b;
 	int			color_t;
 	int			color_w;
-	char		**floor_colors;
-	char		**celling_colors;
 	int			color_floor;
 	int			color_celling;
 }				t_color;
@@ -138,4 +134,5 @@ int				create_trgb(int t, int r, int g, int b);
 int				movement(t_cub3d *cub3d);
 int				key_press(int key, t_cub3d *cub3d);
 int				key_release(int key, t_cub3d *cub3d);
+int				check_map(char *s, t_cub3d *cub3d);
 #endif

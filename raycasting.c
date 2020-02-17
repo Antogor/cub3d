@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 12:10:54 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/17 13:48:56 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/17 17:16:45 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,16 +100,16 @@ void	wall_dist(t_cub3d *cub3d)
 
 void	calculate_line_height(t_cub3d *cub3d)
 {
-	cub3d->raycast->line_height = (int)(screenHeight /
+	cub3d->raycast->line_height = (int)(cub3d->screen_h /
 		cub3d->raycast->wall_dist);
 	cub3d->raycast->draw_start = (cub3d->raycast->line_height * -1) /
-		2 + screenHeight / 2;
+		2 + cub3d->screen_h / 2;
 	if (cub3d->raycast->draw_start < 0)
 		cub3d->raycast->draw_start = 0;
 	cub3d->raycast->draw_end = cub3d->raycast->line_height /
-		2 + screenHeight / 2;
-	if (cub3d->raycast->draw_end >= screenHeight)
-		cub3d->raycast->draw_end = screenHeight - 1;
+		2 + cub3d->screen_h / 2;
+	if (cub3d->raycast->draw_end >= cub3d->screen_h)
+		cub3d->raycast->draw_end = cub3d->screen_h - 1;
 }
 
 int		raycasting(t_cub3d *cub3d)
@@ -120,10 +120,10 @@ int		raycasting(t_cub3d *cub3d)
 	cub3d->color->color_t = create_trgb(255, 0, 0, 0);
 	cub3d->color->color_w = create_trgb(0, 100, 0, 255);
 	cub3d->raycast->x = 0;
-	while (cub3d->raycast->x < screenWidth)
+	while (cub3d->raycast->x < cub3d->screen_w)
 	{
 		cub3d->raycast->camera_x = 2 * cub3d->raycast->x /
-		(double)screenWidth - 1;
+		(double)cub3d->screen_w - 1;
 		cub3d->raycast->ray_dir_x = cub3d->player->dir_x +
 		cub3d->player->plane_x * cub3d->raycast->camera_x;
 		cub3d->raycast->ray_dir_y = cub3d->player->dir_y +

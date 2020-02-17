@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:14:36 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/17 14:30:45 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/17 18:15:48 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	init_game(int argc, char **argv, t_cub3d *cub3d)
 {
 	if (argc == 2)
 	{
-		if (ft_strncmp(argv[1], ".cub", 50) < 0)
+		if (ft_strnstr(argv[1], ".cub", ft_strlen(argv[1])))
 		{
 			if (ft_map(argv, cub3d) < 0)
 				return (-1);
@@ -25,12 +25,12 @@ int	init_game(int argc, char **argv, t_cub3d *cub3d)
 	}
 	if (argc == 3)
 	{
-		if (ft_strncmp(argv[1], ".cub", 50) < 0)
+		if (ft_strnstr(argv[1], ".cub", ft_strlen(argv[1])))
 		{
 			if (ft_map(argv, cub3d) < 0)
 				return (-1);
 		}
-		if (ft_strncmp(argv[2], "--save", 6) == 0)
+		if (ft_strnstr(argv[2], "--save", ft_strlen(argv[2])))
 			printf("save");
 		return (0);
 	}
@@ -58,6 +58,7 @@ int	main(int argc, char **argv)
 	cub3d->text = (t_text *)malloc(sizeof(t_text));
 	if (init_game(argc, argv, cub3d) < 0 || argc < 2)
 		perror("Los dioses no lo permiten");
+//	printf("%s", cub3d->text->text_n);
 	cub3d->player->pos_x = 6;
 	cub3d->player->pos_y = 5;
 	cub3d->player->dir_x = 0;
@@ -66,8 +67,9 @@ int	main(int argc, char **argv)
 	cub3d->player->plane_y = 0;
 	cub3d->mlx->mlx_ptr = mlx_init();
 	cub3d->mlx->window = mlx_new_window(cub3d->mlx->mlx_ptr,
-		screenWidth, screenHeight, "cub3D");
-	cub3d->mlx->img = mlx_new_image(cub3d->mlx->mlx_ptr, 520, 360);
+		cub3d->screen_w, cub3d->screen_h, "cub3D");
+	cub3d->mlx->img = mlx_new_image(cub3d->mlx->mlx_ptr,
+		cub3d->screen_w, cub3d->screen_h);
 	cub3d->mlx->img_data = (int*)mlx_get_data_addr(cub3d->mlx->img,
 		&cub3d->mlx->bpp, &cub3d->mlx->size_l, &cub3d->mlx->endian);
 	mlx_loop_hook(cub3d->mlx->mlx_ptr, run_game, cub3d);
