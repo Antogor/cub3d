@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:24:33 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/12 13:25:11 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/17 13:44:12 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 # include <mlx.h>
 # include "./libft/libft.h"
 # include "./GNL/get_next_line.h"
+
 //# include "./minilibx_opengl_20191021/mlx.h"
 //# include "./minilibx_mms_20191025_beta/mlx.h"
 
@@ -98,7 +99,7 @@ typedef struct	s_lib_raycast
 	int			hit;
 	int			side;
 	int			line_height;
-    int			draw_start;
+	int			draw_start;
 	int			draw_end;
 }				t_raycast;
 
@@ -138,6 +139,6 @@ int				ft_map(char **argv, t_cub3d *map);
 void			paint(t_cub3d *cub3d);
 int				create_trgb(int t, int r, int g, int b);
 int				movement(t_cub3d *cub3d);
-int				key_press(int key, t_cub3d * cub3d);
+int				key_press(int key, t_cub3d *cub3d);
 int				key_release(int key, t_cub3d *cub3d);
 #endif

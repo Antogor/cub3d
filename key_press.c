@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   key_press.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/17 13:14:14 by agarzon-          #+#    #+#             */
+/*   Updated: 2020/02/17 13:36:47 by agarzon-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-int key_press(int key, t_cub3d *cub3d)
+int	key_press(int key, t_cub3d *cub3d)
 {
 	if (key == W)
 		cub3d->player->up = 1;
@@ -10,5 +22,5 @@ int key_press(int key, t_cub3d *cub3d)
 		cub3d->player->pos_x += cub3d->player->speed;
 	else if (key == A)
 		cub3d->player->pos_x -= cub3d->player->speed;*/
-		return (0);
+	return (0);
 }
