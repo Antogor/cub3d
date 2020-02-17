@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 10:43:55 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/17 14:25:08 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/17 15:05:11 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,21 @@ int		ft_colors(char *data, t_cub3d *colors)
 	return (0);
 }*/
 
+int		extract_data(t_cub3d *cub3d)
+{
+	if (ft_strchr(cub3d->read_map, 'R'))
+			printf("R\n");
+	else if (ft_strncmp(cub3d->read_map, "NO", 2))
+		printf("NO");
+	else if (ft_strchr(cub3d->read_map, 'S'))
+		printf("SO\n");
+	else if (ft_strchr(cub3d->read_map, 'W'))
+		printf("WE\n");
+	else if (ft_strchr(cub3d->read_map, '1'))
+		return (0);
+	return (0);
+}
+
 int		ft_map(char **argv, t_cub3d *cub3d)
 {
 	int		l;
@@ -48,13 +63,11 @@ int		ft_map(char **argv, t_cub3d *cub3d)
 	l = 0;
 	if (!(cub3d->fd = open(argv[1], O_RDONLY)))
 		return (-1);
-	cub3d->map_data = ft_bi_array(100, 100);
 	while (get_next_line(cub3d->fd, &cub3d->read_map) == 1)
 	{
-		cub3d->map_data[l] = ft_strdup(cub3d->read_map);
-		l++;
+		extract_data(cub3d);
+		free(cub3d->read_map);
 	}
-	printf("%s", cub3d->map_data[3]);
 	free(cub3d->read_map);
 	return (0);
 }

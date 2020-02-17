@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:14:36 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/17 13:51:01 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:30:45 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,14 @@ int	main(int argc, char **argv)
 	cub3d->color = (t_color *)malloc(sizeof(t_color));
 	cub3d->mlx = (t_mlx *)malloc(sizeof(t_mlx));
 	cub3d->text = (t_text *)malloc(sizeof(t_text));
+	if (init_game(argc, argv, cub3d) < 0 || argc < 2)
+		perror("Los dioses no lo permiten");
 	cub3d->player->pos_x = 6;
 	cub3d->player->pos_y = 5;
 	cub3d->player->dir_x = 0;
 	cub3d->player->dir_y = -1;
 	cub3d->player->plane_x = 0.66;
 	cub3d->player->plane_y = 0;
-	if (init_game(argc, argv, cub3d) < 0 || argc < 2)
-		perror("Los dioses no lo permiten");
 	cub3d->mlx->mlx_ptr = mlx_init();
 	cub3d->mlx->window = mlx_new_window(cub3d->mlx->mlx_ptr,
 		screenWidth, screenHeight, "cub3D");

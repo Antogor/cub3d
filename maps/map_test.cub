@@ -4,12 +4,13 @@ SO ./textures/cthulhu.xpm
 WE ./textures/eagle.xpm
 EA ./textures/cthulhu.xpm
 
+
 S
 F 220, 100, 0
 C 225, 30, 0
 
 1111111111
 1000000001
-1000000N01
+100000N001
 1000000001
 1111111111

@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:24:33 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/17 14:23:03 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:35:33 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ typedef struct	s_libpalyer
 typedef struct	s_lib_cub3d
 {
 	char		*read_map;
-	char		**map_data;
 	char		*resolution;
 	int			screen_w;
 	int			screen_h;
