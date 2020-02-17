@@ -1,6 +1,6 @@
 NAME = cub3d
 
-FLAGS = gcc #-Wall -Wextra -Werror
+FLAGS = gcc -Wall -Wextra -Werror
 
 MINILIBX = -Imlx -Iinc -lmlx -framework OpenGL -framework AppKit #-lmlx -lXext -lX11 -lm \
 #-L ./minilibx_opengl_20191021 -l mlx -framework OpenGL -framework AppKit 

@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:24:33 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/17 13:44:12 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:23:03 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,6 @@
 # include <mlx.h>
 # include "./libft/libft.h"
 # include "./GNL/get_next_line.h"
-
-//# include "./minilibx_opengl_20191021/mlx.h"
-//# include "./minilibx_mms_20191025_beta/mlx.h"
 
 typedef struct	s_lib_mlx
 {
@@ -118,6 +115,7 @@ typedef struct	s_libpalyer
 
 typedef struct	s_lib_cub3d
 {
+	char		*read_map;
 	char		**map_data;
 	char		*resolution;
 	int			screen_w;

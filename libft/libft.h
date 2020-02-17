@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 12:34:13 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/10 12:07:17 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:17:09 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char				*ft_strtrim(char const *s1, char const *set);
 char				**ft_split(char const *s, char c);
 char				*ft_itoa(int n);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
-int					**ft_bi_array(int **array, int nrows, int ncolumns);
+char				**ft_bi_array(int nrows, int ncolumns);
 int					**ft_fill_bi_array(int **array, int rows, int columns, int filled);
 
 void				ft_putchar_fd(char c, int fd);

@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 10:43:55 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/17 12:34:21 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/17 14:25:08 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,22 +43,18 @@ int		ft_colors(char *data, t_cub3d *colors)
 
 int		ft_map(char **argv, t_cub3d *cub3d)
 {
-	int		gnl;
 	int		l;
 
 	l = 0;
-	gnl = 0;
 	if (!(cub3d->fd = open(argv[1], O_RDONLY)))
 		return (-1);
-	while (l < 10)
+	cub3d->map_data = ft_bi_array(100, 100);
+	while (get_next_line(cub3d->fd, &cub3d->read_map) == 1)
 	{
-		get_next_line(cub3d->fd, &cub3d->map_data[l]);
+		cub3d->map_data[l] = ft_strdup(cub3d->read_map);
 		l++;
 	}
-		
-/*	int l;
-	l = 0;
-	while(l++ < 10)
-		printf("%s", cub3d->map_data[l]);*/
+	printf("%s", cub3d->map_data[3]);
+	free(cub3d->read_map);
 	return (0);
 }

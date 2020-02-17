@@ -1,0 +1,1 @@
+WE ./textures/eagle.xpm
