@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 10:43:55 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/17 15:05:11 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/17 15:07:07 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,17 @@ int		ft_colors(char *data, t_cub3d *colors)
 	return (0);
 }*/
 
-int		extract_data(t_cub3d *cub3d)
+int		extract_data(char *str)
 {
-	if (ft_strchr(cub3d->read_map, 'R'))
+	if (ft_strchr(str, 'R'))
 			printf("R\n");
-	else if (ft_strncmp(cub3d->read_map, "NO", 2))
+	else if (ft_strncmp(str, "NO", 2))
 		printf("NO");
-	else if (ft_strchr(cub3d->read_map, 'S'))
+	else if (ft_strchr(str, 'S'))
 		printf("SO\n");
-	else if (ft_strchr(cub3d->read_map, 'W'))
+	else if (ft_strchr(str, 'W'))
 		printf("WE\n");
-	else if (ft_strchr(cub3d->read_map, '1'))
+	else if (ft_strchr(str, '1'))
 		return (0);
 	return (0);
 }
@@ -65,7 +65,7 @@ int		ft_map(char **argv, t_cub3d *cub3d)
 		return (-1);
 	while (get_next_line(cub3d->fd, &cub3d->read_map) == 1)
 	{
-		extract_data(cub3d);
+		extract_data(cub3d->read_map);
 		free(cub3d->read_map);
 	}
 	free(cub3d->read_map);
