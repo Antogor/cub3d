@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:14:36 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/12 16:41:45 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/17 12:14:06 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,24 @@
 
 int	init_game(int argc, char **argv, t_cub3d *cub3d)
 {
-	if (argc >= 2 || argc <= 3)
+	if (argc == 2)
 	{
 		if (ft_strncmp(argv[1], ".cub", 50) < 0)
 		{
 			if (ft_map(argv, cub3d) < 0)
 				return (-1);
 		}
-		/*if (ft_strncmp(argv[2], "--save", 6) == 0)
-			printf("save");*/
+		return (0);
+	}
+	if (argc == 3)
+	{
+		if (ft_strncmp(argv[1], ".cub", 50) < 0)
+		{
+			if (ft_map(argv, cub3d) < 0)
+				return (-1);
+		}
+		if (ft_strncmp(argv[2], "--save", 6) == 0)
+			printf("save");
 		return (0);
 	}
 	return (-1);
@@ -39,14 +48,13 @@ int run_game(t_cub3d *cub3d)
 int main (int argc, char **argv)
 {
 	t_cub3d *cub3d;
-
 	cub3d = (t_cub3d *)malloc(sizeof(t_cub3d));
 	cub3d->player = (t_player *)malloc(sizeof(t_player));
 	cub3d->raycast = (t_raycast *)malloc(sizeof(t_raycast));
 	cub3d->color = (t_color *)malloc(sizeof(t_color));
 	cub3d->mlx = (t_mlx *)malloc(sizeof(t_mlx));
 	cub3d->text = (t_text *)malloc(sizeof(t_text));
-	if (init_game(argc, argv, cub3d) < 0)
+	if (init_game(argc, argv, cub3d) < 0 || argc < 2)
 		perror("Los dioses no lo permiten");
 	cub3d->player->pos_x = 6;
 	cub3d->player->pos_y = 5;

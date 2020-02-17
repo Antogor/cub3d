@@ -41,4 +41,5 @@ int	movement(t_cub3d *cub3d)
 			cub3d->player->pos_y += cub3d->player->dir_y * cub3d->player->speed;
 	}
 	mlx_key_hook(cub3d->mlx->window, keys, cub3d);
+	return (0);
 }

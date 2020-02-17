@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 10:43:55 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/02 15:46:51 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/17 12:20:42 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,14 @@ int		ft_map(char **argv, t_cub3d *cub3d)
 {
 	int		gnl;
 
+	gnl = 0;
 	if (!(cub3d->fd = open(argv[1], O_RDONLY)))
 		return (-1);
-	while (gnl != 0)
-	{
-		gnl = get_next_line(cub3d->fd, cub3d->map_data);
-	}
-	printf("AAAAAA");
-	int l;
+//	while (gnl >= 0)
+//		gnl = get_next_line(cub3d->fd, cub3d->map_data);
+/*	int l;
 	l = 0;
 	while(l++ < 10)
-		printf("%s", cub3d->map_data[l]);
+		printf("%s", cub3d->map_data[l]);*/
 	return (0);
 }
