@@ -111,7 +111,6 @@ typedef struct	s_libpalyer
 
 typedef struct	s_lib_cub3d
 {
-	char		*read_map;
 	char		*resolution;
 	int			screen_w;
 	int			screen_h;

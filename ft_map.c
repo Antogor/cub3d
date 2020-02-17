@@ -36,14 +36,15 @@ int		extract_data(char *str, t_cub3d *cub3d)
 
 int		ft_map(char **argv, t_cub3d *cub3d)
 {
+	char	*str;
+	int		l;
+
 	if (!(cub3d->fd = open(argv[1], O_RDONLY)))
 		return (-1);
-	while (get_next_line(cub3d->fd, &cub3d->read_map) == 1)
-	{
-		if(!extract_data(cub3d->read_map, cub3d))
-			return (-1);
-		free(cub3d->read_map);
-	}
+	while (get_next_line(cub3d->fd, &str) == 1)
+		l = extract_data(str, cub3d);
+	l = 0 ? 0 : 1;
+	free(str);
 	close(cub3d->fd);
-	return (0);
+	return (l);
 }

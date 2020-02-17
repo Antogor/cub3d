@@ -55,7 +55,6 @@ int	extract_text_wes(char *s, t_cub3d *cub3d)
 	}
 	if (s[l] == 'S')
 	{
-		printf("SSS");
 		cub3d->text->text_sprite = ft_strtrim(s, "S ");
 		if (!(ft_strnstr(cub3d->text->text_sprite, ".xpm",
 			ft_strlen(cub3d->text->text_sprite))))
