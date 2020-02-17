@@ -6,29 +6,32 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 16:45:30 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/17 18:17:47 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/17 18:37:55 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	extract_color(char *s, t_cub3d *cub3d)
+int	extract_text_ns(char *s, t_cub3d *cub3d)
 {
 	int l;
 
 	l = 0;
-	if (s[l] == 'F')
+	if (s[l] == 'N')
 	{
-		l++;
-		if (!(cub3d->color->color_r = ft_atoi(&s[l])))
+		cub3d->text->text_n = ft_strtrim(s, "NO ");
+		if (!(ft_strnstr(cub3d->text->text_n, ".xpm",
+			ft_strlen(cub3d->text->text_n))))
 			return (0);
-		l++;
-		printf("%c", s[l]);
-		while (s[l] >= '0' && s[l] <= '9')
-			l++;
-		return (1);
 	}
-	return (0);
+	if (s[l] == 'S' && s[l + 1] == 'O')
+	{
+		cub3d->text->text_s = ft_strtrim(s, "SO ");
+		if (!(ft_strnstr(cub3d->text->text_s, ".xpm",
+			ft_strlen(cub3d->text->text_s))))
+			return (0);
+	}
+	return (1);
 }
 
 int	extract_text_wes(char *s, t_cub3d *cub3d)
@@ -52,6 +55,7 @@ int	extract_text_wes(char *s, t_cub3d *cub3d)
 	}
 	if (s[l] == 'S')
 	{
+		printf("SSS");
 		cub3d->text->text_sprite = ft_strtrim(s, "S ");
 		if (!(ft_strnstr(cub3d->text->text_sprite, ".xpm",
 			ft_strlen(cub3d->text->text_sprite))))
@@ -60,26 +64,22 @@ int	extract_text_wes(char *s, t_cub3d *cub3d)
 	return (1);
 }
 
-int	extract_text_ns(char *s, t_cub3d *cub3d)
+int	extract_color(char *s, t_cub3d *cub3d)
 {
 	int l;
 
 	l = 0;
-	if (s[l] == 'N')
+	if (s[l] == 'F')
 	{
-		cub3d->text->text_n = ft_strtrim(s, "NO ");
-		if (!(ft_strnstr(cub3d->text->text_n, ".xpm",
-			ft_strlen(cub3d->text->text_n))))
+		l++;
+		if (!(cub3d->color->color_r = ft_atoi(&s[l])))
 			return (0);
+		l++;
+		while (s[l] >= '0' && s[l] <= '9')
+			l++;
+		return (1);
 	}
-	if (s[l] == 'S' && s[l + 1] == 'O')
-	{
-		cub3d->text->text_s = ft_strtrim(s, "SO ");
-		if (!(ft_strnstr(cub3d->text->text_s, ".xpm",
-			ft_strlen(cub3d->text->text_s))))
-			return (0);
-	}
-	return (1);
+	return (0);
 }
 
 int	check_map(char *s, t_cub3d *cub3d)
