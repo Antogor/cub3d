@@ -58,6 +58,9 @@ int	main(int argc, char **argv)
 	cub3d->text = (t_text *)malloc(sizeof(t_text));
 	if (init_game(argc, argv, cub3d) < 0 || argc < 2)
 		perror("Los dioses no lo permiten");
+	//int l = 0;
+	//while(l++ < cub3d->map_h)
+	//	printf("%s\n", cub3d->map[l]);
 //	printf("%s", cub3d->text->text_n);
 	cub3d->player->pos_x = 6;
 	cub3d->player->pos_y = 5;
