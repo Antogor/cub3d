@@ -116,7 +116,7 @@ typedef struct	s_lib_cub3d
 	char		*resolution;
 	int			screen_w;
 	int			screen_h;
-	char		**map;
+	char		*map;
 	int			map_w;
 	int			map_h;
 	int			fd;

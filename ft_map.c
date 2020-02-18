@@ -41,12 +41,9 @@ int		ft_map(char **argv, t_cub3d *cub3d)
 	char	*str;
 	int		l;
 	int		gnl;
-//	char	*tmp;
-//	char	**test;
+	char	*tmp;
 
 	gnl = 1;
-	cub3d->map_w = 0;
-	cub3d->map_h = 0;
 	if (!(cub3d->fd = open(argv[1], O_RDONLY)))
 		return (-1);
 	while (gnl > 0)
@@ -56,17 +53,16 @@ int		ft_map(char **argv, t_cub3d *cub3d)
 		if (l == 2)
 		{
 			if (!cub3d->map)
-				cub3d->map = ft_split(str, '0');
+				cub3d->map = ft_strdup(str);
 			else
 			{
-				cub3d->map_w++;
-				cub3d->map[cub3d->map_w][cub3d->map_h] = ft_strdup(str);
-				//free(cub3d->map);
-				//cub3d->map = tmp;
+				tmp = ft_strjoin(cub3d->map, str);
+				free(cub3d->map);
+				cub3d->map = tmp;
 			}
 		}
 	}
-	printf("%s\n", cub3d->map[0]);
+	printf("%s", cub3d->map);
 	l = 0 ? -1 : 1;
 	free(str);
 	close(cub3d->fd);
