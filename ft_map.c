@@ -12,6 +12,21 @@
 
 #include "cub3d.h"
 
+int		extract_map(char *str, t_cub3d *cub3d)
+{
+	if (!cub3d->map)
+	{
+		cub3d->map_h = 0;
+		cub3d->map_w = ft_strlen(str);
+		if (!(cub3d->map = ft_bi_array(cub3d->map_w, 1)))
+			return (0);
+	}
+	if (!(cub3d->map[cub3d->map_h] = ft_strdup(str)))
+		return (0);
+	cub3d->map_h++;
+	return (1);
+}
+
 int		extract_data(char *str, t_cub3d *cub3d)
 {
 	if (ft_strnstr(str, "R ", 2))
@@ -41,7 +56,6 @@ int		ft_map(char **argv, t_cub3d *cub3d)
 	char	*str;
 	int		l;
 	int		gnl;
-	char	*tmp;
 
 	gnl = 1;
 	if (!(cub3d->fd = open(argv[1], O_RDONLY)))
@@ -51,18 +65,10 @@ int		ft_map(char **argv, t_cub3d *cub3d)
 		gnl = get_next_line(cub3d->fd, &str);
 		l = extract_data(str, cub3d);
 		if (l == 2)
-		{
-			if (!cub3d->map)
-				cub3d->map = ft_strdup(str);
-			else
-			{
-				tmp = ft_strjoin(cub3d->map, str);
-				free(cub3d->map);
-				cub3d->map = tmp;
-			}
-		}
+			l = extract_map(str, cub3d);
 	}
-	printf("%s", cub3d->map);
+	l = check_map(cub3d);
+//	printf("%d", cub3d->map[cub3d->map_w][cub3d->map_h]);
 	l = 0 ? -1 : 1;
 	free(str);
 	close(cub3d->fd);

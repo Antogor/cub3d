@@ -116,7 +116,7 @@ typedef struct	s_lib_cub3d
 	char		*resolution;
 	int			screen_w;
 	int			screen_h;
-	char		*map;
+	char		**map;
 	int			map_w;
 	int			map_h;
 	int			fd;
@@ -136,4 +136,5 @@ int				movement(t_cub3d *cub3d);
 int				key_press(int key, t_cub3d *cub3d);
 int				key_release(int key, t_cub3d *cub3d);
 int				check_data(char *s, t_cub3d *cub3d);
+int				check_map(t_cub3d *cub3d);
 #endif
