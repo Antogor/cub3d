@@ -70,8 +70,10 @@ typedef struct	s_lib_color
 	int			color_b;
 	int			color_t;
 	int			color_w;
-	int			color_floor;
-	int			color_celling;
+	char		**color_floor;
+	int			floor;
+	char		**color_celling;
+	int			celling;
 }				t_color;
 
 typedef struct	s_lib_raycast
@@ -133,5 +135,5 @@ int				create_trgb(int t, int r, int g, int b);
 int				movement(t_cub3d *cub3d);
 int				key_press(int key, t_cub3d *cub3d);
 int				key_release(int key, t_cub3d *cub3d);
-int				check_map(char *s, t_cub3d *cub3d);
+int				check_data(char *s, t_cub3d *cub3d);
 #endif
