@@ -69,6 +69,16 @@ int		ft_map(char **argv, t_cub3d *cub3d)
 			l = extract_map(str, cub3d);
 	}
 	cub3d->map_w = ft_strlen(str);
+	printf("%s\n", cub3d->map[0]);
+	printf("%s\n", cub3d->map[1]);
+	printf("%s\n", cub3d->map[2]);
+	printf("%s\n", cub3d->map[3]);
+	printf("%s\n", cub3d->map[4]);
+	printf("%s\n", cub3d->map[5]);
+	printf("%s\n", cub3d->map[6]);
+	printf("%s\n", cub3d->map[7]);
+	printf("%s\n", cub3d->map[8]);
+	printf("%s\n", cub3d->map[9]);
 	l = check_map(cub3d);;
 	if (l == 0)
 		l -= 1;

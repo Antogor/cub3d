@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-int worldMap[mapWidth][mapHeight]=
+/*int worldMap[mapWidth][mapHeight]=
 {
   {1,1,1,1,1,1,1,1,1,1},
   {1,0,0,0,0,0,1,0,0,1},
@@ -24,7 +24,7 @@ int worldMap[mapWidth][mapHeight]=
   {1,0,0,0,0,0,0,0,0,1},
   {1,0,0,0,0,0,0,0,0,1},
   {1,1,1,1,1,1,1,1,1,1},
-};
+};*/
 
 void	calculate_side(t_cub3d *cub3d)
 {
@@ -71,7 +71,7 @@ void	hit_wall(t_cub3d *cub3d)
 			cub3d->raycast->map_y += cub3d->raycast->step_y;
 			cub3d->raycast->side = 1;
 		}
-		if (worldMap[cub3d->raycast->map_x][cub3d->raycast->map_y] == 1)
+		if (cub3d->map[cub3d->raycast->map_x][cub3d->raycast->map_y] == '1')
 			cub3d->raycast->hit = 1;
 	}
 }
