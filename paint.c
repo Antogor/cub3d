@@ -17,10 +17,12 @@ void	paint(t_cub3d *cub3d)
 	int l;
 
 	l = 0;
+	cub3d->color->color_g = create_trgb(0, 0, 120, 100);
+	cub3d->color->color_w = create_trgb(0, 100, 0, 255);
 	while (l < cub3d->raycast->draw_start)
 	{
 		*(cub3d->mlx->img_data + cub3d->raycast->x + l *
-			cub3d->mlx->size_l / 4) = cub3d->color->color_b;
+			cub3d->mlx->size_l / 4) = cub3d->color->celling;
 		l++;
 	}
 	while (l < cub3d->raycast->draw_end)
@@ -36,7 +38,7 @@ void	paint(t_cub3d *cub3d)
 	while (l < cub3d->screen_h)
 	{
 		*(cub3d->mlx->img_data + cub3d->raycast->x + l *
-			cub3d->mlx->size_l / 4) = cub3d->color->color_r;
+			cub3d->mlx->size_l / 4) = cub3d->color->floor;
 		l++;
 	}
 }

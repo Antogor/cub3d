@@ -14,16 +14,27 @@
 
 int		extract_map(char *str, t_cub3d *cub3d)
 {
-	if (!cub3d->map)
+	int l;
+
+	l = 0;
+	if(!cub3d->map)
 	{
-		cub3d->map_w = 0;
-		cub3d->map_h = 0;
-		if (!(cub3d->map = ft_bi_array(1, 1)))
+		cub3d->map = malloc( sizeof(char *));
+		while (l < 2)
+		{
+			cub3d->map[l] = malloc(2 * sizeof(char));
+			l++;
+		}
+		if (!(cub3d->map[cub3d->map_h] = ft_strdup(str)))
 			return (0);
+		cub3d->map_h++;
 	}
-	if (!(cub3d->map[cub3d->map_h] = ft_strdup(str)))
-		return (0);
-	cub3d->map_h++;
+	else
+	{
+		if (!(cub3d->map[cub3d->map_h] = ft_strdup(str)))
+			return (0);
+		cub3d->map_h++;
+	}
 	return (1);
 }
 
@@ -58,7 +69,6 @@ int		ft_map(char **argv, t_cub3d *cub3d)
 	int		gnl;
 
 	gnl = 1;
-	cub3d->map_h = 0;
 	if (!(cub3d->fd = open(argv[1], O_RDONLY)))
 		return (-1);
 	while (gnl > 0)
@@ -69,17 +79,7 @@ int		ft_map(char **argv, t_cub3d *cub3d)
 			l = extract_map(str, cub3d);
 	}
 	cub3d->map_w = ft_strlen(str);
-	printf("%s\n", cub3d->map[0]);
-	printf("%s\n", cub3d->map[1]);
-	printf("%s\n", cub3d->map[2]);
-	printf("%s\n", cub3d->map[3]);
-	printf("%s\n", cub3d->map[4]);
-	printf("%s\n", cub3d->map[5]);
-	printf("%s\n", cub3d->map[6]);
-	printf("%s\n", cub3d->map[7]);
-	printf("%s\n", cub3d->map[8]);
-	printf("%s\n", cub3d->map[9]);
-	l = check_map(cub3d);;
+	l = check_map(cub3d);
 	if (l == 0)
 		l -= 1;
 	free(str);

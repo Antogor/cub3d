@@ -12,20 +12,6 @@
 
 #include "cub3d.h"
 
-/*int worldMap[mapWidth][mapHeight]=
-{
-  {1,1,1,1,1,1,1,1,1,1},
-  {1,0,0,0,0,0,1,0,0,1},
-  {1,0,0,1,0,0,0,0,0,1},
-  {1,1,1,1,0,0,0,1,0,1},
-  {1,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,1},
-  {1,1,1,1,1,1,1,1,1,1},
-};*/
-
 void	calculate_side(t_cub3d *cub3d)
 {
 	if (cub3d->raycast->ray_dir_x < 0)
@@ -114,11 +100,6 @@ void	calculate_line_height(t_cub3d *cub3d)
 
 int		raycasting(t_cub3d *cub3d)
 {
-	cub3d->color->color_r = create_trgb(0, 50, 50, 0);
-	cub3d->color->color_g = create_trgb(0, 0, 120, 100);
-	cub3d->color->color_b = create_trgb(0, 0, 50, 120);
-	cub3d->color->color_t = create_trgb(255, 0, 0, 0);
-	cub3d->color->color_w = create_trgb(0, 100, 0, 255);
 	cub3d->raycast->x = 0;
 	while (cub3d->raycast->x < cub3d->screen_w)
 	{

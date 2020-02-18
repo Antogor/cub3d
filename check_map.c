@@ -1,53 +1,58 @@
 #include "cub3d.h"
 
-void	extract_pos(t_cub3d *cub3d)
+int	extract_pos(t_cub3d *cub3d)
 {
 	if (cub3d->dir_player == 'N')
-	{
-		cub3d->player->dir_x = 0;
-		cub3d->player->dir_y = -1;
-		cub3d->player->plane_x = 0.66;
-		cub3d->player->plane_y = 0;
-	}
-	if (cub3d->dir_player == 'S')
 	{
 		cub3d->player->dir_x = 0;
 		cub3d->player->dir_y = 1;
 		cub3d->player->plane_x = 0.66;
 		cub3d->player->plane_y = 0;
+		return (1);
+	}
+	if (cub3d->dir_player == 'S')
+	{
+		cub3d->player->dir_x = 0;
+		cub3d->player->dir_y = -1;
+		cub3d->player->plane_x = 0.66;
+		cub3d->player->plane_y = 0;
+		return (1);
 	}
 	if (cub3d->dir_player == 'W')
-	{
-		cub3d->player->dir_x = 1;
-		cub3d->player->dir_y = 0;
-		cub3d->player->plane_x = 0;
-		cub3d->player->plane_y = 0.66;
-	}
-	if (cub3d->dir_player == 'E')
 	{
 		cub3d->player->dir_x = -1;
 		cub3d->player->dir_y = 0;
 		cub3d->player->plane_x = 0;
 		cub3d->player->plane_y = 0.66;
+		return (1);
 	}
+	if (cub3d->dir_player == 'E')
+	{
+		cub3d->player->dir_x = 1;
+		cub3d->player->dir_y = 0;
+		cub3d->player->plane_x = 0;
+		cub3d->player->plane_y = 0.66;
+		return (1);
+	}
+	return (0);
 }
 
-int		map_data(t_cub3d *cub3d)
+int	map_data(t_cub3d *cub3d)
 {
 	int l;
 	int q;
 
-	l = 1;
+	l = 0;
 	while (l < cub3d->map_h)
 	{
-		q = 1;
+		q = 0;
 		while (cub3d->map[l][q])
 		{
-			if (cub3d->map[l][q] != '1' || cub3d->map[l][q] != '0'
-				|| cub3d->map[l][q] != '2' || cub3d->map[l][q] != 'N' ||
-				cub3d->map[l][q] != 'S' || cub3d->map[l][q] != 'W' ||
+			if (cub3d->map[l][q] != '1' && cub3d->map[l][q] != '0'
+				&& cub3d->map[l][q] != '2' && cub3d->map[l][q] != 'N' &&
+				cub3d->map[l][q] != 'S' && cub3d->map[l][q] != 'W' &&
 				cub3d->map[l][q] != 'E')
-				return (0);
+					return (0);
 			if (cub3d->map[l][q] == 'N' || cub3d->map[l][q] == 'S' ||
 				cub3d->map[l][q] == 'W' || cub3d->map[l][q] == 'E')
 				{
@@ -59,24 +64,23 @@ int		map_data(t_cub3d *cub3d)
 		}
 		l++;
 	}
-	extract_pos(cub3d);
-	return(1);
+	return(extract_pos(cub3d));
 }
 
-int		check_map(t_cub3d *cub3d)
+int	check_map(t_cub3d *cub3d)
 {
 	int l;
 	int	q;
 
 	l = 0;
-	q = 1;
+	q = 0;
 	while (l < cub3d->map_w)
 	{
 		if (cub3d->map[0][l] != '1' || cub3d->map[cub3d->map_h - 1][l] != '1')
 			return (0);
 		l++;
 	}
-	while (q < cub3d->map_h - 1)
+	while (q < cub3d->map_h)
 	{
 		if (cub3d->map[q][0] != '1' || cub3d->map[q][cub3d->map_w - 1] != '1')
 			return (0);
