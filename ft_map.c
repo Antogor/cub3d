@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 10:43:55 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/19 11:58:52 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/19 15:01:04 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ int		extract_map(char *str, t_cub3d *cub3d)
 	int l;
 
 	l = 0;
-	if(!cub3d->map)
+	if (!cub3d->map)
 	{
 		cub3d->map_w = 0;
 		cub3d->map_h = 0;
-		cub3d->map = malloc( sizeof(char *));
+		cub3d->map = malloc(sizeof(char *));
 		while (l < 2)
 		{
 			cub3d->map[l] = malloc(2 * sizeof(char));
@@ -64,28 +64,39 @@ int		extract_data(char *str, t_cub3d *cub3d)
 		return (0);
 }
 
-int		ft_map(char **argv, t_cub3d *cub3d)
+int		gnl(t_cub3d *cub3d)
 {
 	char	*str;
 	int		l;
 	int		gnl;
 
 	gnl = 1;
-	l = 0;
-	if (!(cub3d->fd = open(argv[1], O_RDONLY)))
-		return (-1);
 	while (gnl > 0)
 	{
 		gnl = get_next_line(cub3d->fd, &str);
-		l = extract_data(str, cub3d);
+		if (!(l = extract_data(str, cub3d)))
+			break ;
 		if (l == 2)
-			l = extract_map(str, cub3d);
+			if (!(l = extract_map(str, cub3d)))
+				break ;
 	}
-	cub3d->map_w = ft_strlen(str);
-	l = check_map(cub3d);
+	if (l == 2)
+		cub3d->map_w = ft_strlen(str);
+	free(str);
+	return (l);
+}
+
+int		ft_map(char **argv, t_cub3d *cub3d)
+{
+	int		l;
+
+	if (!(cub3d->fd = open(argv[1], O_RDONLY)))
+		return (-1);
+	l = gnl(cub3d);
+	if (l == 2)
+		l = check_map(cub3d);
 	if (l == 0)
 		l -= 1;
-	free(str);
 	close(cub3d->fd);
 	return (l);
 }

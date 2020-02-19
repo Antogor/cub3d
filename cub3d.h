@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:24:33 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/19 11:29:15 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/19 15:07:59 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,4 +135,5 @@ int				key_press(int key, t_cub3d *cub3d);
 int				key_release(int key, t_cub3d *cub3d);
 int				check_data(char *s, t_cub3d *cub3d);
 int				check_map(t_cub3d *cub3d);
+int				extract_color(char *s, t_cub3d *cub3d);
 #endif
