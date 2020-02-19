@@ -39,7 +39,7 @@ void	paint(t_cub3d *cub3d)
 		*(cub3d->mlx->img_data + cub3d->raycast->x + l *
 			cub3d->mlx->size_l / 4) = cub3d->color->celling;
 		l++;
-		printf("AAAAA%d\n", l);
+	//	printf("AAAAA%d\n", l);
 	}
 	//l += paint_text(l, cub3d);
 	while (l < cub3d->raycast->draw_end)
