@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 14:54:45 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/19 16:41:00 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/19 18:54:52 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	extract_pos(t_cub3d *cub3d)
 	if (cub3d->dir_player == 'N')
 	{
 		cub3d->player->dir_x = 0;
-		cub3d->player->dir_y = -1;
+		cub3d->player->dir_y = 1;
 		cub3d->player->plane_x = 0.66;
 		cub3d->player->plane_y = 0;
 		return (1);

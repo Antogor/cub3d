@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 11:58:02 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/17 14:16:16 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/19 18:45:17 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ char **ft_bi_array(int nrows, int ncolumns)
 	char	**array;
 
 	i = 0;
-    if(!(array = malloc(nrows * sizeof(int *))))
+    if(!(array = malloc(nrows * sizeof(char *))))
 		return (NULL);
     while (i < nrows)
     {
-    	if(!(array[i] = malloc(ncolumns * sizeof(int))))
+    	if(!(array[i] = malloc(ncolumns * sizeof(char))))
 			return (NULL);
 		i++;
     }

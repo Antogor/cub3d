@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:24:33 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/19 15:07:59 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/19 18:43:20 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ typedef struct	s_lib_cub3d
 	int			map_w;
 	int			map_h;
 	int			fd;
+	int			count_rows;
 	t_mlx		*mlx;
 	t_color		*color;
 	t_raycast	*raycast;
