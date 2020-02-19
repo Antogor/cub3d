@@ -58,7 +58,7 @@ void	hit_wall(t_cub3d *cub3d)
 			cub3d->raycast->side = 1;
 		}
 		if (cub3d->map[cub3d->raycast->map_x][cub3d->raycast->map_y] == '1')
-			cub3d->raycast->hit = 1;
+				cub3d->raycast->hit = 1;
 	}
 }
 

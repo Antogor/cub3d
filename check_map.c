@@ -69,8 +69,8 @@ int	map_data(t_cub3d *cub3d)
 				cub3d->map[l][q] == 'W' || cub3d->map[l][q] == 'E')
 			{
 				cub3d->dir_player = cub3d->map[l][q];
-				cub3d->player->pos_x = q;
-				cub3d->player->pos_y = l;
+				cub3d->player->pos_x = (double)q;
+				cub3d->player->pos_y = (double)l;
 			}
 			q++;
 		}
@@ -88,7 +88,7 @@ int	check_map(t_cub3d *cub3d)
 	q = 0;
 	while (l < cub3d->map_w)
 	{
-		if (cub3d->map[0][l] == '1' && cub3d->map[cub3d->map_h - 1][l] == '1')
+		if (cub3d->map[0][l] == '1' && cub3d->map[cub3d->map_h][l] == '1')
 			l++;
 		else
 			return (0);

@@ -23,13 +23,12 @@ int		extract_map(char *str, t_cub3d *cub3d)
 		cub3d->map = ft_bi_array(cub3d->count_rows, cub3d->map_w);
 		if (!(cub3d->map[cub3d->map_h] = ft_strdup(str)))
 			return (0);
-		cub3d->map_h++;
 	}
 	else
 	{
+		cub3d->map_h++;
 		if (!(cub3d->map[cub3d->map_h] = ft_strdup(str)))
 			return (0);
-		cub3d->map_h++;
 	}
 	return (1);
 }
