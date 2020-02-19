@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 12:10:54 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/19 15:01:24 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/19 16:54:08 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	wall_dist(t_cub3d *cub3d)
 {
 	if (cub3d->raycast->side == 0)
 	{
-		if (cub3d->raycast->ray_dir_x == 0)
+		if (cub3d->raycast->ray_dir_x < 0)
 			cub3d->raycast->wall_dist = 0;
 		else
 			cub3d->raycast->wall_dist = (cub3d->raycast->map_x -
@@ -75,7 +75,7 @@ void	wall_dist(t_cub3d *cub3d)
 	}
 	else
 	{
-		if (cub3d->raycast->ray_dir_y == 0)
+		if (cub3d->raycast->ray_dir_y < 0)
 			cub3d->raycast->wall_dist = 0;
 		else
 			cub3d->raycast->wall_dist = (cub3d->raycast->map_y -

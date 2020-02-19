@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 10:43:55 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/19 15:01:04 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/19 16:21:39 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ int		extract_data(char *str, t_cub3d *cub3d)
 		return (check_data(str, cub3d));
 	else if (ft_strnstr(str, "1", 1))
 		return (2);
+	else if (str[0] == '\0')
+		return(1);
 	else
 		return (0);
 }
@@ -74,11 +76,15 @@ int		gnl(t_cub3d *cub3d)
 	while (gnl > 0)
 	{
 		gnl = get_next_line(cub3d->fd, &str);
-		if (!(l = extract_data(str, cub3d)))
+		l = extract_data(str, cub3d);
+		if (l == 0)
 			break ;
 		if (l == 2)
-			if (!(l = extract_map(str, cub3d)))
+		{
+			l = extract_map(str, cub3d);
+			if (l == 0)
 				break ;
+		}
 	}
 	if (l == 2)
 		cub3d->map_w = ft_strlen(str);
