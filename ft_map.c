@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 10:43:55 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/17 18:37:27 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/19 11:58:52 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int		extract_map(char *str, t_cub3d *cub3d)
 	l = 0;
 	if(!cub3d->map)
 	{
+		cub3d->map_w = 0;
+		cub3d->map_h = 0;
 		cub3d->map = malloc( sizeof(char *));
 		while (l < 2)
 		{
@@ -69,6 +71,7 @@ int		ft_map(char **argv, t_cub3d *cub3d)
 	int		gnl;
 
 	gnl = 1;
+	l = 0;
 	if (!(cub3d->fd = open(argv[1], O_RDONLY)))
 		return (-1);
 	while (gnl > 0)

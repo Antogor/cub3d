@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:24:33 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/17 17:54:04 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/19 11:29:15 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@
 # define LEFT 123
 # define RIGTH 124
 # define ESC 53
-
-# define mapWidth 10
-# define mapHeight 10
 
 # include <stdlib.h>
 # include <unistd.h>

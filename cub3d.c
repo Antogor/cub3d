@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:14:36 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/17 18:15:48 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/19 12:00:20 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	init_game(int argc, char **argv, t_cub3d *cub3d)
 
 int	run_game(t_cub3d *cub3d)
 {
-	movement(cub3d);
+//	movement(cub3d);
 	raycasting(cub3d);
 	mlx_put_image_to_window(cub3d->mlx->mlx_ptr,
 		cub3d->mlx->window, cub3d->mlx->img, 0, 0);
@@ -60,6 +60,7 @@ int	main(int argc, char **argv)
 		perror("Los dioses no lo permiten");
 	else
 	{
+		printf("AAAA\n");
 		cub3d->mlx->mlx_ptr = mlx_init();
 		cub3d->mlx->window = mlx_new_window(cub3d->mlx->mlx_ptr,
 			cub3d->screen_w, cub3d->screen_h, "cub3D");
@@ -78,12 +79,4 @@ int	main(int argc, char **argv)
 	free(cub3d);
 	return (0);
 }
-
-/*	cub3d->mlx->text = mlx_xpm_file_to_image(cub3d->mlx->mlx_ptr, "textures/nicolas-cage.xpm", &cub3d->mlx->text_h, &cub3d->mlx->text_w);
-	cub3d->mlx->text_data = (int*)mlx_get_data_addr(cub3d->mlx->text, &cub3d->mlx->bpp, &cub3d->mlx->size_l, &cub3d->mlx->endian); 
-	mlx_hook(cub3d->mlx->window, 2, 1L<<0, key_press, cub3d);
-	printf("UP: %d\n", cub3d->player->up);
-	mlx_key_hook(cub3d->mlx->window, key_release, cub3d);
-	printf("UP: %d\n", cub3d->player->up);*/
-	//	system("leaks Raytest");
 	

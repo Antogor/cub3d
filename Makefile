@@ -2,8 +2,8 @@ NAME = cub3D
 
 FLAGS = gcc -Wall -Wextra -Werror
 
-MINILIBX = -lmlx -lXext -lX11 -lm #-Imlx -Iinc -lmlx -framework OpenGL -framework AppKit #-lmlx -lXext -lX11 -lm \
-#-L ./minilibx_opengl_20191021 -l mlx -framework OpenGL -framework AppKit 
+MINILIBX = -Imlx -Iinc -lmlx -framework OpenGL -framework AppKit #-lmlx -lXext -lX11 -lm \
+#-L ./minilibx_opengl_20191021 -l mlx -framework OpenGL -framework AppKit
 
 FUN = cub3d.c create_trgb.c paint.c ft_map.c movement.c raycasting.c check_data.c check_map.c #ft_keys.c
 
