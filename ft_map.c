@@ -20,7 +20,7 @@ int		extract_map(char *str, t_cub3d *cub3d)
 	if (!cub3d->map)
 	{
 		cub3d->map_h = 0;
-		cub3d->map = malloc(sizeof(char *) * cub3d->count_rows);//ft_bi_array(cub3d->count_rows, cub3d->map_w);
+		cub3d->map = ft_bi_array(cub3d->count_rows, cub3d->map_w); //cub3d->map = malloc(sizeof(char *) * cub3d->count_rows);
 		if (!(cub3d->map[cub3d->map_h] = ft_strdup(str)))
 			return (0);
 	}
