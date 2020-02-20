@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 12:10:54 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/19 18:53:44 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/20 09:25:44 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	hit_wall(t_cub3d *cub3d)
 			cub3d->raycast->map_y += cub3d->raycast->step_y;
 			cub3d->raycast->side = 1;
 		}
-		if (cub3d->map[cub3d->raycast->map_x][cub3d->raycast->map_y] == '1')
+		if (cub3d->map[cub3d->raycast->map_x - 1][cub3d->raycast->map_y - 1] == '1')
 				cub3d->raycast->hit = 1;
 	}
 }
