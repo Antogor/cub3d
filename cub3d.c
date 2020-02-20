@@ -18,8 +18,9 @@ int	init_game(int argc, char **argv, t_cub3d *cub3d)
 	{
 		if (ft_strnstr(argv[1], ".cub", ft_strlen(argv[1])))
 		{
-			if (ft_map(argv, cub3d) < 0)
-				return (-1);
+		//	if (ft_map(argv, cub3d) < 0)
+		//		return (-1);
+			ft_map(argv, cub3d);
 		}
 		return (0);
 	}
@@ -71,9 +72,10 @@ int	main(int argc, char **argv)
 	cub3d->color = (t_color *)malloc(sizeof(t_color));
 	cub3d->mlx = (t_mlx *)malloc(sizeof(t_mlx));
 	cub3d->text = (t_text *)malloc(sizeof(t_text));
-	if (init_game(argc, argv, cub3d) < 0 || argc < 2)
-		perror("Los dioses no lo permiten");
-	else
+//	if (init_game(argc, argv, cub3d) < 0 || argc < 2)
+//		perror("Los dioses no lo permiten");
+	init_game(argc, argv, cub3d);
+//	else
 		pre_run(cub3d);
 	free(cub3d->player);
 	free(cub3d->mlx);

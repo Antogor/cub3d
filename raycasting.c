@@ -18,24 +18,24 @@ void	calculate_side(t_cub3d *cub3d)
 	{
 		cub3d->raycast->step_x = -1;
 		cub3d->raycast->side_dist_x = (cub3d->player->pos_x -
-			cub3d->raycast->map_y) * cub3d->raycast->delta_dist_x;
+			cub3d->raycast->map_x) * cub3d->raycast->delta_dist_x;
 	}
 	else
 	{
 		cub3d->raycast->step_x = 1;
-		cub3d->raycast->side_dist_x = (cub3d->raycast->map_y + 1.0 -
+		cub3d->raycast->side_dist_x = (cub3d->raycast->map_x + 1.0 -
 			cub3d->player->pos_x) * cub3d->raycast->delta_dist_x;
 	}
 	if (cub3d->raycast->ray_dir_y < 0)
 	{
 		cub3d->raycast->step_y = -1;
 		cub3d->raycast->side_dist_y = (cub3d->player->pos_y -
-			cub3d->raycast->map_x) * cub3d->raycast->delta_dist_y;
+			cub3d->raycast->map_y) * cub3d->raycast->delta_dist_y;
 	}
 	else
 	{
 		cub3d->raycast->step_y = 1;
-		cub3d->raycast->side_dist_y = (cub3d->raycast->map_x + 1.0 -
+		cub3d->raycast->side_dist_y = (cub3d->raycast->map_y + 1.0 -
 			cub3d->player->pos_y) * cub3d->raycast->delta_dist_y;
 	}
 }
@@ -48,13 +48,13 @@ void	hit_wall(t_cub3d *cub3d)
 		if (cub3d->raycast->side_dist_x < cub3d->raycast->side_dist_y)
 		{
 			cub3d->raycast->side_dist_x += cub3d->raycast->delta_dist_x;
-			cub3d->raycast->map_y += cub3d->raycast->step_x;
+			cub3d->raycast->map_x += cub3d->raycast->step_x;
 			cub3d->raycast->side = 0;
 		}
 		else
 		{
 			cub3d->raycast->side_dist_y += cub3d->raycast->delta_dist_y;
-			cub3d->raycast->map_x += cub3d->raycast->step_y;
+			cub3d->raycast->map_y += cub3d->raycast->step_y;
 			cub3d->raycast->side = 1;
 		}
 		if (cub3d->map[cub3d->raycast->map_x][cub3d->raycast->map_y] == '1')
@@ -69,7 +69,7 @@ void	wall_dist(t_cub3d *cub3d)
 		if (cub3d->raycast->ray_dir_x < 0)
 			cub3d->raycast->wall_dist = 0;
 		else
-			cub3d->raycast->wall_dist = (cub3d->raycast->map_y -
+			cub3d->raycast->wall_dist = (cub3d->raycast->map_x -
 				cub3d->player->pos_x + (1 - cub3d->raycast->step_x) / 2) /
 				cub3d->raycast->ray_dir_x;
 	}
@@ -78,7 +78,7 @@ void	wall_dist(t_cub3d *cub3d)
 		if (cub3d->raycast->ray_dir_y < 0)
 			cub3d->raycast->wall_dist = 0;
 		else
-			cub3d->raycast->wall_dist = (cub3d->raycast->map_x -
+			cub3d->raycast->wall_dist = (cub3d->raycast->map_y -
 				cub3d->player->pos_y + (1 - cub3d->raycast->step_y) / 2) /
 				cub3d->raycast->ray_dir_y;
 	}
@@ -109,8 +109,8 @@ int		raycasting(t_cub3d *cub3d)
 		cub3d->player->plane_x * cub3d->raycast->camera_x;
 		cub3d->raycast->ray_dir_y = cub3d->player->dir_y +
 			cub3d->player->plane_y * cub3d->raycast->camera_x;
-		cub3d->raycast->map_x = (int)cub3d->player->pos_y;
-		cub3d->raycast->map_y = (int)cub3d->player->pos_x;
+		cub3d->raycast->map_x = (int)cub3d->player->pos_x;
+		cub3d->raycast->map_y = (int)cub3d->player->pos_y;
 		cub3d->raycast->delta_dist_x = sqrt(1 + (cub3d->raycast->ray_dir_y *
 			cub3d->raycast->ray_dir_y) / (cub3d->raycast->ray_dir_x *
 			cub3d->raycast->ray_dir_x));

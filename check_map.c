@@ -58,22 +58,24 @@ int	map_data(t_cub3d *cub3d)
 	while (l < cub3d->map_h)
 	{
 		q = 0;
-		while (cub3d->map[l][q])
+		while (q < cub3d->map_w)
 		{
-			if (cub3d->map[l][q] != '1' && cub3d->map[l][q] != '0'
-				&& cub3d->map[l][q] != '2' && cub3d->map[l][q] != 'N' &&
-				cub3d->map[l][q] != 'S' && cub3d->map[l][q] != 'W' &&
-				cub3d->map[l][q] != 'E')
-				return (0);
+	//		if (cub3d->map[l][q] != '1' && cub3d->map[l][q] != '0'
+	//			&& cub3d->map[l][q] != '2' && cub3d->map[l][q] != 'N' &&
+	//			cub3d->map[l][q] != 'S' && cub3d->map[l][q] != 'W' &&
+	//			cub3d->map[l][q] != 'E')
+	//			return (0);
 			if (cub3d->map[l][q] == 'N' || cub3d->map[l][q] == 'S' ||
 				cub3d->map[l][q] == 'W' || cub3d->map[l][q] == 'E')
 			{
 				cub3d->dir_player = cub3d->map[l][q];
 				cub3d->player->pos_x = (double)q;
-				cub3d->player->pos_y = (double)l;
+				cub3d->player->pos_y = (double)q;
+		//		printf("X%f\n Y %f\n", cub3d->player->pos_x, cub3d->player->pos_y);
 			}
 			q++;
 		}
+			printf("%s\n L %d", cub3d->map[l], l);
 		l++;
 	}
 	return (extract_pos(cub3d));
@@ -86,19 +88,19 @@ int	check_map(t_cub3d *cub3d)
 
 	l = 0;
 	q = 0;
-	while (l < cub3d->map_w)
+	/*while (l < cub3d->map_w)
 	{
-		if (cub3d->map[0][l] == '1' && cub3d->map[cub3d->map_h][l] == '1')
+		if (cub3d->map[0][l] == '1' && cub3d->map[cub3d->map_w - 1][l] == '1')
 			l++;
-		else
-			return (0);
+	//	else
+	//		return (0);
 	}
 	while (q < cub3d->map_h)
 	{
-		if (cub3d->map[q][0] == '1' && cub3d->map[q][cub3d->map_w - 1] == '1')
+		if (cub3d->map[q][0] == '1' && cub3d->map[q][cub3d->map_h] == '1')
 			q++;
-		else
-			return (0);
-	}
+	//	else
+	//		return (0);
+	}*/
 	return (map_data(cub3d));
 }

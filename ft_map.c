@@ -15,20 +15,20 @@
 int		extract_map(char *str, t_cub3d *cub3d)
 {
 	int l;
-
-	l = 0;
 	if (!cub3d->map)
 	{
-		cub3d->map_h = 0;
-		cub3d->map = ft_bi_array(cub3d->count_rows, cub3d->map_w); //cub3d->map = malloc(sizeof(char *) * cub3d->count_rows);
-		if (!(cub3d->map[cub3d->map_h] = ft_strdup(str)))
+		l = 0;
+		cub3d->map = malloc(sizeof(char *) * cub3d->count_rows); //ft_bi_array(cub3d->map_h, cub3d->map_w); //cub3d->map = malloc(sizeof(char *) * cub3d->count_rows);
+		if (!(cub3d->map[0] = ft_strdup(str)))
 			return (0);
+		printf("AAAAAA\n");	
 	}
 	else
 	{
-		cub3d->map_h++;
-		if (!(cub3d->map[cub3d->map_h] = ft_strdup(str)))
+		l++;
+		if (!(cub3d->map[l] = ft_strdup(str)))
 			return (0);
+printf("SEGUNDA%s\n", cub3d->map[1]);
 	}
 	return (1);
 }
@@ -80,7 +80,10 @@ int		gnl_1(t_cub3d *cub3d)
 		}
 	}
 	if (l == 2)
+	{
 		cub3d->map_w = ft_strlen(str);
+		cub3d->map_h = cub3d->count_rows;
+	}
 	free(str);
 	return (l);
 }
