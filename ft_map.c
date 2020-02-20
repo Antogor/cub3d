@@ -15,21 +15,24 @@
 int		extract_map(char *str, t_cub3d *cub3d)
 {
 	int l;
-	if (!cub3d->map)
-	{
+
+//	if (!cub3d->map)
+//	{
 		l = 0;
-		cub3d->map = malloc(sizeof(char *) * cub3d->count_rows); //ft_bi_array(cub3d->map_h, cub3d->map_w); //cub3d->map = malloc(sizeof(char *) * cub3d->count_rows);
-		if (!(cub3d->map[0] = ft_strdup(str)))
-			return (0);
-		printf("AAAAAA\n");	
-	}
-	else
+		cub3d->map = malloc(sizeof(char *) * cub3d->count_rows); //ft_bi_array(cub3d->map_h, cub3d->map_w); 
+		while (l < cub3d->count_rows)
+		{
+			cub3d->map[l] = malloc(sizeof(char) * cub3d->map_w);
+			l++;	
+		}
+	//	cub3d->map[0] = str;
+	//	l = 0;
+//	}
+/*	else
 	{
 		l++;
-		if (!(cub3d->map[l] = ft_strdup(str)))
-			return (0);
-printf("SEGUNDA%s\n", cub3d->map[1]);
-	}
+		cub3d->map[l] = str;
+	}*/
 	return (1);
 }
 
@@ -83,6 +86,7 @@ int		gnl_1(t_cub3d *cub3d)
 	{
 		cub3d->map_w = ft_strlen(str);
 		cub3d->map_h = cub3d->count_rows;
+		extract_map(str, cub3d);
 	}
 	free(str);
 	return (l);
@@ -93,20 +97,25 @@ int		gnl_2(t_cub3d *cub3d)
 	char	*str;
 	int		l;
 	int		gnl;
+	int		q;
 
 	gnl = 1;
+	l = 0;
 	while (gnl > 0)
 	{
 		gnl = get_next_line(cub3d->fd, &str);
-		if (str[0] == '1')
+		q = extract_data(str, cub3d);
+		if (q == 2)
 		{
-			l = extract_map(str, cub3d);
-			if (l == 0)
-				break ;
+			cub3d->map[l] = str;
+			printf("%s\n", cub3d->map[l]);
+			l++;
 		}
+		if (gnl == 0)
+			break ;
 	}
 	free(str);
-	return (l);
+	return (1);
 }
 
 int		ft_map(char **argv, t_cub3d *cub3d)
@@ -125,9 +134,8 @@ int		ft_map(char **argv, t_cub3d *cub3d)
 	close(cub3d->fd);
 	if (!(cub3d->fd = open(argv[1], O_RDONLY)))
 		return (-1);
-	l = gnl_2(cub3d);
-	if (l > 0)
-		l = check_map(cub3d);
+	gnl_2(cub3d);
+	l = check_map(cub3d);
 	if (l == 0)
 		l -= 1;
 	close(cub3d->fd);

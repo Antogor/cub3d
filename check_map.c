@@ -71,11 +71,10 @@ int	map_data(t_cub3d *cub3d)
 				cub3d->dir_player = cub3d->map[l][q];
 				cub3d->player->pos_x = (double)q;
 				cub3d->player->pos_y = (double)q;
-		//		printf("X%f\n Y %f\n", cub3d->player->pos_x, cub3d->player->pos_y);
+	//			printf("X%f\n Y %f\n", cub3d->player->pos_x, cub3d->player->pos_y);
 			}
 			q++;
 		}
-			printf("%s\n L %d", cub3d->map[l], l);
 		l++;
 	}
 	return (extract_pos(cub3d));
