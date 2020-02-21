@@ -16,10 +16,10 @@ int	extract_pos(t_cub3d *cub3d)
 {
 	if (cub3d->dir_player == 'N')
 	{
-		cub3d->player->dir_x = 0;
-		cub3d->player->dir_y = -1;
+		cub3d->player->dir_x = 0.0;
+		cub3d->player->dir_y = 1.0;
 		cub3d->player->plane_x = 0.66;
-		cub3d->player->plane_y = 0;
+		cub3d->player->plane_y = 0.0;
 		return (1);
 	}
 	if (cub3d->dir_player == 'S')
@@ -32,9 +32,9 @@ int	extract_pos(t_cub3d *cub3d)
 	}
 	if (cub3d->dir_player == 'W')
 	{
-		cub3d->player->dir_x = -1;
-		cub3d->player->dir_y = 0;
-		cub3d->player->plane_x = 0;
+		cub3d->player->dir_x = -1.0;
+		cub3d->player->dir_y = 0.0;
+		cub3d->player->plane_x = 0.0;
 		cub3d->player->plane_y = 0.66;
 		return (1);
 	}
@@ -51,55 +51,53 @@ int	extract_pos(t_cub3d *cub3d)
 
 int	map_data(t_cub3d *cub3d)
 {
-	int l;
-	int q;
+	int columns;
+	int fill;
 
-	l = 0;
-	while (l < cub3d->map_h)
+	fill = 0;
+	while (fill < cub3d->map_h)
 	{
-		q = 0;
-		while (q < cub3d->map_w)
+		columns = 0;
+		while (columns < cub3d->map_w)
 		{
-	//		if (cub3d->map[l][q] != '1' && cub3d->map[l][q] != '0'
-	//			&& cub3d->map[l][q] != '2' && cub3d->map[l][q] != 'N' &&
-	//			cub3d->map[l][q] != 'S' && cub3d->map[l][q] != 'W' &&
-	//			cub3d->map[l][q] != 'E')
-	//			return (0);
-			if (cub3d->map[l][q] == 'N' || cub3d->map[l][q] == 'S' ||
-				cub3d->map[l][q] == 'W' || cub3d->map[l][q] == 'E')
+			if (cub3d->map[fill][columns] != '1' && cub3d->map[fill][columns] != '0'
+				&& cub3d->map[fill][columns] != '2' && cub3d->map[fill][columns] != 'N' &&
+				cub3d->map[fill][columns] != 'S' && cub3d->map[fill][columns] != 'W' &&
+				cub3d->map[fill][columns] != 'E')
+					return (0);
+			if (cub3d->map[fill][columns] == 'N' || cub3d->map[fill][columns] == 'S' ||
+				cub3d->map[fill][columns] == 'W' || cub3d->map[fill][columns] == 'E')
 			{
-				cub3d->dir_player = cub3d->map[l][q];
-				cub3d->player->pos_x = (double)q;
-				cub3d->player->pos_y = (double)q;
-	//			printf("X%f\n Y %f\n", cub3d->player->pos_x, cub3d->player->pos_y);
+				cub3d->dir_player = cub3d->map[fill][columns];
+				cub3d->player->pos_x = (double)columns;
+				cub3d->player->pos_y = (double)fill;
+				break ;
 			}
-			q++;
+			columns++;
 		}
-		l++;
+		fill++;
 	}
 	return (extract_pos(cub3d));
 }
 
 int	check_map(t_cub3d *cub3d)
 {
-	int l;
-	int	q;
+	int columns;
+	int	fill;
 
-	l = 0;
-	q = 0;
-	/*while (l < cub3d->map_w)
+	columns = 0;
+	fill = 0;
+	while (columns < cub3d->map_w)
 	{
-		if (cub3d->map[0][l] == '1' && cub3d->map[cub3d->map_w - 1][l] == '1')
-			l++;
-	//	else
-	//		return (0);
+		if (cub3d->map[0][columns] != '1' || cub3d->map[cub3d->map_h - 1][columns] != '1')
+			return (0);
+		columns++;
 	}
-	while (q < cub3d->map_h)
+	while (fill < cub3d->map_h)
 	{
-		if (cub3d->map[q][0] == '1' && cub3d->map[q][cub3d->map_h] == '1')
-			q++;
-	//	else
-	//		return (0);
-	}*/
+		if (cub3d->map[fill][0] != '1' || cub3d->map[fill][cub3d->map_w - 1] != '1')
+			return (0);	
+		fill++;
+	}
 	return (map_data(cub3d));
 }

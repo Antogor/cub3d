@@ -34,13 +34,15 @@ void	paint(t_cub3d *cub3d)
 	l = 0;
 	cub3d->color->color_g = create_trgb(0, 0, 120, 100);
 	cub3d->color->color_w = create_trgb(0, 100, 0, 255);
+//	printf("%d\n", cub3d->raycast->draw_start);
 	while (l < cub3d->raycast->draw_start)
 	{
 		*(cub3d->mlx->img_data + cub3d->raycast->x + l *
 			cub3d->mlx->size_l / 4) = cub3d->color->celling;
 		l++;
 	}
-	//l += paint_text(l, cub3d);
+//	printf("%d\n", cub3d->raycast->draw_end);
+//	l += paint_text(l, cub3d);
 	while (l < cub3d->raycast->draw_end)
 	{
 		if (cub3d->raycast->side == 0)

@@ -119,6 +119,7 @@ typedef struct	s_lib_cub3d
 	int			map_h;
 	int			fd;
 	int			count_rows;
+	int			count;
 	t_mlx		*mlx;
 	t_color		*color;
 	t_raycast	*raycast;

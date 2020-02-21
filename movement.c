@@ -16,8 +16,8 @@ int	keys(t_cub3d *cub3d)
 {
 	if (cub3d->player->up)
 	{
-		if (!(cub3d->map[(int)cub3d->player->pos_x][(int)cub3d->player->pos_y]))
-			cub3d->player->pos_y += cub3d->player->dir_y * cub3d->player->speed;
+//		if (!(cub3d->map[(int)cub3d->player->pos_x][(int)cub3d->player->pos_y]))
+//			cub3d->player->pos_y += cub3d->player->dir_y * cub3d->player->speed;
 	}
 	/*else if (key == S)
 		cub3d->player->pos_y -= cub3d->player->speed;
@@ -33,8 +33,8 @@ int	movement(t_cub3d *cub3d)
 	cub3d->player->speed = 1.0;
 	if (cub3d->player->up)
 	{
-		if (!(cub3d->map[(int)cub3d->player->pos_x][(int)cub3d->player->pos_y]))
-			cub3d->player->pos_y += cub3d->player->dir_y * cub3d->player->speed;
+//		if (!(cub3d->map[(int)cub3d->player->pos_x][(int)cub3d->player->pos_y]))
+//			cub3d->player->pos_y += cub3d->player->dir_y * cub3d->player->speed;
 	}
 	mlx_key_hook(cub3d->mlx->window, keys, cub3d);
 	return (0);
