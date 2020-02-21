@@ -20,7 +20,6 @@ int	init_game(int argc, char **argv, t_cub3d *cub3d)
 		{
 			if (ft_map(argv, cub3d) < 0)
 				return (-1);
-//			ft_map(argv, cub3d);
 		}
 		return (0);
 	}
@@ -40,7 +39,7 @@ int	init_game(int argc, char **argv, t_cub3d *cub3d)
 
 int	run_game(t_cub3d *cub3d)
 {
-//	movement(cub3d);
+	movement(cub3d);
 	raycasting(cub3d);
 	mlx_put_image_to_window(cub3d->mlx->mlx_ptr,
 		cub3d->mlx->window, cub3d->mlx->img, 0, 0);
@@ -49,8 +48,6 @@ int	run_game(t_cub3d *cub3d)
 
 void	pre_run(t_cub3d *cub3d)
 {
-	int l;
-
 	cub3d->mlx->mlx_ptr = mlx_init();
 	cub3d->mlx->window = mlx_new_window(cub3d->mlx->mlx_ptr,
 		cub3d->screen_w, cub3d->screen_h, "cub3D");
@@ -58,7 +55,7 @@ void	pre_run(t_cub3d *cub3d)
 		cub3d->screen_w, cub3d->screen_h);
 	cub3d->mlx->img_data = (int*)mlx_get_data_addr(cub3d->mlx->img,
 		&cub3d->mlx->bpp, &cub3d->mlx->size_l, &cub3d->mlx->endian);
-	l = mlx_loop_hook(cub3d->mlx->mlx_ptr, run_game, cub3d);
+	mlx_loop_hook(cub3d->mlx->mlx_ptr, run_game, cub3d);
 	mlx_loop(cub3d->mlx->mlx_ptr);
 }
 
@@ -74,7 +71,6 @@ int	main(int argc, char **argv)
 	cub3d->text = (t_text *)malloc(sizeof(t_text));
 	if (init_game(argc, argv, cub3d) < 0 || argc < 2)
 		perror("Los dioses no lo permiten");
-//	init_game(argc, argv, cub3d);
 	else
 		pre_run(cub3d);
 	free(cub3d->player);

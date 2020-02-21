@@ -86,11 +86,10 @@ void	wall_dist(t_cub3d *cub3d)
 
 void	calculate_line_height(t_cub3d *cub3d)
 {
-	cub3d->raycast->line_height = (int)(cub3d->screen_h /
-		cub3d->raycast->wall_dist);
+	cub3d->raycast->line_height = (int)(cub3d->screen_h / cub3d->raycast->wall_dist);
 	cub3d->raycast->draw_start = (cub3d->raycast->line_height * -1) /
 		2 + cub3d->screen_h / 2;
-	if (cub3d->raycast->draw_start < 0)
+	if (cub3d->raycast->draw_start <= 0)
 		cub3d->raycast->draw_start = 0;
 	cub3d->raycast->draw_end =  cub3d->raycast->line_height /
 		2 + cub3d->screen_h / 2;

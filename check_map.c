@@ -17,22 +17,22 @@ int	extract_pos(t_cub3d *cub3d)
 	if (cub3d->dir_player == 'N')
 	{
 		cub3d->player->dir_x = 0.0;
-		cub3d->player->dir_y = 1.0;
-		cub3d->player->plane_x = 0.66;
+		cub3d->player->dir_y = -1.0;
+		cub3d->player->plane_x = -0.66;
 		cub3d->player->plane_y = 0.0;
 		return (1);
 	}
 	if (cub3d->dir_player == 'S')
 	{
-		cub3d->player->dir_x = 0;
-		cub3d->player->dir_y = 1;
+		cub3d->player->dir_x = 0.0;
+		cub3d->player->dir_y = 1.0;
 		cub3d->player->plane_x = 0.66;
 		cub3d->player->plane_y = 0;
 		return (1);
 	}
 	if (cub3d->dir_player == 'W')
 	{
-		cub3d->player->dir_x = -1.0;
+		cub3d->player->dir_x = 1.0;
 		cub3d->player->dir_y = 0.0;
 		cub3d->player->plane_x = 0.0;
 		cub3d->player->plane_y = 0.66;
@@ -40,9 +40,9 @@ int	extract_pos(t_cub3d *cub3d)
 	}
 	if (cub3d->dir_player == 'E')
 	{
-		cub3d->player->dir_x = 1;
-		cub3d->player->dir_y = 0;
-		cub3d->player->plane_x = 0;
+		cub3d->player->dir_x = -1.0;
+		cub3d->player->dir_y = 0.0;
+		cub3d->player->plane_x = 0.0;
 		cub3d->player->plane_y = 0.66;
 		return (1);
 	}
