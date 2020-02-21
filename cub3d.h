@@ -128,7 +128,7 @@ typedef struct	s_lib_cub3d
 }				t_cub3d;
 
 int				raycasting(t_cub3d *cub3d);
-int				ft_keys(t_cub3d *tab);
+int				ft_keys(t_cub3d *cub3d);
 int				ft_map(char **argv, t_cub3d *map);
 void			paint(t_cub3d *cub3d);
 int				create_trgb(int t, int r, int g, int b);

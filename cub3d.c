@@ -39,7 +39,7 @@ int	init_game(int argc, char **argv, t_cub3d *cub3d)
 
 int	run_game(t_cub3d *cub3d)
 {
-	movement(cub3d);
+	ft_keys(cub3d);
 	raycasting(cub3d);
 	mlx_put_image_to_window(cub3d->mlx->mlx_ptr,
 		cub3d->mlx->window, cub3d->mlx->img, 0, 0);
