@@ -51,6 +51,7 @@ void	pre_run(t_cub3d *cub3d)
 	cub3d->mlx->mlx_ptr = mlx_init();
 	cub3d->mlx->window = mlx_new_window(cub3d->mlx->mlx_ptr,
 		cub3d->screen_w, cub3d->screen_h, "cub3D");
+//	extract_textures(cub3d);
 	cub3d->mlx->img = mlx_new_image(cub3d->mlx->mlx_ptr,
 		cub3d->screen_w, cub3d->screen_h);
 	cub3d->mlx->img_data = (int*)mlx_get_data_addr(cub3d->mlx->img,

@@ -60,9 +60,9 @@ int	extract_text_wes(char *s, t_cub3d *cub3d)
 	l = 0;
 	if (s[l] == 'W')
 	{
-		cub3d->text->text_o = ft_strtrim(s, "WE ");
-		if (!(ft_strnstr(cub3d->text->text_o, ".xpm",
-			ft_strlen(cub3d->text->text_o))))
+		cub3d->text->text_w = ft_strtrim(s, "WE ");
+		if (!(ft_strnstr(cub3d->text->text_w, ".xpm",
+			ft_strlen(cub3d->text->text_w))))
 				return (0);
 	}
 	if (s[l] == 'E')

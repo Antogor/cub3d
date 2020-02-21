@@ -54,10 +54,11 @@ typedef struct	s_lib_text
 	char		*text_e;
 	void		*text_ptr_e;
 	int			*text_d_e;
-	char		*text_o;
-	void		*text_ptr_o;
-	int			*text_d_o;
+	char		*text_w;
+	void		*text_ptr_w;
+	int			*text_d_w;
 	char		*text_sprite;
+//	char		**texNum;
 }				t_text;
 
 typedef struct	s_lib_color
@@ -138,4 +139,6 @@ int				key_release(int key, t_cub3d *cub3d);
 int				check_data(char *s, t_cub3d *cub3d);
 int				check_map(t_cub3d *cub3d);
 int				extract_color(char *s, t_cub3d *cub3d);
+int				extract_textures(t_cub3d *cub3d);
+
 #endif
