@@ -15,9 +15,14 @@ char	*generator_map(int columns, int fills)
 	q = 0;
 	while (l < total + fills)
 	{
-		new[l] = '1';
-		if (l == columns)
+		new[l] = '0';
+		if (q == columns)
+		{
+			printf("Q: %d\n", l);
 			new[l] = '\n';
+			q = 0;
+		}
+		q++;
 		l++;
 	}
 	new[l] = '\0';
