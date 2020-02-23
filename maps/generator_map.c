@@ -2,14 +2,53 @@
 #include "../libft/libft.h"
 #include <stdio.h>
 
-char	*generator_map(int columns, int fills)
+
+void	generator_wall(char *map, int total, int columns, int fills)
+{
+	int l;
+	int q;
+	int count;
+
+	l = 0;
+	count = 0;
+	while (l < total + fills)
+	{
+		if (map[l] == '\n')
+		{
+			break ;
+		}
+		map[l] = '1';
+		l++;
+	}
+	l++;
+	map[l] = '1';
+	l++;
+	while (l < total + fills)
+	{
+		q = 1;
+		if (map[l + q]  == '\n')
+		{
+			map[l] = '1';
+			l += 2;
+			if (map[l + q] == '0')
+				map[l] = '1';
+			count++;
+			if (count == fills - 1)
+			{
+				break ;
+			}
+		}
+		l++;
+	}
+	printf("%s", map);
+}
+
+char	*premap(int total, int columns, int fills)
 {
 	char	*new;
-	int		total;
 	int		l;
 	int		q;
 
-	total =  fills * columns;
 	new = (char *)malloc(sizeof(char) * total + fills);
 	l = 0;
 	q = 0;
@@ -18,9 +57,8 @@ char	*generator_map(int columns, int fills)
 		new[l] = '0';
 		if (q == columns)
 		{
-			printf("Q: %d\n", l);
 			new[l] = '\n';
-			q = 0;
+			q = -1;
 		}
 		q++;
 		l++;
@@ -34,6 +72,7 @@ int		main(int argc, char **argv)
 	char	*map;
 	int		fills;
 	int		columns;
+	int		total;
 	int		l;
 
 	fills = 0;
@@ -55,8 +94,11 @@ int		main(int argc, char **argv)
 			l++;
 		}
 		if (fills > 0 && columns > 0)
-			map = generator_map(columns, fills);
-		printf("%s", map);
+		{
+			total =  fills * columns;
+			map = premap(total, columns, fills);
+			generator_wall(map, total, columns, fills);
+		}
 	}
 	return (0);
 }
