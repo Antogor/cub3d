@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 16:45:30 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/24 12:49:23 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/24 13:13:05 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ int	extract_resolution(char *s, t_cub3d *cub3d)
 		if (!(cub3d->screen_h = ft_atoi(&s[l])))
 			return (0);
 	}
+	if (cub3d->screen_w > 1920)
+		cub3d->screen_w = 1920;
+	if (cub3d->screen_h > 1080)
+		cub3d->screen_h = 1080;
 	return (1);
 }
 
