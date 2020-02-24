@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 13:14:28 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/24 15:32:35 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/24 16:49:11 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,23 +45,23 @@ int	left_right(int key, t_cub3d *cub3d)
 		/*if (cub3d->map[(int)cub3d->player->pos_y][(int)cub3d->player->pos_x])
 			cub3d->player->pos_x += cub3d->player->dir_y *
 				cub3d->player->speed;*/
-		if (cub3d->map[(int)(cub3d->player->pos_x)][(int)(cub3d->player->pos_y
+		if (cub3d->map[(int)(cub3d->player->pos_y)][(int)(cub3d->player->pos_x
 			- cub3d->player->dir_x * cub3d->player->speed)])
 			cub3d->player->pos_y -= cub3d->player->dir_x *
 				cub3d->player->speed * 0.5;
-		if (cub3d->map[(int)(cub3d->player->pos_x + cub3d->player->dir_y *
-			cub3d->player->speed)][(int)(cub3d->player->pos_y)])
+		if (cub3d->map[(int)(cub3d->player->pos_y + cub3d->player->dir_y *
+			cub3d->player->speed)][(int)(cub3d->player->pos_x)])
 			cub3d->player->pos_x += cub3d->player->dir_y *
 				cub3d->player->speed * 0.5;
 	}
 	else if (key == A)
 	{
-		if (cub3d->map[(int)(cub3d->player->pos_x)][(int)(cub3d->player->pos_y
+		if (cub3d->map[(int)(cub3d->player->pos_y)][(int)(cub3d->player->pos_x
 			+ cub3d->player->dir_x * cub3d->player->speed)])
 			cub3d->player->pos_y += cub3d->player->dir_x *
 				cub3d->player->speed * 0.5;
-		if (cub3d->map[(int)(cub3d->player->pos_x - cub3d->player->dir_y *
-			cub3d->player->speed)][(int)(cub3d->player->pos_y)])
+		if (cub3d->map[(int)(cub3d->player->pos_y - cub3d->player->dir_y *
+			cub3d->player->speed)][(int)(cub3d->player->pos_x)])
 			cub3d->player->pos_x -= cub3d->player->dir_y *
 				cub3d->player->speed * 0.5;
 		/*if (cub3d->map[(int)cub3d->player->pos_x][(int)cub3d->player->pos_y])
@@ -80,12 +80,12 @@ int	up_down(int key, t_cub3d *cub3d)
 		/*if (cub3d->map[(int)cub3d->player->pos_y][(int)cub3d->player->pos_x])
 			cub3d->player->pos_y += cub3d->player->pos_y *
 				cub3d->player->speed;*/
-		if (cub3d->map[(int)(cub3d->player->pos_x + cub3d->player->dir_x *
-			cub3d->player->speed)][(int)(cub3d->player->pos_y)])
+		if (cub3d->map[(int)(cub3d->player->pos_y + cub3d->player->dir_x *
+			cub3d->player->speed)][(int)(cub3d->player->pos_x)])
 			cub3d->player->pos_x += cub3d->player->dir_x *
 				cub3d->player->speed * 0.5;
-		if (cub3d->map[(int)(cub3d->player->pos_x)][(int)(cub3d->player->pos_y
-			+ cub3d->player->dir_y * cub3d->player->speed)])
+		if (cub3d->map[(int)(cub3d->player->pos_y)][(int)(cub3d->player->pos_x
+			+ cub3d->player->dir_x * cub3d->player->speed)])
 			cub3d->player->pos_y += cub3d->player->dir_y *
 				cub3d->player->speed * 0.5;
 	}
@@ -94,12 +94,12 @@ int	up_down(int key, t_cub3d *cub3d)
 		/*if (cub3d->map[(int)cub3d->player->pos_y][(int)cub3d->player->pos_x])
 			cub3d->player->pos_y -= cub3d->player->dir_y *
 				cub3d->player->speed;*/
-		if (cub3d->map[(int)(cub3d->player->pos_x + cub3d->player->dir_x *
-			cub3d->player->speed)][(int)(cub3d->player->pos_y)])
+		if (cub3d->map[(int)(cub3d->player->pos_y + cub3d->player->dir_x *
+			cub3d->player->speed)][(int)(cub3d->player->pos_x)])
 			cub3d->player->pos_x -= cub3d->player->dir_x *
 				cub3d->player->speed * 0.5;
-		if (cub3d->map[(int)(cub3d->player->pos_x)][(int)(cub3d->player->pos_y
-			+ cub3d->player->dir_y * cub3d->player->speed)])
+		if (cub3d->map[(int)(cub3d->player->pos_y)][(int)(cub3d->player->pos_x
+			+ cub3d->player->dir_x * cub3d->player->speed)])
 			cub3d->player->pos_y -= cub3d->player->dir_y *
 				cub3d->player->speed * 0.5;
 	}
