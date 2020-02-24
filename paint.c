@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 11:19:05 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/20 09:14:09 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/24 12:52:26 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,12 @@ void	paint(t_cub3d *cub3d)
 	l = 0;
 	cub3d->color->color_g = create_trgb(0, 0, 120, 100);
 	cub3d->color->color_w = create_trgb(0, 100, 0, 255);
-//	printf("%d\n", cub3d->raycast->draw_start);
 	while (l < cub3d->raycast->draw_start)
 	{
 		*(cub3d->mlx->img_data + cub3d->raycast->x + l *
 			cub3d->mlx->size_l / 4) = cub3d->color->celling;
 		l++;
 	}
-//	printf("%d\n", cub3d->raycast->draw_end);
 //	l += paint_text(l, cub3d);
 	while (l < cub3d->raycast->draw_end)
 	{

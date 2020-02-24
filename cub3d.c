@@ -6,13 +6,13 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:14:36 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/19 18:49:53 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/24 12:52:42 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	init_game(int argc, char **argv, t_cub3d *cub3d)
+int		init_game(int argc, char **argv, t_cub3d *cub3d)
 {
 	if (argc == 2)
 	{
@@ -37,9 +37,10 @@ int	init_game(int argc, char **argv, t_cub3d *cub3d)
 	return (-1);
 }
 
-int	run_game(t_cub3d *cub3d)
+int		run_game(t_cub3d *cub3d)
 {
 	ft_keys(cub3d);
+	movement(cub3d);
 	raycasting(cub3d);
 	mlx_put_image_to_window(cub3d->mlx->mlx_ptr,
 		cub3d->mlx->window, cub3d->mlx->img, 0, 0);
@@ -51,7 +52,6 @@ void	pre_run(t_cub3d *cub3d)
 	cub3d->mlx->mlx_ptr = mlx_init();
 	cub3d->mlx->window = mlx_new_window(cub3d->mlx->mlx_ptr,
 		cub3d->screen_w, cub3d->screen_h, "cub3D");
-//	extract_textures(cub3d);
 	cub3d->mlx->img = mlx_new_image(cub3d->mlx->mlx_ptr,
 		cub3d->screen_w, cub3d->screen_h);
 	cub3d->mlx->img_data = (int*)mlx_get_data_addr(cub3d->mlx->img,
@@ -60,7 +60,7 @@ void	pre_run(t_cub3d *cub3d)
 	mlx_loop(cub3d->mlx->mlx_ptr);
 }
 
-int	main(int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	t_cub3d *cub3d;
 

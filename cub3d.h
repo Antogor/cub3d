@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:24:33 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/19 18:43:20 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/02/24 12:51:12 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ typedef struct	s_lib_text
 	void		*text_ptr_w;
 	int			*text_d_w;
 	char		*text_sprite;
-//	char		**texNum;
 }				t_text;
 
 typedef struct	s_lib_color
