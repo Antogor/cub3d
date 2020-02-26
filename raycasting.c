@@ -103,6 +103,7 @@ void	calculate_line_height(t_cub3d *cub3d)
 		2 + cub3d->screen_h / 2;
 	if (cub3d->raycast->draw_end >= cub3d->screen_h)
 		cub3d->raycast->draw_end = cub3d->screen_h;
+	choose_texture(cub3d);
 }
 
 int		raycasting(t_cub3d *cub3d)
@@ -128,7 +129,6 @@ int		raycasting(t_cub3d *cub3d)
 		hit_wall(cub3d);
 		wall_dist(cub3d);
 		calculate_line_height(cub3d);
-		choose_texture(cub3d);
 		paint(cub3d);
 		cub3d->raycast->x++;
 	}
