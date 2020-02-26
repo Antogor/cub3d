@@ -1,8 +1,8 @@
 R 848 480
-NO textures/wall_1.xpm
-SO textures/wall_2.xpm
-WE textures/wall_3.xpm
-EA textures/wall_4.xpm
+NO ./textures/nicolas-cage.xpm
+SO ./textures/cthulhu.xpm
+WE ./textures/eagle.xpm
+EA ./textures/cthulhu.xpm
 S textures/sprite_1.xpm
 
 F 184, 113, 39

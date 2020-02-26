@@ -35,8 +35,6 @@ typedef struct	s_lib_mlx
 	void		*mlx_ptr;
 	void		*window;
 	void		*img;
-	int			text_h;
-	int			text_w;
 	int			*img_data;
 	int			bpp;
 	int			size_l;
@@ -48,9 +46,19 @@ typedef struct	s_lib_text
 	char		*text_n;
 	void		*text_ptr_n;
 	int			*text_d_n;
+	int			text_n_bpp;
+	int			text_n_sl;
+	int			text_n_end;
+	int			text_n_h;
+	int			text_n_w;
 	char		*text_s;
 	void		*text_ptr_s;
 	int			*text_d_s;
+	int			text_s_bpp;
+	int			text_s_sl;
+	int			text_s_end;
+	int			text_s_h;
+	int			text_s_w;
 	char		*text_e;
 	void		*text_ptr_e;
 	int			*text_d_e;
@@ -83,6 +91,7 @@ typedef struct	s_lib_raycast
 	double		delta_dist_x;
 	double		delta_dist_y;
 	double		wall_dist;
+	double		wall_x;
 	int			step_x;
 	int			step_y;
 	int			x;

@@ -75,6 +75,7 @@ void	wall_dist(t_cub3d *cub3d)
 		cub3d->raycast->wall_dist = (cub3d->raycast->map_y -
 			cub3d->player->pos_y + (1 - cub3d->raycast->step_y) / 2) /
 			cub3d->raycast->ray_dir_y;
+		cub3d->raycast->wall_x = 
 	}
 }
 

@@ -56,6 +56,8 @@ void	pre_run(t_cub3d *cub3d)
 		cub3d->screen_w, cub3d->screen_h);
 	cub3d->mlx->img_data = (int*)mlx_get_data_addr(cub3d->mlx->img,
 		&cub3d->mlx->bpp, &cub3d->mlx->size_l, &cub3d->mlx->endian);
+	extract_textures(cub3d);
+	printf("%s", cub3d->text->text_ptr_n);
 	mlx_loop_hook(cub3d->mlx->mlx_ptr, run_game, cub3d);
 	mlx_loop(cub3d->mlx->mlx_ptr);
 }
