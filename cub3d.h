@@ -43,6 +43,11 @@ typedef struct	s_lib_mlx
 
 typedef struct	s_lib_text
 {
+	int			text;
+	char		text_wall_dir;
+	int			*text_dat;
+	int			text_sl;
+	int			text_h;
 	char		*text_n;
 	void		*text_ptr_n;
 	int			*text_d_n;
@@ -148,5 +153,6 @@ int				check_data(char *s, t_cub3d *cub3d);
 int				check_map(t_cub3d *cub3d);
 int				extract_color(char *s, t_cub3d *cub3d);
 int				extract_textures(t_cub3d *cub3d);
+int				choose_texture(t_cub3d *cub3d);
 
 #endif
