@@ -14,14 +14,20 @@
 
 int		paint_text(int l, t_cub3d *cub3d)
 {
+	int		*text;
+	double	step;
+	double	pos;
+
+	step = 1.0 * cub3d->text->text_h / cub3d->raycast->line_height;
+	pos = (cub3d->raycast->draw_start - cub3d->screen_h / 2 +
+		cub3d->raycast->line_height / 2) * step;
+	text = cub3d->text->text_dat;
 	while (l < cub3d->raycast->draw_end)
 	{
-		if (cub3d->raycast->side == 0)
-			*(cub3d->mlx->img_data + cub3d->raycast->x + l *
-				cub3d->mlx->size_l / 4) = cub3d->color->color_g;
-		else
-			*(cub3d->mlx->img_data + cub3d->raycast->x + l *
-				cub3d->mlx->size_l / 4) = cub3d->color->color_w;
+		*(cub3d->mlx->img_data + cub3d->raycast->x + l *
+			cub3d->mlx->size_l / 4) = *(text + cub3d->text->text +
+			(int)pos * cub3d->text->text_sl / 4);
+		pos += step;
 		l++;
 	}
 	return (l);
@@ -35,10 +41,9 @@ void	paint(t_cub3d *cub3d)
 	double	pos;
 
 	l = 0;
-	cub3d->color->color_g = create_trgb(0, 0, 120, 100);
-	cub3d->color->color_w = create_trgb(0, 100, 0, 255);
 	step = 1.0 * cub3d->text->text_h / cub3d->raycast->line_height;
-	pos = (cub3d->raycast->draw_start - cub3d->screen_h / 2 + cub3d->raycast->line_height / 2) * step;
+	pos = (cub3d->raycast->draw_start - cub3d->screen_h / 2 +
+		cub3d->raycast->line_height / 2) * step;
 	text = cub3d->text->text_dat;
 	while (l < cub3d->raycast->draw_start)
 	{
@@ -53,12 +58,6 @@ void	paint(t_cub3d *cub3d)
 			cub3d->mlx->size_l / 4) = *(text + cub3d->text->text +
 			(int)pos * cub3d->text->text_sl / 4);
 		pos += step;
-		/*if (cub3d->raycast->side == 0)
-			*(cub3d->mlx->img_data + cub3d->raycast->x + l *
-				cub3d->mlx->size_l / 4) = cub3d->color->color_g;
-		else
-			*(cub3d->mlx->img_data + cub3d->raycast->x + l *
-				cub3d->mlx->size_l / 4) = cub3d->color->color_w;*/
 		l++;
 	}
 	while (l < cub3d->screen_h)

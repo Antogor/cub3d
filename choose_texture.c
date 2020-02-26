@@ -12,20 +12,20 @@
 
 #include "cub3d.h"
 
-int calculate_text(t_cub3d *cub3d)
+int	calculate_text(t_cub3d *cub3d)
 {
 	cub3d->text->text = (int)(cub3d->raycast->wall_x *
-			(double)cub3d->text->text_wi); //(cub3d->text->text_sl / 4)
+			(double)cub3d->text->text_wi);
 	if (cub3d->raycast->side == 0 && cub3d->raycast->ray_dir_x > 0)
-		cub3d->text->text = (/*(cub3d->text->text_sl / 4)*/ cub3d->text->text_wi -
+		cub3d->text->text = (cub3d->text->text_wi -
 			cub3d->text->text - 1);
 	if (cub3d->raycast->side == 1 && cub3d->raycast->ray_dir_y < 0)
-		cub3d->text->text = (/*(cub3d->text->text_sl / 4)*/ cub3d->text->text_wi -
+		cub3d->text->text = (cub3d->text->text_wi -
 			cub3d->text->text - 1);
 	return (1);
 }
 
-int choose_we(t_cub3d *cub3d)
+int	choose_we(t_cub3d *cub3d)
 {
 	if (cub3d->text->text_wall_dir == 'E')
 	{
