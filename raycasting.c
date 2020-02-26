@@ -81,7 +81,7 @@ void	wall_dist(t_cub3d *cub3d)
 		if (cub3d->raycast->map_y < cub3d->player->pos_y)
 			cub3d->text->text_wall_dir = 'W';
 		else
-			cub3d->text->text_wall_dir = 'Y';
+			cub3d->text->text_wall_dir = 'E';
 		cub3d->raycast->wall_dist = (cub3d->raycast->map_y -
 			cub3d->player->pos_y + (1 - cub3d->raycast->step_y) / 2) /
 			cub3d->raycast->ray_dir_y;
@@ -103,7 +103,6 @@ void	calculate_line_height(t_cub3d *cub3d)
 		2 + cub3d->screen_h / 2;
 	if (cub3d->raycast->draw_end >= cub3d->screen_h)
 		cub3d->raycast->draw_end = cub3d->screen_h;
-	choose_texture(cub3d);
 }
 
 int		raycasting(t_cub3d *cub3d)
@@ -129,6 +128,7 @@ int		raycasting(t_cub3d *cub3d)
 		hit_wall(cub3d);
 		wall_dist(cub3d);
 		calculate_line_height(cub3d);
+		choose_texture(cub3d);
 		paint(cub3d);
 		cub3d->raycast->x++;
 	}

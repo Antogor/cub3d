@@ -48,6 +48,7 @@ typedef struct	s_lib_text
 	int			*text_dat;
 	int			text_sl;
 	int			text_h;
+	int			text_wi;
 	char		*text_n;
 	void		*text_ptr_n;
 	int			*text_d_n;
@@ -67,9 +68,19 @@ typedef struct	s_lib_text
 	char		*text_e;
 	void		*text_ptr_e;
 	int			*text_d_e;
+	int			text_e_bpp;
+	int			text_e_sl;
+	int			text_e_end;
+	int			text_e_h;
+	int			text_e_w;
 	char		*text_w;
 	void		*text_ptr_w;
 	int			*text_d_w;
+	int			text_w_bpp;
+	int			text_w_sl;
+	int			text_w_end;
+	int			text_w_h;
+	int			text_w_w;
 	char		*text_sprite;
 }				t_text;
 
