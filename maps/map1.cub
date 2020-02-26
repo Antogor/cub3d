@@ -1,8 +1,8 @@
 R 848 480
 NO ./textures/nicolas-cage.xpm
-SO ./textures/cthulhu.xpm
-WE ./textures/eagle.xpm
-EA ./textures/cthulhu.xpm
+SO ./textures/theroom.xpm
+WE ./textures/nicolas-cage.xpm
+EA ./textures/theroom.xpm
 S textures/sprite_1.xpm
 
 F 184, 113, 39

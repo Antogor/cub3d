@@ -1,9 +1,9 @@
 R 520 360
 
-NO ./textures/cthulhu.xpm
-SO ./textures/cthulhu.xpm
-WE ./textures/eagle.xpm
-EA ./textures/cthulhu.xpm
+NO ./textures/nicolas-cage.xpm
+SO ./textures/theroom.xpm
+WE ./textures/nicolas-cage.xpm
+EA ./textures/theroom.xpm
 
 S ./textures/eagle.xpm
 F 184, 113, 39
