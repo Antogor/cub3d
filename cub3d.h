@@ -27,6 +27,7 @@
 # include <string.h>
 # include <math.h>
 # include <mlx.h>
+# include "./minili"
 # include "./libft/libft.h"
 # include "./GNL/get_next_line.h"
 
