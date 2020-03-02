@@ -1,1 +1,1 @@
-make && ./cub3D ./maps/map1.cub #|tee results.txt
+make && ./cub3D ./maps/map_test.cub #|tee results.txt
