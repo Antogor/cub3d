@@ -14,6 +14,7 @@
 
 int		extract_data(char *str, t_cub3d *cub3d)
 {
+	printf("%s\n", str);
 	if (ft_strnstr(str, "R ", 2))
 		return (check_data(str, cub3d));
 	else if (ft_strnstr(str, "NO ", 3))
@@ -29,6 +30,8 @@ int		extract_data(char *str, t_cub3d *cub3d)
 	else if (ft_strnstr(str, "F ", 2))
 		return (check_data(str, cub3d));
 	else if (ft_strnstr(str, "C ", 2))
+		return (check_data(str, cub3d));
+	else if (ft_strnstr(str, "FT ", 3 || ft_strnstr(str, "CT ", 3)))
 		return (check_data(str, cub3d));
 	else if (ft_strnstr(str, "1", 1))
 		return (2);

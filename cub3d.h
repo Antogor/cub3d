@@ -82,6 +82,8 @@ typedef struct	s_lib_text
 	int			text_w_h;
 	int			text_w_w;
 	char		*text_sprite;
+	char		*text_floor;
+	char		*text_celing;
 }				t_text;
 
 typedef struct	s_lib_color
