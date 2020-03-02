@@ -12,29 +12,6 @@
 
 #include "cub3d.h"
 
-int	extract_text_t_c(char *s, t_cub3d *cub3d)
-{
-	int l;
-
-	l = 0;
-	if (s[l] == 'F' && s[l + 1] == 'T')
-	{
-		cub3d->text->text_floor = ft_strtrim(s, "FT ");
-		if (!(ft_strnstr(cub3d->text->text_floor, ".xpm",
-			ft_strlen(cub3d->text->text_floor))))
-			return (0);
-	}
-	if (s[l] == 'C' && s[l + 1] == 'T')
-	{
-		cub3d->text->text_celing = ft_strtrim(s, "CT ");
-		if (!(ft_strnstr(cub3d->text->text_celing, ".xpm",
-			ft_strlen(cub3d->text->text_celing))))
-			return (0);
-	}
-	printf("%s", cub3d->text->text_celing);
-	return (1);
-}
-
 int	extract_resolution(char *s, t_cub3d *cub3d)
 {
 	int l;
@@ -118,12 +95,9 @@ int	check_data(char *s, t_cub3d *cub3d)
 		return (extract_resolution(s, cub3d));
 	if (s[l] == 'N' || (s[l] == 'S' && s[l + 1] == 'O'))
 		return (extract_text_rns(s, cub3d));
-	else if (s[l] == 'W' || s[l] == 'E' || s[l] == 'S')
+	if (s[l] == 'W' || s[l] == 'E' || s[l] == 'S')
 		return (extract_text_wes(s, cub3d));
-	else if (s[l] == 'F' || s[l] == 'C')
+	if (s[l] == 'F' || s[l] == 'C')
 		return (extract_color(s, cub3d));
-	else if ((s[l] = 'F' && s[l + 1] == 'T') ||
-		(s[l] == 'C' && s[l + 1] == 'T'))
-		return (extract_text_t_c(s, cub3d));
 	return (0);
 }

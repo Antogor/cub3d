@@ -167,5 +167,6 @@ int				check_map(t_cub3d *cub3d);
 int				extract_color(char *s, t_cub3d *cub3d);
 int				extract_textures(t_cub3d *cub3d);
 int				choose_texture(t_cub3d *cub3d);
+int				extract_txt_fc(char *s, t_cub3d *cub3d);
 
 #endif
