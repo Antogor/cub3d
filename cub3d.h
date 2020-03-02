@@ -83,7 +83,21 @@ typedef struct	s_lib_text
 	int			text_w_w;
 	char		*text_sprite;
 	char		*text_floor;
+	void		*text_ptr_floor;
+	int			*text_d_floor;
+	int			text_floor_bpp;
+	int			text_floor_sl;
+	int			text_floor_end;
+	int			text_floor_h;
+	int			text_floor_w;
 	char		*text_celing;
+	void		*text_ptr_celing;
+	int			*text_d_celing;
+	int			text_celing_bpp;
+	int			text_celing_sl;
+	int			text_celing_end;
+	int			text_celing_h;
+	int			text_celing_w;
 }				t_text;
 
 typedef struct	s_lib_color
@@ -168,5 +182,6 @@ int				extract_color(char *s, t_cub3d *cub3d);
 int				extract_textures(t_cub3d *cub3d);
 int				choose_texture(t_cub3d *cub3d);
 int				extract_txt_fc(char *s, t_cub3d *cub3d);
+int				extract_data_fc(t_cub3d *cub3d);
 
 #endif

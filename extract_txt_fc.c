@@ -31,6 +31,5 @@ int	extract_txt_fc(char *s, t_cub3d *cub3d)
 			ft_strlen(cub3d->text->text_celing))))
 			return (0);
 	}
-	
 	return (1);
 }
