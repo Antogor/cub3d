@@ -50,22 +50,22 @@ int	left_right(int key, t_cub3d *cub3d)
 {
 	if (key == D)
 	{
-		if (cub3d->map[(int)cub3d->player->pos_y + 1][(int)(cub3d->player->pos_x - cub3d->player->dir_x * cub3d->player->speed) + 1] == '1')
+		if (cub3d->map[(int)cub3d->player->pos_y + 1][(int)(cub3d->player->pos_x - cub3d->player->dir_x * cub3d->player->speed) - 1] == '1')
 			return (0);
 		cub3d->player->pos_x += cub3d->player->dir_y * cub3d->player->speed;
-		if (cub3d->map[(int)(cub3d->player->pos_y + cub3d->player->dir_y * cub3d->player->speed) + 1][(int)(cub3d->player->pos_x) + 1] == '1')
+		if (cub3d->map[(int)(cub3d->player->pos_y + cub3d->player->dir_y * cub3d->player->speed) + 1][(int)(cub3d->player->pos_x) - 1] == '1')
 			return (0);
-		cub3d->player->pos_y -= cub3d->player->dir_x * cub3d->player->speed;
+		cub3d->player->pos_y += cub3d->player->dir_x * cub3d->player->speed;
 		
 	}
 	else if (key == A)
 	{
-		if (cub3d->map[(int)(cub3d->player->pos_y) - 1][(int)(cub3d->player->pos_x + cub3d->player->dir_x * cub3d->player->speed) + 1] == '1')
+		if (cub3d->map[(int)(cub3d->player->pos_y) - 1][(int)(cub3d->player->pos_x + cub3d->player->dir_x * cub3d->player->speed) - 1] == '1')
 			return (0);
 		cub3d->player->pos_x -= cub3d->player->dir_y * cub3d->player->speed;
-		if (cub3d->map[(int)(cub3d->player->pos_y - cub3d->player->dir_y * cub3d->player->speed) - 1][(int)(cub3d->player->pos_x) + 1] == '1')
+		if (cub3d->map[(int)(cub3d->player->pos_y - cub3d->player->dir_y * cub3d->player->speed) - 1][(int)(cub3d->player->pos_x) - 1] == '1')
 			return (0);
-		cub3d->player->pos_y += cub3d->player->dir_x * cub3d->player->speed;
+		cub3d->player->pos_y -= cub3d->player->dir_x * cub3d->player->speed;
 			
 	}
 	return (0);
@@ -77,12 +77,15 @@ int	up_down(int key, t_cub3d *cub3d)
 		exit(ESC);
 	if (key == W)
 	{
-		if (cub3d->map[(int)cub3d->player->pos_y + 1][(int)(cub3d->player->pos_x + cub3d->player->dir_x * cub3d->player->speed) + 1] == '1')
+		if (cub3d->map[(int)cub3d->player->pos_y + 1][(int)cub3d->player->pos_x + 1] == '1')
 			return (0);
+		printf("%f\n", cub3d->player->pos_y);
+		/*if (cub3d->map[(int)cub3d->player->pos_y + 1][(int)(cub3d->player->pos_x + cub3d->player->dir_x * cub3d->player->speed) + 1] == '1')*/
 		cub3d->player->pos_x += cub3d->player->dir_x * cub3d->player->speed;
-		if (cub3d->map[(int)(cub3d->player->pos_y + cub3d->player->dir_y * cub3d->player->speed) + 1][(int)cub3d->player->pos_x + 1] == '1')
-			return (0);
+		/*if (cub3d->map[(int)(cub3d->player->pos_y + cub3d->player->dir_y * cub3d->player->speed) + 1][(int)cub3d->player->pos_x + 1] == '1')
+			return (0);*/
 		cub3d->player->pos_y += cub3d->player->dir_y * cub3d->player->speed;
+		
 	}
 	else if (key == S)
 	{
@@ -100,7 +103,7 @@ int	up_down(int key, t_cub3d *cub3d)
 
 int	movement(t_cub3d *cub3d)
 {
-	cub3d->player->speed = 0.6;
+	cub3d->player->speed = 0.5;
 	mlx_hook(cub3d->mlx->window, 2, 1L << 0, up_down, cub3d);
 	return (0);
 }
