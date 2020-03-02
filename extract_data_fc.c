@@ -36,15 +36,18 @@ int	raycast_fc(t_cub3d *cub3d)
 		{
 			int cell_x = (int)floor_x;
 			int cell_y = (int)floor_y;
-			int tx = (int)(cub3d->text->text_floor_w * (floor_x - cell_x)) * (cub3d->text->text_floor_w - 1);
-			int ty = (int)(cub3d->text->text_floor_h * (floor_y - cell_y)) * (cub3d->text->text_floor_h - 1);
+			int tx = (int)(cub3d->text->text_floor_w * (floor_x - cell_x));// * (cub3d->text->text_floor_w - 1);
+			int ty = (int)(cub3d->text->text_floor_h * (floor_y - cell_y));// * (cub3d->text->text_floor_h - 1);
 			floor_x += floorstep_x;
 			floor_y += floorstep_y;
+		//	*(cub3d->mlx->img_data +  y *
+		//	cub3d->mlx->size_l / 4) = cub3d->color->celling;
+			*(cub3d->mlx->img_data + x + y * cub3d->mlx->size_l / 4) = *(cub3d->text->text_d_floor + cub3d->text->text_floor_sl / 4);
+			//*(cub3d->mlx->img_data + y * cub3d->mlx->size_l / 4) = cub3d->color->celling;//*(cub3d->text->text_d_floor + tx + (int)pos_z * cub3d->text->text_floor_sl / 4);
 			x++;
 		}
 		y++;
 	}
-	
 	return (1);
 }
 
