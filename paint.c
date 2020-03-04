@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 11:19:05 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/24 12:52:26 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/03/04 12:58:55 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	paint(t_cub3d *cub3d)
 	text = cub3d->text->text_dat;
 	while (l < cub3d->raycast->draw_start)
 	{
-		/**(cub3d->mlx->img_data + cub3d->raycast->x + l *
-			cub3d->mlx->size_l / 4) = cub3d->color->celling;*/
+		*(cub3d->mlx->img_data + cub3d->raycast->x + l *
+			cub3d->mlx->size_l / 4) = cub3d->color->celling;
 		l++;
 	}
 //	l += paint_text(l, cub3d);
@@ -62,10 +62,11 @@ void	paint(t_cub3d *cub3d)
 		pos += step;
 		y++;
 	}
-/*	while (l < cub3d->screen_h)
+	l = cub3d->raycast->draw_end;
+	while (l < cub3d->screen_h)
 	{
 		*(cub3d->mlx->img_data + cub3d->raycast->x + l *
 			cub3d->mlx->size_l / 4) = cub3d->color->floor;
 		l++;
-	}*/
+	}
 }

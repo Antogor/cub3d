@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:36:55 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/03/02 14:36:57 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/03/04 12:57:10 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,19 @@ int	raycast_fc(t_cub3d *cub3d)
 		float row_dist = pos_z / p;
 		float floorstep_x = row_dist * (raydir_x1 - raydir_x0) / cub3d->screen_w;
 		float floorstep_y = row_dist * (raydir_y1 - raydir_y0) / cub3d->screen_w;
-		float floor_x = cub3d->player->pos_x + row_dist * raydir_x0;
+		float floor_x = cub3d->player->pos_x + row_dist * raydir_x0;	
 		float floor_y = cub3d->player->pos_y + row_dist * raydir_y0;
 		while (x < cub3d->screen_w)
 		{
 			int cell_x = (int)floor_x;
 			int cell_y = (int)floor_y;
-			int tx = (int)(cub3d->text->text_floor_w * (floor_x - cell_x));// * (cub3d->text->text_floor_w - 1);
-			int ty = (int)(cub3d->text->text_floor_h * (floor_y - cell_y));// * (cub3d->text->text_floor_h - 1);
+			int tx = (int)(cub3d->text->text_floor_w) * (floor_x - cell_x);// * (cub3d->text->text_floor_w - 1);
+			int ty = (int)(cub3d->text->text_floor_h) * (floor_y - cell_y);// * (cub3d->text->text_floor_h - 1);
 			floor_x += floorstep_x;
 			floor_y += floorstep_y;
-		//	*(cub3d->mlx->img_data +  y *
-		//	cub3d->mlx->size_l / 4) = cub3d->color->celling;
-			*(cub3d->mlx->img_data + x + y * cub3d->mlx->size_l / 4) = *(cub3d->text->text_d_floor + cub3d->text->text_floor_sl / 4);
+//			*(cub3d->mlx->img_data + ty + tx )= *(cub3d->text->text_d_floor);//* cub3d->text->text_floor_sl / 4); //cub3d->color->celling;
+		//	cub3d->mlx->img_data =  cub3d->text->text_d_floor + ty + tx * cub3d->text->text_floor_w;
+	//		*(cub3d->mlx->img_data) = *(cub3d->text->text_d_floor + y  *  cub3d->text->text_floor_sl / 4);//*(cub3d->text->text_d_floor);
 			//*(cub3d->mlx->img_data + y * cub3d->mlx->size_l / 4) = cub3d->color->celling;//*(cub3d->text->text_d_floor + tx + (int)pos_z * cub3d->text->text_floor_sl / 4);
 			x++;
 		}
