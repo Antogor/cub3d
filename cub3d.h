@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:24:33 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/24 14:12:44 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/03/04 15:34:52 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,20 +168,22 @@ typedef struct	s_lib_cub3d
 	t_text		*text;
 }				t_cub3d;
 
-int				raycasting(t_cub3d *cub3d);
+int				raycasting(t_cub3d *cub3d, t_raycast *raycast,
+				t_player *player);
 int				ft_keys(t_cub3d *cub3d);
 int				ft_map(char **argv, t_cub3d *map);
-void			paint(t_cub3d *cub3d);
+void			paint(t_cub3d *cub3d, t_raycast *raycast, t_text *text,
+				t_mlx *mlx);
 int				create_trgb(int t, int r, int g, int b);
 int				movement(t_cub3d *cub3d);
 int				key_press(int key, t_cub3d *cub3d);
 int				key_release(int key, t_cub3d *cub3d);
 int				check_data(char *s, t_cub3d *cub3d);
 int				check_map(t_cub3d *cub3d);
-int				extract_color(char *s, t_cub3d *cub3d);
-int				extract_textures(t_cub3d *cub3d);
-int				choose_texture(t_cub3d *cub3d);
-int				extract_txt_fc(char *s, t_cub3d *cub3d);
-int				extract_data_fc(t_cub3d *cub3d);
+int				extract_color(char *s, t_color *color);
+int				extract_textures(t_text *text, t_mlx *mlx);
+int				choose_texture(t_cub3d *cub3d, t_text *text);
+int				extract_txt_fc(char *s, t_text *text);
+int				extract_data_fc(t_cub3d *cub3d, t_text *text, t_mlx *mlx);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:14:36 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/03/04 12:17:26 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/03/04 15:20:30 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,25 +42,24 @@ int		run_game(t_cub3d *cub3d)
 	movement(cub3d);
 	ft_keys(cub3d);
 	if (cub3d->text->text_floor && cub3d->text->text_celing)
-		extract_data_fc(cub3d);
-	raycasting(cub3d);
+		extract_data_fc(cub3d, cub3d->text, cub3d->mlx);
+	raycasting(cub3d, cub3d->raycast, cub3d->player);
 	mlx_put_image_to_window(cub3d->mlx->mlx_ptr,
 		cub3d->mlx->window, cub3d->mlx->img, 0, 0);
 	return (0);
 }
 
-void	pre_run(t_cub3d *cub3d)
+void	pre_run(t_cub3d *cub3d, t_mlx *mlx)
 {
-	cub3d->mlx->mlx_ptr = mlx_init();
-	cub3d->mlx->window = mlx_new_window(cub3d->mlx->mlx_ptr,
+	mlx->mlx_ptr = mlx_init();
+	mlx->window = mlx_new_window(mlx->mlx_ptr,
 		cub3d->screen_w, cub3d->screen_h, "cub3D");
-	cub3d->mlx->img = mlx_new_image(cub3d->mlx->mlx_ptr,
-		cub3d->screen_w, cub3d->screen_h);
-	cub3d->mlx->img_data = (int*)mlx_get_data_addr(cub3d->mlx->img,
-		&cub3d->mlx->bpp, &cub3d->mlx->size_l, &cub3d->mlx->endian);
-	extract_textures(cub3d);
-	mlx_loop_hook(cub3d->mlx->mlx_ptr, run_game, cub3d);
-	mlx_loop(cub3d->mlx->mlx_ptr);
+	mlx->img = mlx_new_image(mlx->mlx_ptr, cub3d->screen_w, cub3d->screen_h);
+	mlx->img_data = (int*)mlx_get_data_addr(mlx->img,
+		&mlx->bpp, &mlx->size_l, &mlx->endian);
+	extract_textures(cub3d->text, cub3d->mlx);
+	mlx_loop_hook(mlx->mlx_ptr, run_game, cub3d);
+	mlx_loop(mlx->mlx_ptr);
 }
 
 int		main(int argc, char **argv)
@@ -76,7 +75,7 @@ int		main(int argc, char **argv)
 	if (init_game(argc, argv, cub3d) < 0 || argc < 2)
 		perror("Los dioses no lo permiten");
 	else
-		pre_run(cub3d);
+		pre_run(cub3d, cub3d->mlx);
 	free(cub3d->player);
 	free(cub3d->mlx);
 	free(cub3d->raycast);

@@ -6,67 +6,45 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/10 11:19:05 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/03/04 12:58:55 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/03/04 15:38:39 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int		paint_text(int l, t_cub3d *cub3d)
-{
-	int		*text;
-	double	step;
-	double	pos;
-
-	step = 1.0 * cub3d->text->text_h / cub3d->raycast->line_height;
-	pos = (cub3d->raycast->draw_start - cub3d->screen_h / 2 +
-		cub3d->raycast->line_height / 2) * step;
-	text = cub3d->text->text_dat;
-	while (l < cub3d->raycast->draw_end)
-	{
-		*(cub3d->mlx->img_data + cub3d->raycast->x + l *
-			cub3d->mlx->size_l / 4) = *(text + cub3d->text->text +
-			(int)pos * cub3d->text->text_sl / 4);
-		pos += step;
-		l++;
-	}
-	return (l);
-}
-
-void	paint(t_cub3d *cub3d)
+void	paint(t_cub3d *cub3d, t_raycast *raycast, t_text *text, t_mlx *mlx)
 {
 	int		l;
-	int		*text;
+	int		*tx;
 	double	step;
 	double	pos;
-	int 	y;
+	int		y;
 
 	l = 0;
-	y = cub3d->raycast->draw_start;
-	step = 1.0 * cub3d->text->text_h / cub3d->raycast->line_height;
-	pos = (cub3d->raycast->draw_start - cub3d->screen_h / 2 +
-		cub3d->raycast->line_height / 2) * step;
-	text = cub3d->text->text_dat;
-	while (l < cub3d->raycast->draw_start)
+	y = raycast->draw_start;
+	step = 1.0 * text->text_h / raycast->line_height;
+	pos = (raycast->draw_start - cub3d->screen_h / 2 + raycast->line_height / 2)
+		* step;
+	tx = text->text_dat;
+	while (l < raycast->draw_start)
 	{
-		*(cub3d->mlx->img_data + cub3d->raycast->x + l *
-			cub3d->mlx->size_l / 4) = cub3d->color->celling;
+		*(mlx->img_data + raycast->x + l * mlx->size_l / 4) =
+			cub3d->color->celling;
 		l++;
 	}
 //	l += paint_text(l, cub3d);
-	while (y < cub3d->raycast->draw_end)
+	while (y < raycast->draw_end)
 	{
-		*(cub3d->mlx->img_data + cub3d->raycast->x + y *
-			cub3d->mlx->size_l / 4) = *(text + cub3d->text->text +
-			(int)pos * cub3d->text->text_sl / 4);
+		*(mlx->img_data + raycast->x + y * mlx->size_l / 4) =
+			*(tx + text->text + (int)pos * text->text_sl / 4);
 		pos += step;
 		y++;
 	}
-	l = cub3d->raycast->draw_end;
+	l = raycast->draw_end;
 	while (l < cub3d->screen_h)
 	{
-		*(cub3d->mlx->img_data + cub3d->raycast->x + l *
-			cub3d->mlx->size_l / 4) = cub3d->color->floor;
+		*(mlx->img_data + raycast->x + l * mlx->size_l / 4) =
+			cub3d->color->floor;
 		l++;
 	}
 }

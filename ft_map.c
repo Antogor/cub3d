@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 10:43:55 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/24 13:03:00 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/03/04 14:37:40 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ int		extract_data(char *str, t_cub3d *cub3d)
 	else if (ft_strnstr(str, "S ", 2))
 		return (check_data(str, cub3d));
 	else if (ft_strnstr(str, "F ", 2))
-		return (check_data(str, cub3d));	
+		return (check_data(str, cub3d));
 	else if (ft_strnstr(str, "C ", 2))
 		return (check_data(str, cub3d));
-	else if (ft_strnstr(str, "FT ", 3)|| ft_strnstr(str, "CT ", 3))
-		return (extract_txt_fc(str, cub3d));
+	else if (ft_strnstr(str, "FT ", 3) || ft_strnstr(str, "CT ", 3))
+		return (extract_txt_fc(str, cub3d->text));
 	else if (ft_strnstr(str, "1", 1))
 		return (2);
 	else if (str[0] == '\0')

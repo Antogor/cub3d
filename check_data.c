@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 16:45:30 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/24 13:13:05 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/03/04 15:37:22 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,52 +35,48 @@ int	extract_resolution(char *s, t_cub3d *cub3d)
 	return (1);
 }
 
-int	extract_text_rns(char *s, t_cub3d *cub3d)
+int	extract_text_rns(char *s, t_text *text)
 {
 	int l;
 
 	l = 0;
 	if (s[l] == 'N')
 	{
-		cub3d->text->text_n = ft_strtrim(s, "NO ");
-		if (!(ft_strnstr(cub3d->text->text_n, ".xpm",
-			ft_strlen(cub3d->text->text_n))))
+		text->text_n = ft_strtrim(s, "NO ");
+		if (!(ft_strnstr(text->text_n, ".xpm", ft_strlen(text->text_n))))
 			return (0);
 	}
 	if (s[l] == 'S' && s[l + 1] == 'O')
 	{
-		cub3d->text->text_s = ft_strtrim(s, "SO ");
-		if (!(ft_strnstr(cub3d->text->text_s, ".xpm",
-			ft_strlen(cub3d->text->text_s))))
+		text->text_s = ft_strtrim(s, "SO ");
+		if (!(ft_strnstr(text->text_s, ".xpm", ft_strlen(text->text_s))))
 			return (0);
 	}
 	return (1);
 }
 
-int	extract_text_wes(char *s, t_cub3d *cub3d)
+int	extract_text_wes(char *s, t_text *text)
 {
 	int l;
 
 	l = 0;
 	if (s[l] == 'W')
 	{
-		cub3d->text->text_w = ft_strtrim(s, "WE ");
-		if (!(ft_strnstr(cub3d->text->text_w, ".xpm",
-			ft_strlen(cub3d->text->text_w))))
+		text->text_w = ft_strtrim(s, "WE ");
+		if (!(ft_strnstr(text->text_w, ".xpm", ft_strlen(text->text_w))))
 			return (0);
 	}
 	if (s[l] == 'E')
 	{
-		cub3d->text->text_e = ft_strtrim(s, "EA ");
-		if (!(ft_strnstr(cub3d->text->text_e, ".xpm",
-			ft_strlen(cub3d->text->text_e))))
+		text->text_e = ft_strtrim(s, "EA ");
+		if (!(ft_strnstr(text->text_e, ".xpm", ft_strlen(text->text_e))))
 			return (0);
 	}
 	if (s[l] == 'S')
 	{
-		cub3d->text->text_sprite = ft_strtrim(s, "S ");
-		if (!(ft_strnstr(cub3d->text->text_sprite, ".xpm",
-			ft_strlen(cub3d->text->text_sprite))))
+		text->text_sprite = ft_strtrim(s, "S ");
+		if (!(ft_strnstr(text->text_sprite, ".xpm",
+			ft_strlen(text->text_sprite))))
 			return (0);
 	}
 	return (1);
@@ -94,10 +90,10 @@ int	check_data(char *s, t_cub3d *cub3d)
 	if (s[l] == 'R')
 		return (extract_resolution(s, cub3d));
 	if (s[l] == 'N' || (s[l] == 'S' && s[l + 1] == 'O'))
-		return (extract_text_rns(s, cub3d));
+		return (extract_text_rns(s, cub3d->text));
 	if (s[l] == 'W' || s[l] == 'E' || s[l] == 'S')
-		return (extract_text_wes(s, cub3d));
+		return (extract_text_wes(s, cub3d->text));
 	if (s[l] == 'F' || s[l] == 'C')
-		return (extract_color(s, cub3d));
+		return (extract_color(s, cub3d->color));
 	return (0);
 }

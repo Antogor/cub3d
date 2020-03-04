@@ -6,61 +6,58 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 12:21:12 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/02/26 12:21:14 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/03/04 15:18:59 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	calculate_text(t_cub3d *cub3d)
+int	calculate_text(t_text *text, t_raycast *raycast)
 {
-	cub3d->text->text = (int)(cub3d->raycast->wall_x *
-			(double)cub3d->text->text_wi);
-	if (cub3d->raycast->side == 0 && cub3d->raycast->ray_dir_x > 0)
-		cub3d->text->text = (cub3d->text->text_wi -
-			cub3d->text->text - 1);
-	if (cub3d->raycast->side == 1 && cub3d->raycast->ray_dir_y < 0)
-		cub3d->text->text = (cub3d->text->text_wi -
-			cub3d->text->text - 1);
+	text->text = (int)(raycast->wall_x * (double)text->text_wi);
+	if (raycast->side == 0 && raycast->ray_dir_x > 0)
+		text->text = (text->text_wi - text->text - 1);
+	if (raycast->side == 1 && raycast->ray_dir_y < 0)
+		text->text = (text->text_wi - text->text - 1);
 	return (1);
 }
 
-int	choose_we(t_cub3d *cub3d)
+int	choose_we(t_text *text)
 {
-	if (cub3d->text->text_wall_dir == 'E')
+	if (text->text_wall_dir == 'E')
 	{
-		cub3d->text->text_dat = cub3d->text->text_d_e;
-		cub3d->text->text_sl = cub3d->text->text_e_sl;
-		cub3d->text->text_h = cub3d->text->text_e_h;
-		cub3d->text->text_wi = cub3d->text->text_e_w;
+		text->text_dat = text->text_d_e;
+		text->text_sl = text->text_e_sl;
+		text->text_h = text->text_e_h;
+		text->text_wi = text->text_e_w;
 	}
-	else if (cub3d->text->text_wall_dir == 'W')
+	else if (text->text_wall_dir == 'W')
 	{
-		cub3d->text->text_dat = cub3d->text->text_d_w;
-		cub3d->text->text_sl = cub3d->text->text_w_sl;
-		cub3d->text->text_h = cub3d->text->text_w_h;
-		cub3d->text->text_wi = cub3d->text->text_w_w;
+		text->text_dat = text->text_d_w;
+		text->text_sl = text->text_w_sl;
+		text->text_h = text->text_w_h;
+		text->text_wi = text->text_w_w;
 	}
 	return (1);
 }
 
-int	choose_texture(t_cub3d *cub3d)
+int	choose_texture(t_cub3d *cub3d, t_text *text)
 {
-	if (cub3d->text->text_wall_dir == 'N')
+	if (text->text_wall_dir == 'N')
 	{
-		cub3d->text->text_dat = cub3d->text->text_d_n;
-		cub3d->text->text_sl = cub3d->text->text_n_sl;
-		cub3d->text->text_h = cub3d->text->text_n_h;
-		cub3d->text->text_wi = cub3d->text->text_n_w;
+		text->text_dat = text->text_d_n;
+		text->text_sl = text->text_n_sl;
+		text->text_h = text->text_n_h;
+		text->text_wi = text->text_n_w;
 	}
-	else if (cub3d->text->text_wall_dir == 'S')
+	else if (text->text_wall_dir == 'S')
 	{
-		cub3d->text->text_dat = cub3d->text->text_d_s;
-		cub3d->text->text_sl = cub3d->text->text_s_sl;
-		cub3d->text->text_h = cub3d->text->text_s_h;
-		cub3d->text->text_wi = cub3d->text->text_s_w;
+		text->text_dat = text->text_d_s;
+		text->text_sl = text->text_s_sl;
+		text->text_h = text->text_s_h;
+		text->text_wi = text->text_s_w;
 	}
-	choose_we(cub3d);
-	calculate_text(cub3d);
+	choose_we(text);
+	calculate_text(text, cub3d->raycast);
 	return (1);
 }
