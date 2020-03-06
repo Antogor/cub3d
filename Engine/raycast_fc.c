@@ -45,8 +45,8 @@ int	put_fc(t_cub3d *cub3d, t_text *text, t_mlx *mlx, int y)
 		text->floor_x += text->floorstep_x;
 		text->floor_y += text->floorstep_y;
 		choose_color(cub3d->color, text);
-		*(mlx->img_data + y * cub3d->screen_w + x) = text->colorf;
-		*(mlx->img_data + (y - 1) * cub3d->screen_w + x) = text->colorc;
+		mlx->img_data[y * cub3d->screen_w + x] = text->colorf;
+		mlx->img_data[(cub3d->screen_h - y - 1) * cub3d->screen_w + x] = text->colorc;
 		x++;
 	}
 	return (1);

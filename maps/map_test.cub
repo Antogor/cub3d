@@ -9,8 +9,8 @@ S ./Textures/eagle.xpm
 F 184, 113, 39
 C 51, 198, 227
 
-FT ./Textures/Bricks.xpm
 CT ./Textures/Bricks.xpm
+FT ./Textures/Iron.xpm
 
 1111111111
 1000000001

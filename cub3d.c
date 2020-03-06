@@ -41,8 +41,6 @@ int		run_game(t_cub3d *cub3d)
 {
 	movement(cub3d);
 	ft_keys(cub3d);
-/*	if (cub3d->text->text_floor && cub3d->text->text_celing)
-		extract_data_fc(cub3d, cub3d->text, cub3d->mlx);*/
 	raycast_fc(cub3d, cub3d->text, cub3d->mlx, cub3d->player);
 	raycasting(cub3d, cub3d->raycast, cub3d->player);
 	mlx_put_image_to_window(cub3d->mlx->mlx_ptr,
