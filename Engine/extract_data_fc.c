@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 int	put_fc(t_cub3d *cub3d, t_text *text, t_mlx *mlx, int y)
 {
