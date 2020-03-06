@@ -9,12 +9,12 @@ S ./textures/eagle.xpm
 F 184, 113, 39
 C 51, 198, 227
 
-FT ./textures/nicolas-cage.xpm
-CT ./textures/Wall3.xpm
+FT ./textures/Wall1.xpm
+CT ./textures/Wall2.xpm
 
 1111111111
 1000000001
-1000000001
+1010000001
 10100S0001
 1000000001
 1000000001

@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:24:33 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/03/04 15:34:52 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/03/06 12:39:01 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,23 @@ typedef struct	s_lib_text
 	int			text_celing_end;
 	int			text_celing_h;
 	int			text_celing_w;
+	float		raydir_x0;
+	float		raydir_y0;
+	float		raydir_x1;
+	float		raydir_y1;
+	int			p;
+	float		pos_z;
+	float		row_dist;
+	float		floorstep_x;
+	float		floorstep_y;
+	float		floor_x;
+	float		floor_y;
+	int			cell_x;
+	int			cell_y;
+	int			tx;
+	int			ty;
+	int			colorc;
+	int			colorf;
 }				t_text;
 
 typedef struct	s_lib_color
