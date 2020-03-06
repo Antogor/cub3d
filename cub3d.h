@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:24:33 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/03/06 12:39:01 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/03/06 14:13:24 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,6 +201,7 @@ int				extract_color(char *s, t_color *color);
 int				extract_textures(t_text *text, t_mlx *mlx);
 int				choose_texture(t_cub3d *cub3d, t_text *text);
 int				extract_txt_fc(char *s, t_text *text);
-int				extract_data_fc(t_cub3d *cub3d, t_text *text, t_mlx *mlx);
+int				raycast_fc(t_cub3d *cub3d, t_text *text, t_mlx *mlx,
+				t_player *player);
 
 #endif

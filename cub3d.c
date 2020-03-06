@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:14:36 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/03/06 12:32:53 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/03/06 14:20:04 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,9 @@ int		run_game(t_cub3d *cub3d)
 {
 	movement(cub3d);
 	ft_keys(cub3d);
-	if (cub3d->text->text_floor && cub3d->text->text_celing)
-		extract_data_fc(cub3d, cub3d->text, cub3d->mlx);
+/*	if (cub3d->text->text_floor && cub3d->text->text_celing)
+		extract_data_fc(cub3d, cub3d->text, cub3d->mlx);*/
+	raycast_fc(cub3d, cub3d->text, cub3d->mlx, cub3d->player);
 	raycasting(cub3d, cub3d->raycast, cub3d->player);
 	mlx_put_image_to_window(cub3d->mlx->mlx_ptr,
 		cub3d->mlx->window, cub3d->mlx->img, 0, 0);
