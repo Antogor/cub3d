@@ -1,12 +1,15 @@
 R 848 480
-NO ./textures/Wall1.xpm
-SO ./textures/Wall2.xpm
-WE ./textures/Wall3.xpm
-EA ./textures/Wall4.xpm
-S textures/sprite_1.xpm
+NO ./Textures/Bricks.xpm
+SO ./Textures/Bricks.xpm
+WE ./Textures/Wood.xpm
+EA ./Textures/Wood.xpm
+S ./Textures/eagle.xpm
 
 F 184, 113, 39
 C 51, 198, 227
+
+CT ./Textures/Iron.xpm
+FT ./Textures/Glass.xpm
 
 11111111111111111111111111111
 10000000001100000000000010001
