@@ -115,6 +115,7 @@ typedef struct	s_lib_text
 	int			ty;
 	int			colorc;
 	int			colorf;
+	int			colortxt;
 }				t_text;
 
 typedef struct	s_lib_color
