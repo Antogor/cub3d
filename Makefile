@@ -5,10 +5,12 @@ FLAGS = gcc #-Wall -Wextra -Werror
 MINILIBX = -lmlx -framework OpenGl -framework AppKit #-lmlx -lXext -lX11 -lm
 
 FUN = cub3d.c ./Engine/create_trgb.c ./Engine/paint.c ./Engine/ft_map.c ./Engine/raycasting.c ./Engine/check_data.c ./Engine/check_map.c ./Engine/extract_color.c \
-./Engine/ft_keys.c ./Engine/extract_textures.c ./Engine/movement.c ./Engine/choose_texture.c ./Engine/extract_txt_fc.c ./Engine/raycast_fc.c ./Engine/raycast_sprite.c
+./Engine/ft_keys.c ./Engine/extract_textures.c ./Engine/movement.c ./Engine/choose_texture.c ./Engine/extract_txt_fc.c ./Engine/raycast_fc.c ./Engine/raycast_sprite.c \
+./Engine/extract_sprite.c
 
 OBJ = cub3d.o ./Engine/create_trgb.o ./Engine/paint.o ./Engine/ft_map.o ./Engine/raycasting.o ./Engine/check_data.o ./Engine/check_map.o ./Engine/extract_color.o \
-./Engine/ft_keys.o ./Engine/extract_textures.o ./Engine/movement.o ./Engine/choose_texture.o ./Engine/extract_txt_fc.o ./Engine/raycast_fc.o ./Engine/raycast_sprite.o
+./Engine/ft_keys.o ./Engine/extract_textures.o ./Engine/movement.o ./Engine/choose_texture.o ./Engine/extract_txt_fc.o ./Engine/raycast_fc.o ./Engine/raycast_sprite.o \
+./Engine/extract_sprite.o
 
 FUNLIB = ./GNL/get_next_line.c ./libft/ft_putchar_fd.c ./libft/ft_atoi.c ./libft/ft_strncmp.c ./libft/ft_bi_array.c ./libft/ft_fill_bi_array.c \
 ./libft/ft_putnbr_fd.c ./libft/ft_strchr.c ./libft/ft_strdup.c ./libft/ft_strjoin.c ./libft/ft_substr.c ./libft/ft_strlen.c ./libft/ft_strrchr.c \

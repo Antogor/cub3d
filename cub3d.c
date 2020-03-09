@@ -43,7 +43,7 @@ int		run_game(t_cub3d *cub3d)
 	ft_keys(cub3d);
 	raycast_fc(cub3d, cub3d->text, cub3d->mlx, cub3d->player);
 	raycasting(cub3d, cub3d->raycast, cub3d->player);
-	raycast_sprite(cub3d->text, cub3d->player);
+	raycast_sprite(cub3d, cub3d->sprite, cub3d->text, cub3d->player);
 	mlx_put_image_to_window(cub3d->mlx->mlx_ptr,
 		cub3d->mlx->window, cub3d->mlx->img, 0, 0);
 	return (0);
@@ -72,6 +72,7 @@ int		main(int argc, char **argv)
 	cub3d->color = (t_color *)malloc(sizeof(t_color));
 	cub3d->mlx = (t_mlx *)malloc(sizeof(t_mlx));
 	cub3d->text = (t_text *)malloc(sizeof(t_text));
+//	cub3d->sprite = (t_sprite *)malloc(sizeof(t_sprite));
 	if (init_game(argc, argv, cub3d) < 0 || argc < 2)
 		perror("Los dioses no lo permiten");
 	else
@@ -81,6 +82,7 @@ int		main(int argc, char **argv)
 	free(cub3d->raycast);
 	free(cub3d->color);
 	free(cub3d->text);
+	free(cub3d->sprite);
 	free(cub3d);
 	return (0);
 }

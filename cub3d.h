@@ -19,7 +19,6 @@
 # define LEFT 123
 # define RIGTH 124
 # define ESC 53
-# define nb_sprites 5
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -83,12 +82,6 @@ typedef struct	s_lib_text
 	int			text_w_h;
 	int			text_w_w;
 	char		*text_sprite;
-	double		sprite_x;
-	double		sprite_y;
-	int			sprite_txt;
-	double		z_buffer[4000];
-	int			sprite_order[nb_sprites];
-	double		sprite_dist[nb_sprites];
 	void		*text_ptr_sprite;
 	int			*text_d_sprite;
 	int			text_sprite_bpp;
@@ -131,6 +124,12 @@ typedef struct	s_lib_text
 	int			colorf;
 	int			colortxt;
 }				t_text;
+
+typedef struct	s_lib_sprite
+{
+	double		sprite_x;
+	double		sprite_y;
+}				t_sprite;
 
 typedef struct	s_lib_color
 {
@@ -193,11 +192,15 @@ typedef struct	s_lib_cub3d
 	int			fd;
 	int			count_rows;
 	int			count;
+	double		z_buffer[4000];
+	int			*sprite_order;
+	int			sprite_nb;
 	t_mlx		*mlx;
 	t_color		*color;
 	t_raycast	*raycast;
 	t_player	*player;
 	t_text		*text;
+	t_sprite	*sprite;
 }				t_cub3d;
 
 int				raycasting(t_cub3d *cub3d, t_raycast *raycast,
@@ -216,8 +219,10 @@ int				extract_color(char *s, t_color *color);
 int				extract_textures(t_text *text, t_mlx *mlx);
 int				choose_texture(t_cub3d *cub3d, t_text *text);
 int				extract_txt_fc(char *s, t_text *text);
+int				extract_sprite(t_cub3d *cub3d);
 int				raycast_fc(t_cub3d *cub3d, t_text *text, t_mlx *mlx,
 				t_player *player);
-int				raycast_sprite(t_text *text, t_player *player);
+int				raycast_sprite(t_cub3d *cub3d, t_sprite *sprite, t_text *text,
+				t_player *player);
 
 #endif

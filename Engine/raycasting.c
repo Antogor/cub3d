@@ -86,7 +86,6 @@ void	wall_dist(t_raycast *raycast, t_player *player, t_text *text)
 		raycast->wall_x = player->pos_x + raycast->wall_dist *
 			raycast->ray_dir_x;
 	}
-	text->z_buffer[raycast->x] = raycast->wall_dist;
 	raycast->wall_x -= floor((raycast->wall_x));
 }
 
@@ -121,6 +120,7 @@ int		raycasting(t_cub3d *cub3d, t_raycast *raycast, t_player *player)
 		calculate_side(raycast, player);
 		hit_wall(cub3d, raycast);
 		wall_dist(raycast, player, cub3d->text);
+		cub3d->z_buffer[raycast->x] = raycast->wall_dist;
 		calculate_line_height(cub3d, raycast);
 		paint(cub3d, raycast, cub3d->text, cub3d->mlx);
 		raycast->x++;

@@ -94,6 +94,7 @@ int	map_data(t_cub3d *cub3d)
 		}
 		fill++;
 	}
+	extract_sprite(cub3d);
 	return (extract_pos(cub3d, cub3d->player));
 }
 
