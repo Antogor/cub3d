@@ -5,7 +5,7 @@ SO ./Textures/Bricks.xpm
 WE ./Textures/Wood.xpm
 EA ./Textures/Wood.xpm
 
-S ./Textures/Sprites/barrel.xpm
+S ./Textures/Sprites/pillar.xpm
 F 184, 113, 39
 C 51, 198, 227
 

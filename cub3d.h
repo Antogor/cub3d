@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:24:33 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/03/09 11:55:21 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/03/09 16:44:28 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,27 @@ typedef struct	s_lib_sprite
 	double		sprite_x;
 	double		sprite_y;
 }				t_sprite;
+
+typedef struct	s_lib_spritetools
+{
+	double		sprite_x;
+	double		sprite_y;
+	double		inv_det;
+	double		transform_x;
+	double		transform_y;
+	int			sprite_screen_x;
+	int			sprite_h; 
+	int			draw_start_y;  
+	int			draw_end_y;
+	int			sprite_w;
+	int			draw_start_x;
+	int			draw_end_x;
+	int			stripe;
+	int			tex_x;
+	int			y;
+	int			d;
+	int			tex_y;
+}				t_spritetools;
 
 typedef struct	s_lib_color
 {
