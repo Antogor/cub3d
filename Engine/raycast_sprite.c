@@ -58,28 +58,28 @@ int	raycast_sprite(t_cub3d *cub3d, t_sprite *sprite, t_text *text,
 		double	inv_det = 1.0 / (player->plane_x * player->dir_y - player->dir_x * player->plane_y);
 		double	transform_x = inv_det * (player->dir_y * sprite_x - player->dir_x * sprite_y);
 		double	transform_y = inv_det * (-player->plane_y * sprite_x + player->plane_x * sprite_y);
-		int		sprite_screen_x = (int)(cub3d->screen_w / 2) * (int)(1 + transform_x / transform_y);
-		int		sprite_h = fabs((int)cub3d->screen_h / transform_y);
+		int		sprite_screen_x = (int)((cub3d->screen_w / 2) * (1 + transform_x / transform_y));
+		int		sprite_h = abs((int)(cub3d->screen_h / (transform_y)));
 		int		draw_start_y = -sprite_h / 2 + cub3d->screen_h / 2;
 		if (draw_start_y < 0)
 			draw_start_y = 0;
 		int		draw_end_y = sprite_h / 2 + cub3d->screen_h / 2;
-		if (draw_end_y < 0)
-			draw_end_y = cub3d->screen_h - 1;
-		int		sprite_w = fabs((int)cub3d->screen_h / transform_y);
+		if (draw_end_y >= cub3d->screen_h)
+			draw_end_y = cub3d->screen_h;
+		int		sprite_w = abs((int)(cub3d->screen_h / (transform_y)));
 		int		draw_start_x = -sprite_w / 2 + sprite_screen_x;
 		if (draw_start_x < 0)
 			draw_start_x = 0;
 		int		draw_end_x = sprite_w / 2 + sprite_screen_x;
-		if (draw_end_x < 0)
-			draw_end_x = cub3d->screen_w - 1;
+		if (draw_end_x >= cub3d->screen_w)
+			draw_end_x = cub3d->screen_w;
 		int		stripe = draw_start_x;
 		while (stripe < draw_end_x)
 		{
-			int		tex_x = (int)(256 * (stripe - (-sprite_w / 2 + sprite_screen_x)) * text->text_sprite_w / sprite_w) / 256;
-			if(transform_y > 0 && stripe > 0 && stripe < cub3d->screen_w && transform_y < cub3d->z_buffer[stripe])
+			int		tex_x = (int)((stripe - (-sprite_w / 2 + sprite_screen_x)) * text->text_sprite_w / sprite_w);
+			int	y = draw_start_y;
+			if(transform_y > 0 && stripe >= 0 && stripe < cub3d->screen_w && transform_y < (float)cub3d->z_buffer[stripe])
 			{
-				int	y = draw_start_y;
 				while (y < draw_end_y)
 				{
 					int	d = (y) * 256 - cub3d->screen_h * 128 + sprite_h * 128;
