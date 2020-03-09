@@ -20,10 +20,12 @@ void	choose_sprite(t_cub3d *cub3d, t_sprite *sprite, t_player *player)
 	int		dis_tmp;
 
 	l = 0;
+	cub3d->sprite_order = malloc(cub3d->sprite_nb * sizeof(int));
 	while(l < cub3d->sprite_nb)
 	{
-		cub3d->sprite_order[l] = l;
+		
 		sprite_dist[l] = ((player->pos_x - sprite[l].sprite_x) * (player->pos_x - sprite[l].sprite_x) + (player->pos_y - sprite[l].sprite_y) * (player->pos_y - sprite[l].sprite_y));
+		cub3d->sprite_order[l] = l;
 		l++;
 	}
 	l = 0;
@@ -48,6 +50,7 @@ int	raycast_sprite(t_cub3d *cub3d, t_sprite *sprite, t_text *text,
 	int l;
 
 	l = 0;
+	choose_sprite(cub3d, sprite, player);
 	while (l < cub3d->sprite_nb)
 	{
 		double	sprite_x = sprite[cub3d->sprite_order[l]].sprite_x - player->pos_x;
@@ -89,9 +92,7 @@ int	raycast_sprite(t_cub3d *cub3d, t_sprite *sprite, t_text *text,
 			}
 			stripe++;
 		}
-		
+		l++;
 	}
-	
-	choose_sprite(cub3d, sprite, player);
 	return (1);
 }
