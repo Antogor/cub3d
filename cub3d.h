@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:24:33 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/03/06 14:13:24 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/03/09 11:55:21 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define LEFT 123
 # define RIGTH 124
 # define ESC 53
+# define nb_sprites 5
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -82,6 +83,19 @@ typedef struct	s_lib_text
 	int			text_w_h;
 	int			text_w_w;
 	char		*text_sprite;
+	double		sprite_x;
+	double		sprite_y;
+	int			sprite_txt;
+	double		z_buffer[4000];
+	int			sprite_order[nb_sprites];
+	double		sprite_dist[nb_sprites];
+	void		*text_ptr_sprite;
+	int			*text_d_sprite;
+	int			text_sprite_bpp;
+	int			text_sprite_sl;
+	int			text_sprite_end;
+	int			text_sprite_h;
+	int			text_sprite_w;
 	char		*text_floor;
 	void		*text_ptr_floor;
 	int			*text_d_floor;
@@ -204,5 +218,6 @@ int				choose_texture(t_cub3d *cub3d, t_text *text);
 int				extract_txt_fc(char *s, t_text *text);
 int				raycast_fc(t_cub3d *cub3d, t_text *text, t_mlx *mlx,
 				t_player *player);
+int				raycast_sprite(t_text *text, t_player *player);
 
 #endif

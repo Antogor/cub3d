@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 12:10:54 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/03/06 13:04:08 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/03/09 11:49:11 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	wall_dist(t_raycast *raycast, t_player *player, t_text *text)
 		raycast->wall_x = player->pos_x + raycast->wall_dist *
 			raycast->ray_dir_x;
 	}
+	text->z_buffer[raycast->x] = raycast->wall_dist;
 	raycast->wall_x -= floor((raycast->wall_x));
 }
 

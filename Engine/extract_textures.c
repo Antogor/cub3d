@@ -6,11 +6,21 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 12:30:05 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/03/06 14:18:02 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/03/09 11:37:42 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+int	extract_data_sprite(t_text *text, t_mlx *mlx)
+{
+	
+	text->text_ptr_sprite = mlx_xpm_file_to_image(mlx->mlx_ptr,
+		text->text_sprite, &text->text_sprite_w, &text->text_sprite_h);
+	text->text_d_sprite = (int *)mlx_get_data_addr(text->text_ptr_sprite,
+		&text->text_sprite_bpp, &text->text_sprite_sl, &text->text_sprite_end);
+	return (1);
+}
 
 int	extract_data_fc(t_text *text, t_mlx *mlx)
 {
@@ -45,5 +55,6 @@ int	extract_textures(t_text *text, t_mlx *mlx)
 		&text->text_e_bpp, &text->text_e_sl, &text->text_e_end);
 	if (text->text_floor && text->text_celing)
 		extract_data_fc(text, mlx);
+	extract_data_sprite(text, mlx);
 	return (1);
 }

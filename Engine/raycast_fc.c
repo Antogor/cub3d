@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:36:55 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/03/06 14:23:46 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/03/09 11:14:23 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ int	put_fc(t_cub3d *cub3d, t_text *text, t_mlx *mlx, int y)
 	{
 		text->cell_x = (int)text->floor_x;
 		text->cell_y = (int)text->floor_y;
-		text->tx = (int)(text->text_floor_w * text->floor_x - text->cell_x) &
+		text->tx = (int)(text->text_floor_w * (text->floor_x - text->cell_x)) &
 			(text->text_floor_w - 1);
-		text->ty = (int)(text->text_floor_h * text->floor_y - text->cell_y) &
+		text->ty = (int)(text->text_floor_h * (text->floor_y - text->cell_y)) &
 			(text->text_floor_h - 1);
 		text->floor_x += text->floorstep_x;
 		text->floor_y += text->floorstep_y;
