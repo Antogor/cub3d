@@ -33,6 +33,7 @@
 # include <string.h>
 # include <math.h>
 # include <mlx.h>
+# include <X11/Xlib.h>
 # include "./libft/libft.h"
 # include "./GNL/get_next_line.h"
 
