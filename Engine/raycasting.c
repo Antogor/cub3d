@@ -123,6 +123,7 @@ int		raycasting(t_cub3d *cub3d, t_raycast *raycast, t_player *player)
 		cub3d->z_buffer[raycast->x] = raycast->wall_dist;
 		calculate_line_height(cub3d, raycast);
 		paint(cub3d, raycast, cub3d->text, cub3d->mlx);
+	//	raycast_fc(cub3d, cub3d->text, cub3d->mlx, cub3d->player);
 		raycast->x++;
 	}
 	return (0);

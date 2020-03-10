@@ -30,7 +30,6 @@ void	choose_sprite(t_cub3d *cub3d, t_sprite *sprite, t_player *player)
 	}
 	l = 0;
 	while (l++ < cub3d->sprite_nb - 1)
-	{
 		if (sprite_dist[l] < sprite_dist[l + 1])
 		{
 			dis_tmp = sprite_dist[l];
@@ -41,7 +40,6 @@ void	choose_sprite(t_cub3d *cub3d, t_sprite *sprite, t_player *player)
 			cub3d->sprite_order[l + 1] = tmp;
 			l = 0;
 		}
-	}
 }
 
 void	calcualte_sprite_h(t_spritetools *s_tools, t_cub3d *cub3d)
@@ -103,15 +101,17 @@ int		raycast_sprite(t_cub3d *cub3d, t_sprite *sprite, t_text *text,
 {
 	int				l;
 	t_spritetools	*s_tools;
+	t_sprite s;
 
 	l = 0;
 	s_tools = (t_spritetools *)malloc(sizeof(t_spritetools));
 	choose_sprite(cub3d, sprite, player);
 	while (l++ < cub3d->sprite_nb)
 	{
-		s_tools->sprite_x = (sprite[cub3d->sprite_order[l]].sprite_x + 0.5) -
+		s = sprite[cub3d->sprite_order[l]];
+		s_tools->sprite_x = (s.sprite_x + 0.5) -
 			player->pos_x;
-		s_tools->sprite_y = (sprite[cub3d->sprite_order[l]].sprite_y + 0.5) -
+		s_tools->sprite_y = (s.sprite_y + 0.5) -
 			player->pos_y;
 		s_tools->inv_det = 1.0 / (player->plane_x * player->dir_y -
 			player->dir_x * player->plane_y);

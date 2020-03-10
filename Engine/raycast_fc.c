@@ -56,7 +56,7 @@ int		raycast_fc(t_cub3d *cub3d, t_text *text, t_mlx *mlx,
 {
 	int			y;
 
-	y = 0;
+	y = cub3d->screen_h / 2 + 1;
 	while (y < cub3d->screen_h)
 	{
 		text->raydir_x0 = player->dir_x - player->plane_x;
@@ -75,5 +75,63 @@ int		raycast_fc(t_cub3d *cub3d, t_text *text, t_mlx *mlx,
 		put_fc(cub3d, text, mlx, y);
 		y++;
 	}
+
+/*	 double floorXWall, floorYWall; //x, y position of the floor texel at the bottom of the wall
+
+      //4 different wall directions possible
+      if(cub3d->raycast->side == 0 && cub3d->raycast->ray_dir_x > 0)
+      {
+        floorXWall = cub3d->map_w;
+        floorYWall = cub3d->map_h + cub3d->raycast->wall_x;
+      }
+      else if(cub3d->raycast->side == 0 && cub3d->raycast->ray_dir_x < 0)
+      {
+        floorXWall = cub3d->map_w + 1.0;
+        floorYWall = cub3d->map_h + cub3d->raycast->wall_x;;
+      }
+      else if(cub3d->raycast->side == 1 && cub3d->raycast->ray_dir_y > 0)
+      {
+        floorXWall = cub3d->map_w + cub3d->raycast->wall_x;
+        floorYWall = cub3d->map_h;
+      }
+      else
+      {
+        floorXWall = cub3d->map_w + cub3d->raycast->wall_x;
+        floorYWall = cub3d->map_h + 1.0;
+      }
+
+      double distWall, distPlayer, currentDist;
+
+      distWall = cub3d->raycast->wall_dist;
+      distPlayer = 0.0;
+
+      if(cub3d->raycast->draw_end < 0) cub3d->raycast->draw_end = cub3d->screen_h; //becomes < 0 when the integer overflows
+
+      //draw the floor from drawEnd to the bottom of the screen
+	  int y = cub3d->raycast->draw_end + 1;
+      while(y < cub3d->screen_h)
+      {
+        currentDist = cub3d->screen_h / (2.0 * y - cub3d->screen_h); //you could make a small lookup table for this instead
+
+        double weight = (currentDist - distPlayer) / (distWall - distPlayer);
+
+        double currentFloorX = weight * floorXWall + (1.0 - weight) * player->pos_x;
+        double currentFloorY = weight * floorYWall + (1.0 - weight) * player->pos_y;
+
+        int floorTexX, floorTexY;
+        floorTexX = (int)(currentFloorX * text->text_floor_w) & (text->text_floor_w - 1);
+        floorTexY = (int)(currentFloorY * text->text_floor_h) & (text->text_floor_h - 1);
+
+        int checkerBoardPattern = ((int)currentFloorX + (int)currentFloorY) & 1;
+        int floorTexture;
+        if(checkerBoardPattern == 0) floorTexture = 3;
+        else floorTexture = 4;
+
+        //floor
+		mlx->img_data[y * cub3d->screen_w + cub3d->raycast->x] = text->text_d_floor[text->text_floor_w  * floorTexY + floorTexX];
+        //ceiling (symmetrical)
+       	mlx->img_data[cub3d->screen_h - y + cub3d->raycast->x] = text->text_d_celing[text->text_celing_w * floorTexY + floorTexX];
+		y++;
+	  }*/
 	return (1);
 }
