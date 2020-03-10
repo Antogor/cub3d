@@ -22,7 +22,7 @@ OBJLIB = ./GNL/get_next_line.o ./libft/ft_putchar_fd.o ./libft/ft_atoi.o ./libft
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(OBJLIB) cub3d.h
+$(NAME): $(OBJ) $(OBJLIB) cub3d.h key_linux.h key_macos.h
 	@$(FLAGS) -g $(FUN) $(FUNLIB) $(MINILIBX) -o $(NAME)
 
 clean:
