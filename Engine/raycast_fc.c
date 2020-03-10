@@ -12,13 +12,13 @@
 
 #include "../cub3d.h"
 
-int	choose_color(t_color *color, t_text *text)
+void	choose_color(t_color *color, t_text *text)
 {
 	if (text->text_floor && text->text_celing)
 	{
-		text->colorc = text->text_d_celing[text->ty * text->text_celing_w +
+		text->colorc = text->text_d_celing[text->ty * text->text_celing_h +
 			text->tx];
-		text->colorf = text->text_d_floor[text->ty * text->text_floor_w +
+		text->colorf = text->text_d_floor[text->ty * text->text_floor_h +
 			text->tx];
 	}
 	else
@@ -26,10 +26,9 @@ int	choose_color(t_color *color, t_text *text)
 		text->colorc = color->celling;
 		text->colorf = color->floor;
 	}
-	return (1);
 }
 
-int	put_fc(t_cub3d *cub3d, t_text *text, t_mlx *mlx, int y)
+void	put_fc(t_cub3d *cub3d, t_text *text, t_mlx *mlx, int y)
 {
 	int x;
 
@@ -45,15 +44,14 @@ int	put_fc(t_cub3d *cub3d, t_text *text, t_mlx *mlx, int y)
 		text->floor_x += text->floorstep_x;
 		text->floor_y += text->floorstep_y;
 		choose_color(cub3d->color, text);
-		mlx->img_data[y * cub3d->screen_w + x] = text->colorf;
 		mlx->img_data[(cub3d->screen_h - y - 1) * cub3d->screen_w + x] =
 			text->colorc;
+		mlx->img_data[y * cub3d->screen_w + x] = text->colorf;
 		x++;
 	}
-	return (1);
 }
 
-int	raycast_fc(t_cub3d *cub3d, t_text *text, t_mlx *mlx,
+int		raycast_fc(t_cub3d *cub3d, t_text *text, t_mlx *mlx,
 	t_player *player)
 {
 	int			y;
