@@ -20,6 +20,12 @@
 # define RIGTH 124
 # define ESC 53
 
+//# if defined(_APPLE_)
+//#  include <key_macos.h>
+//# else
+//#  include <key_linux.h>
+//# endif
+
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
