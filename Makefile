@@ -2,7 +2,7 @@ NAME = cub3D
 
 FLAGS = gcc #-Wall -Wextra -Werror
 
-MINILIBX = -lmlx -framework OpenGl -framework AppKit #-lmlx -lXext -lX11 -lm
+MINILIBX = -lmlx -lXext -lX11 -lm -lbsd #-lmlx -framework OpenGl -framework AppKit #-lmlx -lXext -lX11 -lm
 
 FUN = cub3d.c ./Engine/create_trgb.c ./Engine/paint.c ./Engine/ft_map.c ./Engine/raycasting.c ./Engine/check_data.c ./Engine/check_map.c ./Engine/extract_color.c \
 ./Engine/ft_keys.c ./Engine/extract_textures.c ./Engine/movement.c ./Engine/choose_texture.c ./Engine/extract_txt_fc.c ./Engine/raycast_fc.c ./Engine/raycast_sprite.c \
