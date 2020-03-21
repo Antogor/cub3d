@@ -21,12 +21,12 @@ int	extract_resolution(char *s, t_cub3d *cub3d)
 	{
 		l++;
 		if (!(cub3d->screen_w = ft_atoi(&s[l])))
-			return (0);
+			ft_error("Fallo en la resolucion");
 		l++;
 		while (s[l] >= '0' && s[l] <= '9')
 			l++;
 		if (!(cub3d->screen_h = ft_atoi(&s[l])))
-			return (0);
+			ft_error("Fallo en la resolucion");
 	}
 	if (cub3d->screen_w > 1920)
 		cub3d->screen_w = 1920;
@@ -44,13 +44,13 @@ int	extract_text_rns(char *s, t_text *text)
 	{
 		text->text_n = ft_strtrim(s, "NO ");
 		if (!(ft_strnstr(text->text_n, ".xpm", ft_strlen(text->text_n))))
-			return (0);
+			ft_error("La textura norte no es .xpm");
 	}
 	if (s[l] == 'S' && s[l + 1] == 'O')
 	{
 		text->text_s = ft_strtrim(s, "SO ");
 		if (!(ft_strnstr(text->text_s, ".xpm", ft_strlen(text->text_s))))
-			return (0);
+			ft_error("La textura sur no es .xpm");
 	}
 	return (1);
 }
@@ -64,20 +64,20 @@ int	extract_text_wes(char *s, t_text *text)
 	{
 		text->text_w = ft_strtrim(s, "WE ");
 		if (!(ft_strnstr(text->text_w, ".xpm", ft_strlen(text->text_w))))
-			return (0);
+			ft_error("La textura oeste no es .xpm");
 	}
 	if (s[l] == 'E')
 	{
 		text->text_e = ft_strtrim(s, "EA ");
 		if (!(ft_strnstr(text->text_e, ".xpm", ft_strlen(text->text_e))))
-			return (0);
+			ft_error("La textura este no es .xpm");
 	}
 	if (s[l] == 'S')
 	{
 		text->text_sprite = ft_strtrim(s, "S ");
 		if (!(ft_strnstr(text->text_sprite, ".xpm",
 			ft_strlen(text->text_sprite))))
-			return (0);
+			ft_error("La textura sprite no es .xpm");
 	}
 	return (1);
 }

@@ -15,56 +15,55 @@
 int		extract_data(char *str, t_cub3d *cub3d)
 {
 	if (ft_strnstr(str, "R ", 2))
-		return (check_data(str, cub3d));
+		return(check_data(str, cub3d));
 	else if (ft_strnstr(str, "NO ", 3))
-		return (check_data(str, cub3d));
+		return(check_data(str, cub3d));
 	else if (ft_strnstr(str, "SO ", 3))
-		return (check_data(str, cub3d));
+		return(check_data(str, cub3d));
 	else if (ft_strnstr(str, "WE ", 3))
-		return (check_data(str, cub3d));
+		return(check_data(str, cub3d));
 	else if (ft_strnstr(str, "EA ", 3))
-		return (check_data(str, cub3d));
+		return(check_data(str, cub3d));
 	else if (ft_strnstr(str, "S ", 2))
-		return (check_data(str, cub3d));
+		return(check_data(str, cub3d));
 	else if (ft_strnstr(str, "F ", 2))
-		return (check_data(str, cub3d));
+		return(check_data(str, cub3d));
 	else if (ft_strnstr(str, "C ", 2))
-		return (check_data(str, cub3d));
+		return(check_data(str, cub3d));
 	else if (ft_strnstr(str, "FT ", 3) || ft_strnstr(str, "CT ", 3))
-		return (extract_txt_fc(str, cub3d->text));
+		return(extract_txt_fc(str, cub3d->text));
 	else if (ft_strnstr(str, "1", 1))
 		return (2);
 	else if (str[0] == '\0')
 		return (1);
 	else
-		return (0);
+		ft_error("Mapa no valido");
+	return(0);
 }
 
-int		gnl_1(t_cub3d *cub3d)
+void	gnl_1(char *str, int *l, t_cub3d *cub3d)
 {
-	char	*str;
-	int		l;
-	int		gnl;
+//	char	*str;
+	int		i;
 
-	gnl = 1;
-	while (gnl > 0)
+	i = 0;
+	while (get_next_line(cub3d->fd, &str) > 0)
 	{
-		gnl = get_next_line(cub3d->fd, &str);
-		l = extract_data(str, cub3d);
-		if (l == 0)
-			break ;
-		if (l == 2)
-		{
+	//	gnl = get_next_line(cub3d->fd, &str);
+		i = extract_data(str, cub3d);
+		if (i == 2)
+			*l += 1;
+	/*	{
 			if (!cub3d->count_rows)
 				cub3d->count_rows = 0;
 			cub3d->count_rows++;
-			cub3d->map_w = ft_strlen(str);
-		}
+			cub3d->map_w = ft_strlen(*str);
+		}*/
 	}
-	if (l == 2)
-		cub3d->map_h = cub3d->count_rows;
-	free(str);
-	return (l);
+//	if (l == 2)
+//		cub3d->map_h = cub3d->count_rows;
+//	free(str);
+//	return (l);
 }
 
 int		gnl_2(t_cub3d *cub3d)
@@ -91,16 +90,14 @@ int		gnl_2(t_cub3d *cub3d)
 int		ft_map(char **argv, t_cub3d *cub3d)
 {
 	int		l;
+	char	str;
 
+	l = 0;
 	if (!(cub3d->fd = open(argv[1], O_RDONLY)))
-		return (-1);
-	l = gnl_1(cub3d);
-	if (l == 0)
-	{
-		l -= 1;
-		close(cub3d->fd);
-		return (l);
-	}
+		ft_error("No se pudo abrir el mapa");
+	gnl_1(&str, &l, cub3d);
+	cub3d->map = (char **)malloc(sizeof(char *) * l + 1);
+	cub3d->map_h = l;
 	close(cub3d->fd);
 	if (!(cub3d->fd = open(argv[1], O_RDONLY)))
 		return (-1);

@@ -17,24 +17,23 @@ int		init_game(int argc, char **argv, t_cub3d *cub3d)
 	if (argc == 2)
 	{
 		if (ft_strnstr(argv[1], ".cub", ft_strlen(argv[1])))
-		{
-			if (ft_map(argv, cub3d) < 0)
-				return (-1);
-		}
-		return (0);
+			ft_map(argv, cub3d);
+		else
+			ft_error("Inserte mapa");
 	}
-	if (argc == 3)
+	else if (argc == 3)
 	{
-		if (ft_strnstr(argv[1], ".cub", ft_strlen(argv[1])))
+		if (ft_strnstr(argv[1], ".cub", ft_strlen(argv[1])) &&
+			ft_strnstr(argv[2], "--save", ft_strlen(argv[2])))
 		{
-			if (ft_map(argv, cub3d) < 0)
-				return (-1);
-		}
-		if (ft_strnstr(argv[2], "--save", ft_strlen(argv[2])))
+			ft_map(argv, cub3d);
 			printf("save");
-		return (0);
+		}
+		else
+			ft_error("Mapa o argumento invalido");
+		return(0);
 	}
-	return (-1);
+	return(0);
 }
 
 int		run_game(t_cub3d *cub3d)
@@ -73,10 +72,13 @@ int		main(int argc, char **argv)
 	cub3d->mlx = (t_mlx *)malloc(sizeof(t_mlx));
 	cub3d->text = (t_text *)malloc(sizeof(t_text));
 //	cub3d->sprite = (t_sprite *)malloc(sizeof(t_sprite));
-	if (init_game(argc, argv, cub3d) < 0 || argc < 2)
-		perror("Los dioses no lo permiten");
+	if (argc >= 2)
+	{
+		init_game(argc, argv, cub3d);
+//		pre_run(cub3d, cub3d->mlx);
+	}
 	else
-		pre_run(cub3d, cub3d->mlx);
+		ft_error("Los dioses no lo permiten");
 	free(cub3d->player);
 	free(cub3d->mlx);
 	free(cub3d->raycast);

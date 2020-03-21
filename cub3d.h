@@ -252,5 +252,5 @@ int				raycast_fc(t_cub3d *cub3d, t_text *text, t_mlx *mlx,
 				t_player *player);
 int				raycast_sprite(t_cub3d *cub3d, t_sprite *sprite, t_text *text,
 				t_player *player);
-
+void			ft_error(char *s);
 #endif
