@@ -57,7 +57,7 @@ void	hit_wall(t_cub3d *cub3d, t_raycast *raycast)
 			raycast->map_y += raycast->step_y;
 			raycast->side = 1;
 		}
-		if (cub3d->map[raycast->map_y][raycast->map_x] == '1')
+		if (cub3d->map[raycast->map_x][raycast->map_y] == '1')
 			raycast->hit = 1;
 	}
 }
@@ -67,9 +67,9 @@ void	wall_dist(t_raycast *raycast, t_player *player, t_text *text)
 	if (raycast->side == 0)
 	{
 		if (raycast->map_x < player->pos_x)
-			text->text_wall_dir = 'W';
+			text->text_wall_dir = 'N';
 		else
-			text->text_wall_dir = 'E';
+			text->text_wall_dir = 'S';
 		raycast->wall_dist = (raycast->map_x - player->pos_x +
 			(1 - raycast->step_x) / 2) / raycast->ray_dir_x;
 		raycast->wall_x = player->pos_y + raycast->wall_dist *
@@ -78,9 +78,9 @@ void	wall_dist(t_raycast *raycast, t_player *player, t_text *text)
 	else
 	{
 		if (raycast->map_y < player->pos_y)
-			text->text_wall_dir = 'N';
+			text->text_wall_dir = 'W';
 		else
-			text->text_wall_dir = 'S';
+			text->text_wall_dir = 'E';
 		raycast->wall_dist = (raycast->map_y - player->pos_y +
 			(1 - raycast->step_y) / 2) / raycast->ray_dir_y;
 		raycast->wall_x = player->pos_x + raycast->wall_dist *

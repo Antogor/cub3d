@@ -4,18 +4,17 @@ SO ./textures/Bricks.xpm
 WE ./textures/Wood.xpm
 EA ./textures/Wood.xpm
 
-S ./textures/Sprites/barrel.xpm
+S ./textures/Sprites/pillar.xpm
 F 184, 113, 39
 C 51, 198, 227
 
 FT ./textures/Bricks.xpm
 CT ./textures/Wood.xpm
 
-1111111111
-10000000011111
-100000020000001
-10000N00000001
-1000002001111
-1000000001
-1000000001
-1111111111
+111111111
+111002001
+100000001
+1200S0021
+100000001
+111002001
+111111111

@@ -16,18 +16,18 @@ int	extract_we(t_cub3d *cub3d, t_player *player)
 {
 	if (cub3d->dir_player == 'W')
 	{
-		player->dir_x = -1.0;
-		player->dir_y = 0.0;
-		player->plane_x = 0.0;
-		player->plane_y = 0.66;
+		player->dir_x = 0.0;
+		player->dir_y = -1.0;
+		player->plane_x = -0.66;
+		player->plane_y = 0.0;
 		return (1);
 	}
 	if (cub3d->dir_player == 'E')
 	{
-		player->dir_x = 1.0;
-		player->dir_y = 0.0;
-		player->plane_x = 0.0;
-		player->plane_y = 0.66;
+		player->dir_x = 0.0;
+		player->dir_y = 1.0;
+		player->plane_x = 0.66;
+		player->plane_y = 0.0;
 		return (1);
 	}
 	return (0);
@@ -37,18 +37,18 @@ int	extract_pos(t_cub3d *cub3d, t_player *player)
 {
 	if (cub3d->dir_player == 'N')
 	{
-		player->dir_x = 0.0;
-		player->dir_y = -1.0;
-		player->plane_x = -0.66;
-		player->plane_y = 0.0;
+		player->dir_x = -1.0;
+		player->dir_y = 0.0;
+		player->plane_x = 0.0;
+		player->plane_y = 0.66;
 		return (1);
 	}
 	if (cub3d->dir_player == 'S')
 	{
-		player->dir_x = 0.0;
-		player->dir_y = 1.0;
-		player->plane_x = 0.66;
-		player->plane_y = 0;
+		player->dir_x = 1.0;
+		player->dir_y = 0.0;
+		player->plane_x = 0.0;
+		player->plane_y = -0.66;
 		return (1);
 	}
 	if (extract_we(cub3d, cub3d->player))
@@ -62,8 +62,8 @@ int	determinate_pos(t_cub3d *cub3d, int f, int f2, int c, char **tmp)
 		tmp[f][c] == 'W' || tmp[f][c] == 'E')
 	{
 		cub3d->dir_player = tmp[f][c];
-		cub3d->player->pos_x = (double)c;
-		cub3d->player->pos_y = (double)f2;
+		cub3d->player->pos_x = (double)f2;
+		cub3d->player->pos_y = (double)c;
 		cub3d->map[f2][c] = '0';
 		cub3d->a = 1;
 		return (1);
