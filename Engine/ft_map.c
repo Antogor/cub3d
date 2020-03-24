@@ -41,74 +41,55 @@ int		extract_data(char *str, t_cub3d *cub3d)
 	return(0);
 }
 
-void	gnl_1(char *str, int *l, t_cub3d *cub3d)
+void	gnl_1(t_cub3d *cub3d)
 {
-//	char	*str;
-	int		i;
+	int		l;
+	char	*str;
 
-	i = 0;
+	l = 0;
+	cub3d->count = 0;
 	while (get_next_line(cub3d->fd, &str) > 0)
 	{
-	//	gnl = get_next_line(cub3d->fd, &str);
-		i = extract_data(str, cub3d);
-		if (i == 2)
-			*l += 1;
-	/*	{
+		l = extract_data(str, cub3d);
+		if (l == 2)
+		{
 			if (!cub3d->count_rows)
 				cub3d->count_rows = 0;
 			cub3d->count_rows++;
-			cub3d->map_w = ft_strlen(*str);
-		}*/
-	}
-//	if (l == 2)
-//		cub3d->map_h = cub3d->count_rows;
-//	free(str);
-//	return (l);
-}
-
-int		gnl_2(t_cub3d *cub3d)
-{
-	char	*str;
-	int		l;
-	int		gnl;
-
-	gnl = 1;
-	l = 0;
-	while (gnl > 0)
-	{
-		gnl = get_next_line(cub3d->fd, &str);
-		l = extract_data(str, cub3d);
-		if (l == 2)
-			cub3d->map[cub3d->count++] = ft_substr(str, 0, cub3d->map_w);
-		if (l == 0)
-			break ;
+		}
+		else
+			cub3d->count++; 
 	}
 	free(str);
-	return (l);
+}
+
+void		gnl_2(t_cub3d *cub3d)
+{
+	int		l;
+	char	**tmp;
+
+	l = 0;
+	if (!(tmp = (char **)malloc(sizeof(char *) *
+		(cub3d->count + cub3d->count_rows) + 1)))
+		ft_error("Fallo en malloc");
+	while (get_next_line(cub3d->fd, &tmp[l]) > 0)
+		l++;
+	tmp[l] = NULL;
+	check_map(tmp, cub3d);
+	free(tmp);
 }
 
 int		ft_map(char **argv, t_cub3d *cub3d)
 {
-	int		l;
-	char	str;
 
-	l = 0;
 	if (!(cub3d->fd = open(argv[1], O_RDONLY)))
 		ft_error("No se pudo abrir el mapa");
-	gnl_1(&str, &l, cub3d);
-	cub3d->map = (char **)malloc(sizeof(char *) * l + 1);
-	cub3d->map_h = l;
+	gnl_1(cub3d);
 	close(cub3d->fd);
-	if (!(cub3d->fd = open(argv[1], O_RDONLY)))
-		return (-1);
-	cub3d->count = 0;
-	cub3d->map = (char **)malloc(sizeof(char *) * cub3d->count_rows + 1);
 	cub3d->map_h = cub3d->count_rows;
-	l = gnl_2(cub3d);
-	if (l > 0)
-		l = check_map(cub3d);
-	if (l == 0)
-		l -= 1;
+	if (!(cub3d->fd = open(argv[1], O_RDONLY)))
+		ft_error("No se pudo abrir el mapa");
+	gnl_2(cub3d);
 	close(cub3d->fd);
 	return (1);
 }

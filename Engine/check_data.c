@@ -30,8 +30,12 @@ int	extract_resolution(char *s, t_cub3d *cub3d)
 	}
 	if (cub3d->screen_w > 1920)
 		cub3d->screen_w = 1920;
+	else if (cub3d->screen_w < 520)
+		cub3d->screen_w = 520;
 	if (cub3d->screen_h > 1080)
 		cub3d->screen_h = 1080;
+	else if (cub3d->screen_h < 360)
+		cub3d->screen_h = 360;
 	return (1);
 }
 

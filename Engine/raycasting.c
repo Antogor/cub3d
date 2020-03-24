@@ -57,7 +57,7 @@ void	hit_wall(t_cub3d *cub3d, t_raycast *raycast)
 			raycast->map_y += raycast->step_y;
 			raycast->side = 1;
 		}
-		if (cub3d->map[raycast->map_x][raycast->map_y] == '1')
+		if (cub3d->map[raycast->map_y][raycast->map_x] == '1')
 			raycast->hit = 1;
 	}
 }
@@ -123,7 +123,6 @@ int		raycasting(t_cub3d *cub3d, t_raycast *raycast, t_player *player)
 		cub3d->z_buffer[raycast->x] = raycast->wall_dist;
 		calculate_line_height(cub3d, raycast);
 		paint(cub3d, raycast, cub3d->text, cub3d->mlx);
-	//	raycast_fc(cub3d, cub3d->text, cub3d->mlx, cub3d->player);
 		raycast->x++;
 	}
 	return (0);

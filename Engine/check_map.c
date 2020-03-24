@@ -56,68 +56,61 @@ int	extract_pos(t_cub3d *cub3d, t_player *player)
 	return (0);
 }
 
-int	determinate_pos(t_cub3d *cub3d, t_player *player, int fill, int columns)
+int	determinate_pos(t_cub3d *cub3d, int f, int f2, int c, char **tmp)
 {
-	if (cub3d->map[fill][columns] == 'N' || cub3d->map[fill][columns] == 'S' ||
-		cub3d->map[fill][columns] == 'W' || cub3d->map[fill][columns] == 'E')
+	if (tmp[f][c] == 'N' || tmp[f][c] == 'S' ||
+		tmp[f][c] == 'W' || tmp[f][c] == 'E')
 	{
-		cub3d->dir_player = cub3d->map[fill][columns];
-		player->pos_x = (double)columns;
-		player->pos_y = (double)fill;
+		cub3d->dir_player = tmp[f][c];
+		cub3d->player->pos_x = (double)c;
+		cub3d->player->pos_y = (double)f2;
+		cub3d->map[f2][c] = '0';
+		cub3d->a = 1;
 		return (1);
 	}
+	else
+		ft_error("No hay jugador");
 	return (0);
 }
 
-int	map_data(t_cub3d *cub3d)
+void	map_data(char **tmp, t_cub3d *cub3d)
 {
-	int columns;
-	int fill;
+	int c;
+	int f;
 
-	fill = 0;
-	while (fill < cub3d->map_h)
+	f = 0;
+	while (tmp[cub3d->count])
 	{
-		columns = 0;
-		while (columns < cub3d->map_w)
+		if (!(cub3d->map[f] = (char *)malloc(sizeof(char) *
+							ft_strlen(tmp[cub3d->count]) + 1)))
+			ft_error("Fallo en malloc");
+		c = 0;
+		while (tmp[cub3d->count][c])
 		{
-			if (cub3d->map[fill][columns] != '1' &&
-			cub3d->map[fill][columns] != '0' &&
-			cub3d->map[fill][columns] != '2' &&
-			cub3d->map[fill][columns] != 'N' &&
-			cub3d->map[fill][columns] != 'S' &&
-			cub3d->map[fill][columns] != 'W' &&
-			cub3d->map[fill][columns] != 'E')
-				return (0);
-			if (determinate_pos(cub3d, cub3d->player, fill, columns))
-				break ;
-			columns++;
+			if (ft_isalpha(tmp[cub3d->count][c]))
+				determinate_pos(cub3d, cub3d->count, f, c, tmp);
+			if (tmp[cub3d->count][c] == '1' || tmp[cub3d->count][c] == '0' ||
+				tmp[cub3d->count][c] == '2')
+				cub3d->map[f][c] = tmp[cub3d->count][c];
+			c++;
 		}
-		fill++;
+		cub3d->map[f][c] = '\0';
+		f++;
+		cub3d->count++;
 	}
-	extract_sprite(cub3d);
-	return (extract_pos(cub3d, cub3d->player));
+	cub3d->map[f] = '\0';
 }
 
-int	check_map(t_cub3d *cub3d)
+int	check_map(char **tmp, t_cub3d *cub3d)
 {
-	int columns;
-	int	fill;
-
-	columns = 0;
-	fill = 0;
-	while (columns < cub3d->map_w)
-	{
-		if (cub3d->map[0][columns] != '1' ||
-			cub3d->map[cub3d->map_h - 1][columns] != '1')
-			return (0);
-		columns++;
-	}
-	while (fill < cub3d->map_h)
-	{
-		if (cub3d->map[fill][0] != '1' ||
-			cub3d->map[fill][cub3d->map_w - 1] != '1')
-			return (0);
-		fill++;
-	}
-	return (map_data(cub3d));
+	cub3d->a = 0;
+	if (!(cub3d->map = (char **)malloc(sizeof(char *) *
+		cub3d->map_h + 1)))
+		ft_error("Fallo en malloc");
+	map_data(tmp, cub3d);
+	if (!cub3d->a)
+		ft_error("No hay jugador");
+	extract_sprite(cub3d);
+	extract_pos(cub3d, cub3d->player);
+	return (0);
 }

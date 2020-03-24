@@ -22,14 +22,14 @@ int	extract_txt_fc(char *s, t_text *text)
 		text->text_floor = ft_strtrim(s, "FT ");
 		if (!(ft_strnstr(text->text_floor, ".xpm",
 			ft_strlen(text->text_floor))))
-			return (0);
+			ft_error("Extension fallida en floor");
 	}
 	if (s[l] == 'C' && s[l + 1] == 'T')
 	{
 		text->text_celing = ft_strtrim(s, "CT ");
 		if (!(ft_strnstr(text->text_celing, ".xpm",
 			ft_strlen(text->text_celing))))
-			return (0);
+			ft_error("Extension fallida en celing");
 	}
 	return (1);
 }

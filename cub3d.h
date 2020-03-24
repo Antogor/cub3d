@@ -215,7 +215,7 @@ typedef struct	s_lib_cub3d
 	int			screen_h;
 	char		dir_player;
 	char		**map;
-	int			map_w;
+	int			a;
 	int			map_h;
 	int			fd;
 	int			count_rows;
@@ -242,7 +242,7 @@ int				movement(t_cub3d *cub3d);
 int				key_press(int key, t_cub3d *cub3d);
 int				key_release(int key, t_cub3d *cub3d);
 int				check_data(char *s, t_cub3d *cub3d);
-int				check_map(t_cub3d *cub3d);
+int				check_map(char **tmp, t_cub3d *cub3d);
 int				extract_color(char *s, t_color *color);
 int				extract_textures(t_text *text, t_mlx *mlx);
 int				choose_texture(t_cub3d *cub3d, t_text *text);

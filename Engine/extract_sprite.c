@@ -19,19 +19,19 @@ int	count_sprite(t_cub3d *cub3d)
 
 	y = 0;
 	cub3d->sprite_nb = 0;
-	while(y < cub3d->map_h)
+	while (cub3d->map[y])
 	{
 		x = 0;
-		while (x < cub3d->map_w)
+		while (cub3d->map[y][x])
 		{
 			if (cub3d->map[y][x] == '2')
-			{
 				cub3d->sprite_nb++;
-			}
 			x++;
 		}
 		y++;
 	}
+	if (!cub3d->sprite_nb)
+		ft_error("No hay sprite");
 	return (1);
 }
 
@@ -44,11 +44,12 @@ int	extract_sprite(t_cub3d *cub3d)
 	l = 0;
 	y = 0;
 	count_sprite(cub3d);
-	cub3d->sprite = malloc(cub3d->sprite_nb * sizeof(t_sprite));
-	while (y < cub3d->map_h)
+	if (!(cub3d->sprite = malloc(cub3d->sprite_nb * sizeof(t_sprite))))
+		ft_error("Fallo malloc sprite");
+	while (cub3d->map[y])
 	{
 		x = 0;
-		while (x < cub3d->map_w)
+		while (cub3d->map[y][x])
 		{
 			if (cub3d->map[y][x] == '2')
 			{

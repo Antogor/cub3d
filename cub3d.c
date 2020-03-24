@@ -38,7 +38,7 @@ int		init_game(int argc, char **argv, t_cub3d *cub3d)
 
 int		run_game(t_cub3d *cub3d)
 {
-	movement(cub3d);
+//	movement(cub3d);
 	ft_keys(cub3d);
 	raycast_fc(cub3d, cub3d->text, cub3d->mlx, cub3d->player);
 	raycasting(cub3d, cub3d->raycast, cub3d->player);
@@ -50,10 +50,13 @@ int		run_game(t_cub3d *cub3d)
 
 void	pre_run(t_cub3d *cub3d, t_mlx *mlx)
 {
-	mlx->mlx_ptr = mlx_init();
+	if (!(mlx->mlx_ptr = mlx_init()))
+		ft_error("Fallo al iniciar mlx");
 	mlx->window = mlx_new_window(mlx->mlx_ptr,
 		cub3d->screen_w, cub3d->screen_h, "cub3D");
-	mlx->img = mlx_new_image(mlx->mlx_ptr, cub3d->screen_w, cub3d->screen_h);
+	if (!(mlx->img = mlx_new_image(mlx->mlx_ptr, cub3d->screen_w,
+		cub3d->screen_h)))
+		ft_error("Fallo al crear imagen");
 	mlx->img_data = (int*)mlx_get_data_addr(mlx->img,
 		&mlx->bpp, &mlx->size_l, &mlx->endian);
 	extract_textures(cub3d->text, cub3d->mlx);
@@ -66,16 +69,15 @@ int		main(int argc, char **argv)
 	t_cub3d *cub3d;
 
 	cub3d = (t_cub3d *)malloc(sizeof(t_cub3d));
-	cub3d->player = (t_player *)malloc(sizeof(t_player));
-	cub3d->raycast = (t_raycast *)malloc(sizeof(t_raycast));
-	cub3d->color = (t_color *)malloc(sizeof(t_color));
-	cub3d->mlx = (t_mlx *)malloc(sizeof(t_mlx));
-	cub3d->text = (t_text *)malloc(sizeof(t_text));
-//	cub3d->sprite = (t_sprite *)malloc(sizeof(t_sprite));
 	if (argc >= 2)
 	{
+		cub3d->player = (t_player *)malloc(sizeof(t_player));
+		cub3d->raycast = (t_raycast *)malloc(sizeof(t_raycast));
+		cub3d->color = (t_color *)malloc(sizeof(t_color));
+		cub3d->mlx = (t_mlx *)malloc(sizeof(t_mlx));
+		cub3d->text = (t_text *)malloc(sizeof(t_text));
 		init_game(argc, argv, cub3d);
-//		pre_run(cub3d, cub3d->mlx);
+		pre_run(cub3d, cub3d->mlx);
 	}
 	else
 		ft_error("Los dioses no lo permiten");
