@@ -134,8 +134,8 @@ typedef struct	s_lib_text
 
 typedef struct	s_lib_sprite
 {
-	double		sprite_x;
-	double		sprite_y;
+	float		sprite_x;
+	float		sprite_y;
 }				t_sprite;
 
 typedef struct	s_lib_spritetools
@@ -210,26 +210,27 @@ typedef struct	s_libpalyer
 
 typedef struct	s_lib_cub3d
 {
-	char		*resolution;
-	int			screen_w;
-	int			screen_h;
-	char		dir_player;
-	char		**map;
-	int			a;
-	int			map_h;
-	int			fd;
-	int			count_rows;
-	int			count;
-	double		z_buffer[4000];
-	int			*sprite_order;
-	int			sprite_nb;
-	t_mlx		*mlx;
-	t_color		*color;
-	t_raycast	*raycast;
-	t_player	*player;
-	t_text		*text;
-	t_sprite	*sprite;
-}				t_cub3d;
+	char			*resolution;
+	int				screen_w;
+	int				screen_h;
+	char			dir_player;
+	char			**map;
+	int				a;
+	int				map_h;
+	int				fd;
+	int				count_rows;
+	int				count;
+	double			z_buffer[4000];
+	int				*sprite_order;
+	int				sprite_nb;
+	t_mlx			*mlx;
+	t_color			*color;
+	t_raycast		*raycast;
+	t_player		*player;
+	t_text			*text;
+	t_sprite		*sprite;
+	t_spritetools	*tools_s;
+}					t_cub3d;
 
 int				raycasting(t_cub3d *cub3d, t_raycast *raycast,
 				t_player *player);
@@ -250,7 +251,7 @@ int				extract_txt_fc(char *s, t_text *text);
 int				extract_sprite(t_cub3d *cub3d);
 int				raycast_fc(t_cub3d *cub3d, t_text *text, t_mlx *mlx,
 				t_player *player);
-int				raycast_sprite(t_cub3d *cub3d, t_sprite *sprite, t_text *text,
+int				raycast_sprite(t_cub3d *cub3d, t_spritetools *s_tools, t_text *text,
 				t_player *player);
 void			ft_error(char *s);
 #endif

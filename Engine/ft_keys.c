@@ -19,16 +19,17 @@ int	exit_button(int key, t_cub3d *cub3d)
 	return (1);
 }
 
-/*int	ft_print(int button, int x, int y, t_cub3d *cub3d)
+/*int	ft_print(int button, t_cub3d *cub3d)
 {
 	(void)cub3d;
 	printf("button %d\n", button);
-	printf("posX: %d, posY: %d\n", x, y);
+//	printf("posX: %d, posY: %d\n", x, y);
 	return (1);
 }*/
 
 int	ft_keys(t_cub3d *cub3d)
 {
+//	mlx_key_hook(cub3d->mlx->window, ft_print, cub3d);
 	mlx_hook(cub3d->mlx->window, 17, 0L, exit_button, cub3d);
 	//mlx_mouse_hook(cub3d->mlx->window, ft_print, cub3d);
 	return (1);
