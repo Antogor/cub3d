@@ -20,7 +20,6 @@ void	choose_sprite(t_cub3d *cub3d, t_sprite *sprite, t_player *player)
 	int		dis_tmp;
 
 	l = 0;
-	cub3d->sprite_order = malloc(cub3d->sprite_nb * sizeof(int));
 	while (l++ < cub3d->sprite_nb)
 	{
 		cub3d->sprite_order[l] = l;
@@ -98,30 +97,30 @@ void	draw_sprite(t_spritetools *s_tools, t_cub3d *cub3d, t_text *text)
 	}
 }
 
-int		raycast_sprite(t_cub3d *cub3d, t_spritetools *s_tools, t_text *text,
-					t_player *player)
+int		raycast_sprite(t_cub3d *cub3d, t_text *text, t_player *player)
 {
 	int				l;
+	t_sprite		s;
+	t_spritetools	s_tools;
 
 	choose_sprite(cub3d, cub3d->sprite, player);
 	l = 0;
 	while (l++ < cub3d->sprite_nb)
 	{
-		s_tools->sprite_x = (cub3d->sprite[cub3d->sprite_order[l]].sprite_x + 0.5) -
-			player->pos_x;
-		s_tools->sprite_y = (cub3d->sprite[cub3d->sprite_order[l]].sprite_y + 0.5) -
-			player->pos_y;
-		s_tools->inv_det = 1.0 / (player->plane_x * player->dir_y -
+		s = cub3d->sprite[cub3d->sprite_order[l]];
+		s_tools.sprite_x = ((s.sprite_x + 0.5) - player->pos_x);
+		s_tools.sprite_y = ((s.sprite_y + 0.5)- player->pos_y);
+		s_tools.inv_det = 1.0 / (player->plane_x * player->dir_y -
 			player->dir_x * player->plane_y);
-		s_tools->transform_x = s_tools->inv_det * (player->dir_y *
-			s_tools->sprite_x - player->dir_x * s_tools->sprite_y);
-		s_tools->transform_y = s_tools->inv_det * (-player->plane_y *
-			s_tools->sprite_x + player->plane_x * s_tools->sprite_y);
-		s_tools->sprite_screen_x = (int)((cub3d->screen_w / 2) *
-			(1 + s_tools->transform_x / s_tools->transform_y));
-		calcualte_sprite_h(s_tools, cub3d);
-		calcualte_sprite_w(s_tools, cub3d);
-		draw_sprite(s_tools, cub3d, text);
+		s_tools.transform_x = s_tools.inv_det * (player->dir_y *
+			s_tools.sprite_x - player->dir_x * s_tools.sprite_y);
+		s_tools.transform_y = s_tools.inv_det * (-player->plane_y *
+			s_tools.sprite_x + player->plane_x * s_tools.sprite_y);
+		s_tools.sprite_screen_x = (int)((cub3d->screen_w / 2) *
+			(1 + s_tools.transform_x / s_tools.transform_y));
+		calcualte_sprite_h(&s_tools, cub3d);
+		calcualte_sprite_w(&s_tools, cub3d);
+		draw_sprite(&s_tools, cub3d, text);
 	}
 	return (1);
 }

@@ -43,9 +43,11 @@ int		extract_sprite(t_cub3d *cub3d)
 
 	l = 0;
 	x = 0;
+	count_sprite(cub3d);
 	if (!(cub3d->sprite = (malloc(cub3d->sprite_nb * sizeof(t_sprite)))))
 		ft_error("Fallo malloc sprite");
-	count_sprite(cub3d);
+	if (!(cub3d->sprite_order = (int *)malloc(cub3d->sprite_nb * sizeof(int))))
+		ft_error("Fallo en malloc sprite_order");
 	while (cub3d->map[x])
 	{
 		y = 0;

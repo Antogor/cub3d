@@ -42,7 +42,7 @@ int		run_game(t_cub3d *cub3d)
 	ft_keys(cub3d);
 	raycast_fc(cub3d, cub3d->text, cub3d->mlx, cub3d->player);
 	raycasting(cub3d, cub3d->raycast, cub3d->player);
-	raycast_sprite(cub3d, cub3d->tools_s, cub3d->text, cub3d->player);
+	raycast_sprite(cub3d, cub3d->text, cub3d->player);
 	mlx_put_image_to_window(cub3d->mlx->mlx_ptr,
 		cub3d->mlx->window, cub3d->mlx->img, 0, 0);
 	return (0);

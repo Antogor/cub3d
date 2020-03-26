@@ -134,8 +134,8 @@ typedef struct	s_lib_text
 
 typedef struct	s_lib_sprite
 {
-	float		sprite_x;
-	float		sprite_y;
+	double		sprite_x;
+	double		sprite_y;
 }				t_sprite;
 
 typedef struct	s_lib_spritetools
@@ -251,7 +251,6 @@ int				extract_txt_fc(char *s, t_text *text);
 int				extract_sprite(t_cub3d *cub3d);
 int				raycast_fc(t_cub3d *cub3d, t_text *text, t_mlx *mlx,
 				t_player *player);
-int				raycast_sprite(t_cub3d *cub3d, t_spritetools *s_tools, t_text *text,
-				t_player *player);
+int				raycast_sprite(t_cub3d *cub3d, t_text *text, t_player *player);
 void			ft_error(char *s);
 #endif
