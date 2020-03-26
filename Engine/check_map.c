@@ -62,8 +62,8 @@ int	determinate_pos(t_cub3d *cub3d, int f, int f2, int c, char **tmp)
 		tmp[f][c] == 'W' || tmp[f][c] == 'E')
 	{
 		cub3d->dir_player = tmp[f][c];
-		cub3d->player->pos_x = (double)f2;
-		cub3d->player->pos_y = (double)c;
+		cub3d->player->pos_x = (double)f2 + 0.5;
+		cub3d->player->pos_y = (double)c + 0.5;
 		cub3d->map[f2][c] = '0';
 		cub3d->a = 1;
 		return (1);
