@@ -19,7 +19,7 @@ int		init_game(int argc, char **argv, t_cub3d *cub3d)
 		if (ft_strnstr(argv[1], ".cub", ft_strlen(argv[1])))
 			ft_map(argv, cub3d);
 		else
-			ft_error("Inserte mapa");
+			ft_error("Insert map");
 	}
 	else if (argc == 3)
 	{
@@ -27,10 +27,10 @@ int		init_game(int argc, char **argv, t_cub3d *cub3d)
 			ft_strnstr(argv[2], "--save", ft_strlen(argv[2])))
 		{
 			ft_map(argv, cub3d);
-			printf("save");
+			save_bitmap("screen_shoot.bmp", cub3d);
 		}
 		else
-			ft_error("Mapa o argumento invalido");
+			ft_error("Insert map and command --save");
 		return(0);
 	}
 	return(0);
@@ -51,12 +51,12 @@ int		run_game(t_cub3d *cub3d)
 void	pre_run(t_cub3d *cub3d, t_mlx *mlx)
 {
 	if (!(mlx->mlx_ptr = mlx_init()))
-		ft_error("Fallo al iniciar mlx");
+		ft_error("FAIL to init mlx");
 	mlx->window = mlx_new_window(mlx->mlx_ptr,
 		cub3d->screen_w, cub3d->screen_h, "cub3D");
 	if (!(mlx->img = mlx_new_image(mlx->mlx_ptr, cub3d->screen_w,
 		cub3d->screen_h)))
-		ft_error("Fallo al crear imagen");
+		ft_error("FAIL to create image");
 	mlx->img_data = (int*)mlx_get_data_addr(mlx->img,
 		&mlx->bpp, &mlx->size_l, &mlx->endian);
 	extract_textures(cub3d->text, cub3d->mlx);
@@ -81,12 +81,6 @@ int		main(int argc, char **argv)
 		pre_run(cub3d, cub3d->mlx);
 	}
 	else
-		ft_error("Los dioses no lo permiten");
-	free(cub3d->player);
-	free(cub3d->mlx);
-	free(cub3d->raycast);
-	free(cub3d->color);
-	free(cub3d->text);
-	free(cub3d);
+		ft_error("Not a valid command");
 	return (0);
 }

@@ -69,7 +69,7 @@ int	determinate_pos(t_cub3d *cub3d, int f, int f2, int c, char **tmp)
 		return (1);
 	}
 	else
-		ft_error("No hay jugador");
+		ft_error("No player found");
 	return (0);
 }
 
@@ -83,15 +83,13 @@ void	map_data(char **tmp, t_cub3d *cub3d)
 	{
 		if (!(cub3d->map[f] = (char *)malloc(sizeof(char) *
 							ft_strlen(tmp[cub3d->count]) + 1)))
-			ft_error("Fallo en malloc");
+			ft_error("Couldn't reserve map memory");
 		c = 0;
 		while (tmp[cub3d->count][c])
 		{
+			cub3d->map[f][c] = tmp[cub3d->count][c];
 			if (ft_isalpha(tmp[cub3d->count][c]))
 				determinate_pos(cub3d, cub3d->count, f, c, tmp);
-			if (tmp[cub3d->count][c] == '1' || tmp[cub3d->count][c] == '0' ||
-				tmp[cub3d->count][c] == '2')
-				cub3d->map[f][c] = tmp[cub3d->count][c];
 			c++;
 		}
 		cub3d->map[f][c] = '\0';
@@ -106,11 +104,13 @@ int	check_map(char **tmp, t_cub3d *cub3d)
 	cub3d->a = 0;
 	if (!(cub3d->map = (char **)malloc(sizeof(char *) *
 		cub3d->map_h + 1)))
-		ft_error("Fallo en malloc");
+		ft_error("Couldn't reserve map memory");
 	map_data(tmp, cub3d);
 	if (!cub3d->a)
-		ft_error("No hay jugador");
-	extract_sprite(cub3d);
+		ft_error("No player found");
+//	is_a_close_map(cub3d->map, (int)cub3d->player->pos_x,
+//				(int)cub3d->player->pos_y, cub3d->map_h);
+	extract_sprite(cub3d);            
 	extract_pos(cub3d, cub3d->player);
 	return (0);
 }

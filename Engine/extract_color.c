@@ -17,11 +17,11 @@ int	extract_floor(char *s, t_color *color)
 	if ((color->color_floor = ft_split(s, ' ')))
 	{
 		if (!(color->color_r = ft_atoi(color->color_floor[1])))
-			ft_error("Fallo floor red");
+			ft_error("FLOOR RED ERROR");
 		if (!(color->color_g = ft_atoi(color->color_floor[2])))
-			ft_error("Fallo floor green");
+			ft_error("FLOOR GREEN ERROR");
 		if (!(color->color_b = ft_atoi(color->color_floor[3])))
-			ft_error("Fallo floor blue");
+			ft_error("FLOOR BLUE ERROR");
 		color->floor = create_trgb(0, color->color_r, color->color_g,
 			color->color_b);
 		return (1);
@@ -38,11 +38,11 @@ int	extract_color(char *s, t_color *color)
 		if ((color->color_celling = ft_split(s, ' ')))
 		{
 			if (!(color->color_r = ft_atoi(color->color_celling[1])))
-				ft_error("Fallo celing red");
+				ft_error("CELING RED ERROR");
 			if (!(color->color_g = ft_atoi(color->color_celling[2])))
-				ft_error("Fallo celing green");
+				ft_error("CELING GREEN EROR");
 			if (!(color->color_b = ft_atoi(color->color_celling[3])))
-				ft_error("Fallo celing blue");
+				ft_error("CELING BLUE ERROR");
 			color->celling = create_trgb(0, color->color_r, color->color_g,
 				color->color_b);
 			return (1);

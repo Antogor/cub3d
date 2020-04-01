@@ -12,10 +12,11 @@
 
 #include "../cub3d.h"
 
-int	exit_button(int key, t_cub3d *cub3d)
+int	exit_button(t_cub3d *cub3d)
 {
-	(void)cub3d;
-	exit(key);
+	close_game(cub3d);
+//	(void)cub3d;
+//	exit(key);
 	return (1);
 }
 

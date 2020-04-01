@@ -79,7 +79,8 @@ int	up_down(int key, t_cub3d *cub3d)
 
 	player = cub3d->player;
 	if (key == ESC)
-		exit(ESC);
+		close_game(cub3d);
+//		exit(ESC);
 	if (key == W)
 	{
 		if (can_move(cub3d->map[(int)(player->pos_x + player->dir_x *

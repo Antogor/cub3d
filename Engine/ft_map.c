@@ -32,12 +32,12 @@ int		extract_data(char *str, t_cub3d *cub3d)
 		return(check_data(str, cub3d));
 	else if (ft_strnstr(str, "FT ", 3) || ft_strnstr(str, "CT ", 3))
 		return(extract_txt_fc(str, cub3d->text));
-	else if (ft_strnstr(str, "1", 1))
+	else if (str[0] == '1' || str[0] == 32 || str[0] == '\t')
 		return (2);
 	else if (str[0] == '\0')
 		return (1);
 	else
-		ft_error("Mapa no valido");
+		ft_error("Not a valid map");
 	return(0);
 }
 
@@ -71,7 +71,7 @@ void		gnl_2(t_cub3d *cub3d)
 	l = 0;
 	if (!(tmp = (char **)malloc(sizeof(char *) *
 		(cub3d->count + cub3d->count_rows) + 1)))
-		ft_error("Fallo en malloc");
+		ft_error("Couldn't reserve memory");
 	while (get_next_line(cub3d->fd, &tmp[l]) > 0)
 		l++;
 	tmp[l] = NULL;
@@ -83,12 +83,12 @@ int		ft_map(char **argv, t_cub3d *cub3d)
 {
 
 	if (!(cub3d->fd = open(argv[1], O_RDONLY)))
-		ft_error("No se pudo abrir el mapa");
+		ft_error("Couldn't open .cub");
 	gnl_1(cub3d);
 	close(cub3d->fd);
 	cub3d->map_h = cub3d->count_rows;
 	if (!(cub3d->fd = open(argv[1], O_RDONLY)))
-		ft_error("No se pudo abrir el mapa");
+		ft_error("Couldn't open .cub");
 	gnl_2(cub3d);
 	close(cub3d->fd);
 	return (1);

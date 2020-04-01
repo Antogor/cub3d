@@ -8,3 +8,5 @@ a.out
 /cub3D.dSYM
 *.swp
 /.vs
+results.txt
+*.bmp

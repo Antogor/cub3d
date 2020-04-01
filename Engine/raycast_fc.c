@@ -18,8 +18,10 @@ void	choose_color(t_color *color, t_text *text, int txc, int tyc)
 	{
 		text->colorc = (int)text->text_d_celing[text->text_celing_w * tyc +
 			txc];
+		text->colorc = text->colorc >> 1 & 8355711;
 		text->colorf = (int)text->text_d_floor[text->text_floor_w * text->ty +
 			text->tx];
+		text->colorf = text->colorf >> 1 & 8355711;
 	}
 	else
 	{
