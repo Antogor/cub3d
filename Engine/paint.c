@@ -29,6 +29,8 @@ void	paint(t_cub3d *cub3d, t_raycast *raycast, t_text *text, t_mlx *mlx)
 	while (y < raycast->draw_end)
 	{
 		text->colortxt = tx[text->text + (int)pos * text->text_sl / 4];
+		if (raycast->side == 1)
+			text->colortxt = text->colortxt >> 1 & 8355711;
 		mlx->img_data[raycast->x + y * mlx->size_l / 4] = text->colortxt;
 		pos += step;
 		y++;

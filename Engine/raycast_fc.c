@@ -1,25 +1,27 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   raycast_fc.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/02 14:36:55 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/03/09 11:14:23 by agarzon-         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+		/* ************************************************************************** */
+		/*                                                                            */
+		/*                                                        :::      ::::::::   */
+		/*   raycast_fc.c                                       :+:      :+:    :+:   */
+		/*                                                    +:+ +:+         +:+     */
+		/*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
+		/*                                                +#+#+#+#+#+   +#+           */
+		/*   Created: 2020/03/02 14:36:55 by agarzon-          #+#    #+#             */
+		/*   Updated: 2020/03/09 11:14:23 by agarzon-         ###   ########.fr       */
+		/*                                                                            */
+		/* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	choose_color(t_color *color, t_text *text)
+void	choose_color(t_color *color, t_text *text, int txc, int tyc)
 {
 	if (text->text_floor && text->text_celing)
 	{
-		text->colorc = (int)text->text_d_celing[text->ty * text->text_celing_w +
+		text->colorc = (int)text->text_d_celing[text->text_celing_w * tyc +
+			txc];
+		text->colorc = text->colorc >> 1 & 8355711;
+		text->colorf = (int)text->text_d_floor[text->text_floor_w * text->ty +
 			text->tx];
-		text->colorf = (int)text->text_d_floor[text->ty * text->text_floor_w +
-			text->tx];
+		text->colorf = text->colorf >> 1 & 8355711;
 	}
 	else
 	{
@@ -28,25 +30,31 @@ void	choose_color(t_color *color, t_text *text)
 	}
 }
 
-void	put_fc(t_cub3d *cub3d, t_text *text, t_mlx *mlx, int y)
+void	put_fc(t_cub3d *cub3d, t_text *text, t_mlx *mlx, int *y)
 {
 	int x;
+	int txc;
+	int tyc;
 
 	x = 0;
 	while (x < cub3d->screen_w)
 	{
 		text->cell_x = (int)text->floor_x;
 		text->cell_y = (int)text->floor_y;
-		text->tx = (int)(text->text_floor_w * (text->floor_x - text->cell_x)) &
-			(text->text_floor_w - 1);
-		text->ty = (int)(text->text_floor_h * (text->floor_y - text->cell_y)) &
-			(text->text_floor_h - 1);
+		text->tx = (int)(128 * (text->floor_x - text->cell_x)) &
+			(128 - 1);
+		text->ty = (int)(128 * (text->floor_y - text->cell_y)) &
+			(128 - 1);
+		txc = (int)(128 * (text->floor_x - text->cell_x)) &
+			(128 - 1);
+		tyc = (int)(128 * (text->floor_y - text->cell_y)) &
+			(128 - 1);
 		text->floor_x += text->floorstep_x;
 		text->floor_y += text->floorstep_y;
-		choose_color(cub3d->color, text);
-		mlx->img_data[y * cub3d->screen_w + x] = text->colorc;
-		mlx->img_data[(cub3d->screen_h - y - 1) * cub3d->screen_w + x] =
-			text->colorf;
+		choose_color(cub3d->color, text, txc, tyc);
+		mlx->img_data[*y * cub3d->screen_w + x] = text->colorf;
+		mlx->img_data[(cub3d->screen_h - *y - 1) * cub3d->screen_w + x] =
+			text->colorc;
 		x++;
 	}
 }
@@ -72,8 +80,9 @@ int		raycast_fc(t_cub3d *cub3d, t_text *text, t_mlx *mlx,
 			/ cub3d->screen_w;
 		text->floor_x = player->pos_x + text->row_dist * text->raydir_x0;
 		text->floor_y = player->pos_y + text->row_dist * text->raydir_y0;
-		put_fc(cub3d, text, mlx, y);
+		put_fc(cub3d, text, mlx, &y);
 		y++;
+		
 	}
 	return (1);
 }

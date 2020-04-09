@@ -1,0 +1,21 @@
+R 860 480
+
+NO ./textures/Bricks.xpm
+SO ./textures/Bricks.xpm
+WE ./textures/theroom.xpm
+EA ./textures/Wood.xpm
+
+S ./textures/Sprites/pillar.xpm
+F 184, 113, 39
+C 51, 198, 227
+
+CT ./textures/Iron.xpm
+FT ./textures/Bricks.xpm
+
+111111111
+1001020001111
+111	100001000 
+11010E002010		 
+110000001111
+101011111	
+1111	

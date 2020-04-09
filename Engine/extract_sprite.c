@@ -19,45 +19,49 @@ int	count_sprite(t_cub3d *cub3d)
 
 	y = 0;
 	cub3d->sprite_nb = 0;
-	while(y < cub3d->map_h)
+	while (cub3d->map[y])
 	{
 		x = 0;
-		while (x < cub3d->map_w)
+		while (cub3d->map[y][x])
 		{
 			if (cub3d->map[y][x] == '2')
-			{
 				cub3d->sprite_nb++;
-			}
 			x++;
 		}
 		y++;
 	}
+	if (!cub3d->sprite_nb)
+		ft_error("No sprite found");
 	return (1);
 }
 
-int	extract_sprite(t_cub3d *cub3d)
+int		extract_sprite(t_cub3d *cub3d)
 {
-	int	y;
-	int	x;
-	int l;
+	int			y;
+	int			x;
+	int			l;
 
 	l = 0;
-	y = 0;
+	x = 0;
 	count_sprite(cub3d);
-	cub3d->sprite = malloc(cub3d->sprite_nb * sizeof(t_sprite));
-	while (y < cub3d->map_h)
+	if (!(cub3d->sprite = (malloc(cub3d->sprite_nb * sizeof(t_sprite)))))
+		ft_error("Couldn't reserve sprite memory");
+	if (!(cub3d->sprite_order = (int *)malloc(cub3d->sprite_nb * sizeof(int))))
+		ft_error("Couldn't reserve memory");
+	while (cub3d->map[x])
 	{
-		x = 0;
-		while (x < cub3d->map_w)
+		y = 0;
+		while (cub3d->map[x][y])
 		{
-			if (cub3d->map[y][x] == '2')
+			if (cub3d->map[x][y] == '2')
 			{
 				cub3d->sprite[l].sprite_x = x;
-				cub3d->sprite[l++].sprite_y = y;
+				cub3d->sprite[l].sprite_y = y;
+				l++;
 			}
-			x++;
+			y++;
 		}
-		y++;
+		x++;
 	}
 	return (1);
 }

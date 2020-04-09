@@ -45,7 +45,7 @@ int	rotation(int key, t_player *player)
 
 int	can_move(char pos)
 {
-	if (pos == '1' || pos == '2')
+	if (pos == '1' || pos == '4')
 		return (0);
 	return (1);
 }
@@ -54,21 +54,21 @@ int	left_right(int key, t_cub3d *cub3d, t_player *player)
 {
 	if (key == D)
 	{
-		if (can_move(cub3d->map[(int)player->pos_y][(int)(player->pos_x +
-			player->dir_y * player->speed)]))
-			player->pos_x += player->dir_y * player->speed;
-		if (can_move(cub3d->map[(int)(player->pos_y - player->dir_x *
-			player->speed)][(int)player->pos_x]))
-			player->pos_y -= player->dir_x * player->speed;
+		if (can_move(cub3d->map[(int)player->pos_x][(int)(player->pos_y +
+			player->dir_x * player->speed)]))
+			player->pos_y += player->dir_x * player->speed;
+		if (can_move(cub3d->map[(int)(player->pos_x - player->dir_y *
+			player->speed)][(int)player->pos_y]))
+			player->pos_x -= player->dir_y * player->speed;
 	}
 	else if (key == A)
 	{
-		if (can_move(cub3d->map[(int)player->pos_y][(int)(player->pos_x -
-			player->dir_y * player->speed)]))
-			player->pos_x -= player->dir_y * player->speed;
-		if (can_move(cub3d->map[(int)(player->pos_y + player->dir_x *
-			player->speed)][(int)player->pos_x]))
-			player->pos_y += player->dir_x * player->speed;
+		if (can_move(cub3d->map[(int)player->pos_x][(int)(player->pos_y -
+			player->dir_x * player->speed)]))
+			player->pos_y -= player->dir_x * player->speed;
+		if (can_move(cub3d->map[(int)(player->pos_x + player->dir_y *
+			player->speed)][(int)player->pos_y]))
+			player->pos_x += player->dir_y * player->speed;
 	}
 	return (0);
 }
@@ -79,24 +79,25 @@ int	up_down(int key, t_cub3d *cub3d)
 
 	player = cub3d->player;
 	if (key == ESC)
-		exit(ESC);
+		close_game(cub3d);
+//		exit(ESC);
 	if (key == W)
 	{
-		if (can_move(cub3d->map[(int)(player->pos_y + player->dir_y *
-			player->speed)][(int)player->pos_x]))
-			player->pos_y += player->dir_y * player->speed;
-		if (can_move(cub3d->map[(int)player->pos_y][(int)(player->pos_x +
-			player->dir_x * player->speed)]))
+		if (can_move(cub3d->map[(int)(player->pos_x + player->dir_x *
+			player->speed)][(int)player->pos_y]))
 			player->pos_x += player->dir_x * player->speed;
+		if (can_move(cub3d->map[(int)player->pos_x][(int)(player->pos_y +
+			player->dir_y * player->speed)]))
+			player->pos_y += player->dir_y * player->speed;
 	}
 	else if (key == S)
 	{
-		if (can_move(cub3d->map[(int)(player->pos_y - player->dir_y *
-			player->speed)][(int)player->pos_x]))
-			player->pos_y -= player->dir_y * player->speed;
-		if (can_move(cub3d->map[(int)player->pos_y][(int)(player->pos_x -
-			player->dir_x * player->speed)]))
+		if (can_move(cub3d->map[(int)(player->pos_x - player->dir_x *
+			player->speed)][(int)player->pos_y]))
 			player->pos_x -= player->dir_x * player->speed;
+		if (can_move(cub3d->map[(int)player->pos_x][(int)(player->pos_y -
+			player->dir_y * player->speed)]))
+			player->pos_y -= player->dir_y * player->speed;
 	}
 	left_right(key, cub3d, player);
 	rotation(key, player);
@@ -106,6 +107,6 @@ int	up_down(int key, t_cub3d *cub3d)
 int	movement(t_cub3d *cub3d)
 {
 	cub3d->player->speed = 0.5;
-	mlx_hook(cub3d->mlx->window, 2, (1L << 0), up_down, cub3d);
+	mlx_hook(cub3d->mlx->window, 2, (1L<<0), up_down, cub3d);
 	return (0);
 }

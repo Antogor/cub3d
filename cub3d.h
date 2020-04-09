@@ -21,9 +21,9 @@
 # define ESC 53
 
 # if defined(_APPLE_)
-#  include "key_macos.h"
+#  include "./srcs/key_macos.h"
 # else
-#  include "key_linux.h"
+#  include "./srcs/key_linux.h"
 # endif
 
 # include <stdlib.h>
@@ -34,8 +34,8 @@
 # include <math.h>
 # include <mlx.h>
 # include <X11/Xlib.h>
-# include "./libft/libft.h"
-# include "./GNL/get_next_line.h"
+# include "./srcs/libft/libft.h"
+# include "./srcs/GNL/get_next_line.h"
 
 typedef struct	s_lib_mlx
 {
@@ -208,28 +208,29 @@ typedef struct	s_libpalyer
 	int			down;
 }				t_player;
 
-typedef struct	s_lib_cub3d
+typedef struct		s_lib_cub3d
 {
-	char		*resolution;
-	int			screen_w;
-	int			screen_h;
-	char		dir_player;
-	char		**map;
-	int			map_w;
-	int			map_h;
-	int			fd;
-	int			count_rows;
-	int			count;
-	double		z_buffer[4000];
-	int			*sprite_order;
-	int			sprite_nb;
-	t_mlx		*mlx;
-	t_color		*color;
-	t_raycast	*raycast;
-	t_player	*player;
-	t_text		*text;
-	t_sprite	*sprite;
-}				t_cub3d;
+	char			*resolution;
+	int				screen_w;
+	int				screen_h;
+	char			dir_player;
+	char			**map;
+	int				a;
+	int				map_h;
+	int				fd;
+	int				count_rows;
+	int				count;
+	double			z_buffer[4000];
+	int				*sprite_order;
+	int				sprite_nb;
+	t_mlx			*mlx;
+	t_color			*color;
+	t_raycast		*raycast;
+	t_player		*player;
+	t_text			*text;
+	t_sprite		*sprite;
+	t_spritetools	*tools_s;
+}					t_cub3d;
 
 int				raycasting(t_cub3d *cub3d, t_raycast *raycast,
 				t_player *player);
@@ -242,7 +243,8 @@ int				movement(t_cub3d *cub3d);
 int				key_press(int key, t_cub3d *cub3d);
 int				key_release(int key, t_cub3d *cub3d);
 int				check_data(char *s, t_cub3d *cub3d);
-int				check_map(t_cub3d *cub3d);
+int				check_map(char **tmp, t_cub3d *cub3d);
+int				is_a_close_map(char **map, int x, int y, int limit);
 int				extract_color(char *s, t_color *color);
 int				extract_textures(t_text *text, t_mlx *mlx);
 int				choose_texture(t_cub3d *cub3d, t_text *text);
@@ -250,7 +252,8 @@ int				extract_txt_fc(char *s, t_text *text);
 int				extract_sprite(t_cub3d *cub3d);
 int				raycast_fc(t_cub3d *cub3d, t_text *text, t_mlx *mlx,
 				t_player *player);
-int				raycast_sprite(t_cub3d *cub3d, t_sprite *sprite, t_text *text,
-				t_player *player);
-
+int				raycast_sprite(t_cub3d *cub3d, t_text *text, t_player *player);
+void			ft_error(char *s);
+void			save_bitmap(const char *file_name, t_cub3d *cub);
+void			close_game(t_cub3d *cub3d);
 #endif

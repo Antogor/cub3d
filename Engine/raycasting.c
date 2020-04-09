@@ -67,9 +67,9 @@ void	wall_dist(t_raycast *raycast, t_player *player, t_text *text)
 	if (raycast->side == 0)
 	{
 		if (raycast->map_x < player->pos_x)
-			text->text_wall_dir = 'W';
+			text->text_wall_dir = 'N';
 		else
-			text->text_wall_dir = 'E';
+			text->text_wall_dir = 'S';
 		raycast->wall_dist = (raycast->map_x - player->pos_x +
 			(1 - raycast->step_x) / 2) / raycast->ray_dir_x;
 		raycast->wall_x = player->pos_y + raycast->wall_dist *
@@ -78,9 +78,9 @@ void	wall_dist(t_raycast *raycast, t_player *player, t_text *text)
 	else
 	{
 		if (raycast->map_y < player->pos_y)
-			text->text_wall_dir = 'N';
+			text->text_wall_dir = 'W';
 		else
-			text->text_wall_dir = 'S';
+			text->text_wall_dir = 'E';
 		raycast->wall_dist = (raycast->map_y - player->pos_y +
 			(1 - raycast->step_y) / 2) / raycast->ray_dir_y;
 		raycast->wall_x = player->pos_x + raycast->wall_dist *
@@ -91,7 +91,7 @@ void	wall_dist(t_raycast *raycast, t_player *player, t_text *text)
 
 void	calculate_line_height(t_cub3d *cub3d, t_raycast *raycast)
 {
-	raycast->line_height = (int)(2 * cub3d->screen_h / raycast->wall_dist);
+	raycast->line_height = (int)(cub3d->screen_h / raycast->wall_dist);
 	raycast->draw_start = (raycast->line_height * -1) / 2 + cub3d->screen_h / 2;
 	if (raycast->draw_start <= 0)
 		raycast->draw_start = 0;
@@ -120,10 +120,9 @@ int		raycasting(t_cub3d *cub3d, t_raycast *raycast, t_player *player)
 		calculate_side(raycast, player);
 		hit_wall(cub3d, raycast);
 		wall_dist(raycast, player, cub3d->text);
-		cub3d->z_buffer[raycast->x] = raycast->wall_dist;
 		calculate_line_height(cub3d, raycast);
 		paint(cub3d, raycast, cub3d->text, cub3d->mlx);
-	//	raycast_fc(cub3d, cub3d->text, cub3d->mlx, cub3d->player);
+		cub3d->z_buffer[raycast->x] = raycast->wall_dist;
 		raycast->x++;
 	}
 	return (0);
