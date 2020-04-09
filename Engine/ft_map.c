@@ -67,6 +67,7 @@ void		gnl_2(t_cub3d *cub3d)
 {
 	int		l;
 	char	**tmp;
+	char	**tmp2;
 
 	l = 0;
 	if (!(tmp = (char **)malloc(sizeof(char *) *
@@ -81,13 +82,12 @@ void		gnl_2(t_cub3d *cub3d)
 
 int		ft_map(char **argv, t_cub3d *cub3d)
 {
-
-	if (!(cub3d->fd = open(argv[1], O_RDONLY)))
+	if ((cub3d->fd = open(argv[1], O_RDONLY)) < 0)
 		ft_error("Couldn't open .cub");
 	gnl_1(cub3d);
 	close(cub3d->fd);
 	cub3d->map_h = cub3d->count_rows;
-	if (!(cub3d->fd = open(argv[1], O_RDONLY)))
+	if ((cub3d->fd = open(argv[1], O_RDONLY)) < 0)
 		ft_error("Couldn't open .cub");
 	gnl_2(cub3d);
 	close(cub3d->fd);

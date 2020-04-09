@@ -1,22 +1,21 @@
-R 848 480
-
+R 860 480
 NO ./textures/Bricks.xpm
 SO ./textures/Bricks.xpm
 WE ./textures/Wood.xpm
 EA ./textures/Wood.xpm
 
-S ./textures/Sprites/pillar.xpm
+S ./textures/Sprites/barrel.xpm
 F 184, 113, 39
 C 51, 198, 227
 
-CT ./textures/cthulhu.xpm
-FT ./textures/Glass.xpm
+FT ./textures/Bricks.xpm
+CT ./textures/Wood.xpm
 
 1111111111
+10000000011111
+100000020000001
+10000N00000001
+1000002001111
 1000000001
-1010000201
-10100S0001
-1000000001
-1000002001
 1000000001
 1111111111

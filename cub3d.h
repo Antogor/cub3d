@@ -21,9 +21,9 @@
 # define ESC 53
 
 # if defined(_APPLE_)
-#  include "key_macos.h"
+#  include "./srcs/key_macos.h"
 # else
-#  include "key_linux.h"
+#  include "./srcs/key_linux.h"
 # endif
 
 # include <stdlib.h>
@@ -34,8 +34,8 @@
 # include <math.h>
 # include <mlx.h>
 # include <X11/Xlib.h>
-# include "./libft/libft.h"
-# include "./GNL/get_next_line.h"
+# include "./srcs/libft/libft.h"
+# include "./srcs/GNL/get_next_line.h"
 
 typedef struct	s_lib_mlx
 {

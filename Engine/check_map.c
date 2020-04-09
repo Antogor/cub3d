@@ -65,7 +65,10 @@ int	determinate_pos(t_cub3d *cub3d, int f, int f2, int c, char **tmp)
 		cub3d->player->pos_x = (double)f2 + 0.5;
 		cub3d->player->pos_y = (double)c + 0.5;
 		cub3d->map[f2][c] = '0';
-		cub3d->a = 1;
+		if (!cub3d->a)
+			cub3d->a = 1;
+		else
+			cub3d->a = 2;
 		return (1);
 	}
 	else
@@ -108,9 +111,11 @@ int	check_map(char **tmp, t_cub3d *cub3d)
 	map_data(tmp, cub3d);
 	if (!cub3d->a)
 		ft_error("No player found");
-//	is_a_close_map(cub3d->map, (int)cub3d->player->pos_x,
-//				(int)cub3d->player->pos_y, cub3d->map_h);
-	extract_sprite(cub3d);            
+	else if (cub3d->a == 2)
+		ft_error("Only allowed one player");
+	extract_sprite(cub3d);
 	extract_pos(cub3d, cub3d->player);
+	is_a_close_map(cub3d->map, (int)cub3d->player->pos_x,
+				(int)cub3d->player->pos_y, cub3d->map_h);
 	return (0);
 }

@@ -45,7 +45,7 @@ int	rotation(int key, t_player *player)
 
 int	can_move(char pos)
 {
-	if (pos == '1' || pos == '2')
+	if (pos == '1' || pos == '4')
 		return (0);
 	return (1);
 }

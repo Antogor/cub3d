@@ -1,38 +1,20 @@
 #include "../cub3d.h"
 
-int		borderline(char **map, int x, int y)
-{
-	if ((map[x - 1][y] == '1' || map[x - 1][y] == '0' || map[x - 1][y] == '2')
-		&& (map[x + 1][y] == '1'|| map[x + 1][y] == '0' || map[x + 1][y] == '2')
-		&& (map[x][y - 1] == '1' || map[x][y - 1] == '0' ||
-		map[x][y - 1] == '2') && (map[x][y + 1] == '1' ||
-		map[x][y + 1] == '0' || map[x][y + 1] == '2'))
-		return(1);
-	else
-		return(0);
-}
-
 int		is_a_close_map(char **map, int x, int y, int limit)
 {
-	int l;
-	int q;
-
-	if (map[x][y] == '0' || map[x][y] == '2' || map[x][y] == '1')
-	{
-		l = borderline(map, x, y);
-		if(l == 0)
-			ft_error("Not a valid map");
-	}
-	if (x < 0 || y < 0)
-		return(1);
-	if (x < limit)
-		x += 1;
-	else if (x == limit)
-		x -= 1;
-	else if (y < ft_strlen(map[x]))
-		y += 1;
-	else if (y == ft_strlen(map[x]))
-		y -= 1;
-	is_a_close_map(map, x, y, limit);
+	if (map[x][y] == 32 || map[x][y] == 9 || map[x][y] == 0)
+		ft_error("Not a valid map");
+	if (map[x][y] == '1' || map[x][y] == '8' || map[x][y] == '4')
+		return (1);
+	if ((x <= 0) || !map[x][y] || (y <= 0) || (x == limit))
+		ft_error("Not a valid map");
+	if (map[x][y] == '0')
+		map[x][y] = '8';
+	if (map[x][y] == '2')
+		map[x][y] = '4';
+	is_a_close_map(map, x + 1, y, limit);
+	is_a_close_map(map, x - 1, y, limit);
+	is_a_close_map(map, x, y + 1, limit);
+	is_a_close_map(map, x, y - 1, limit);
 	return(1);
 }
