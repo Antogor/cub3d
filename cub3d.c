@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:14:36 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/03/09 11:52:30 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/04/09 21:02:07 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int		init_game(int argc, char **argv, t_cub3d *cub3d)
 		}
 		else
 			ft_error("Insert map and command --save");
-		return(0);
+		return (0);
 	}
-	return(0);
+	return (0);
 }
 
 int		run_game(t_cub3d *cub3d)

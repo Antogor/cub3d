@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 12:30:05 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/03/09 11:37:42 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/04/09 21:21:05 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	extract_data_sprite(t_text *text, t_mlx *mlx)
 {
-	
 	if (!(text->text_ptr_sprite = mlx_xpm_file_to_image(mlx->mlx_ptr,
 		text->text_sprite, &text->text_sprite_w, &text->text_sprite_h)))
 		ft_error("FAIL to charge text sprite");

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_save.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/09 20:46:00 by agarzon-          #+#    #+#             */
+/*   Updated: 2020/04/09 20:47:51 by agarzon-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 void	int_to_char(unsigned char *c, int a)
@@ -25,8 +37,8 @@ int		bmp_header(int fd, int w, int h)
 	header[26] = (unsigned char)(1);
 	header[28] = (unsigned char)(24);
 	if (!(write(fd, header, 54)))
-		return(0);
-	return(1);
+		return (0);
+	return (1);
 }
 
 int		write_bmp(int fd, t_mlx *mlx, t_cub3d *cub)
@@ -36,14 +48,14 @@ int		write_bmp(int fd, t_mlx *mlx, t_cub3d *cub)
 	int	color;
 
 	y = cub->screen_h - 1;
-	while(y >= 0)
+	while (y >= 0)
 	{
 		x = 0;
-		while(x < cub->screen_w)
+		while (x < cub->screen_w)
 		{
 			color = mlx->img_data[x + y * mlx->size_l / 4];
 			if (!(write(fd, &color, 3)))
-				return(0);
+				return (0);
 			x++;
 		}
 		y--;

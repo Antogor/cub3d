@@ -6,13 +6,13 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 14:54:45 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/03/04 15:36:54 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/04/09 21:18:00 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	extract_we(t_cub3d *cub3d, t_player *player)
+int		extract_we(t_cub3d *cub3d, t_player *player)
 {
 	if (cub3d->dir_player == 'W')
 	{
@@ -33,7 +33,7 @@ int	extract_we(t_cub3d *cub3d, t_player *player)
 	return (0);
 }
 
-int	extract_pos(t_cub3d *cub3d, t_player *player)
+int		extract_pos(t_cub3d *cub3d, t_player *player)
 {
 	if (cub3d->dir_player == 'N')
 	{
@@ -56,13 +56,13 @@ int	extract_pos(t_cub3d *cub3d, t_player *player)
 	return (0);
 }
 
-int	determinate_pos(t_cub3d *cub3d, int f, int f2, int c, char **tmp)
+int		determinate_pos(t_cub3d *cub3d, int f, int c, char **tmp)
 {
 	if (tmp[f][c] == 'N' || tmp[f][c] == 'S' ||
 		tmp[f][c] == 'W' || tmp[f][c] == 'E')
 	{
 		cub3d->dir_player = tmp[f][c];
-		cub3d->player->pos_x = (double)f2 + 0.5;
+		cub3d->player->pos_x = (double)f + 0.5;
 		cub3d->player->pos_y = (double)c + 0.5;
 		cub3d->map[f2][c] = '0';
 		if (!cub3d->a)
@@ -102,7 +102,7 @@ void	map_data(char **tmp, t_cub3d *cub3d)
 	cub3d->map[f] = '\0';
 }
 
-int	check_map(char **tmp, t_cub3d *cub3d)
+int		check_map(char **tmp, t_cub3d *cub3d)
 {
 	cub3d->a = 0;
 	if (!(cub3d->map = (char **)malloc(sizeof(char *) *

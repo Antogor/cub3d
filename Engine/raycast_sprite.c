@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 11:53:50 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/03/09 17:19:54 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/04/09 20:55:57 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int		raycast_sprite(t_cub3d *cub3d, t_text *text, t_player *player)
 	{
 		s = cub3d->sprite[cub3d->sprite_order[l]];
 		s_tools.sprite_x = ((s.sprite_x + 0.5) - player->pos_x);
-		s_tools.sprite_y = ((s.sprite_y + 0.5)- player->pos_y);
+		s_tools.sprite_y = ((s.sprite_y + 0.5) - player->pos_y);
 		s_tools.inv_det = 1.0 / (player->plane_x * player->dir_y -
 			player->dir_x * player->plane_y);
 		s_tools.transform_x = s_tools.inv_det * (player->dir_y *

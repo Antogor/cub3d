@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 13:14:28 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/03/04 15:35:54 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/04/09 21:22:20 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ int	up_down(int key, t_cub3d *cub3d)
 	player = cub3d->player;
 	if (key == ESC)
 		close_game(cub3d);
-//		exit(ESC);
 	if (key == W)
 	{
 		if (can_move(cub3d->map[(int)(player->pos_x + player->dir_x *
@@ -107,6 +106,6 @@ int	up_down(int key, t_cub3d *cub3d)
 int	movement(t_cub3d *cub3d)
 {
 	cub3d->player->speed = 0.5;
-	mlx_hook(cub3d->mlx->window, 2, (1L<<0), up_down, cub3d);
+	mlx_hook(cub3d->mlx->window, 2, (1L << 0), up_down, cub3d);
 	return (0);
 }

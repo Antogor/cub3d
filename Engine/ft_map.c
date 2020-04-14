@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 10:43:55 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/03/06 14:13:34 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/04/09 21:00:56 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,30 @@
 int		extract_data(char *str, t_cub3d *cub3d)
 {
 	if (ft_strnstr(str, "R ", 2))
-		return(check_data(str, cub3d));
+		return (check_data(str, cub3d));
 	else if (ft_strnstr(str, "NO ", 3))
-		return(check_data(str, cub3d));
+		return (check_data(str, cub3d));
 	else if (ft_strnstr(str, "SO ", 3))
-		return(check_data(str, cub3d));
+		return (check_data(str, cub3d));
 	else if (ft_strnstr(str, "WE ", 3))
-		return(check_data(str, cub3d));
+		return (check_data(str, cub3d));
 	else if (ft_strnstr(str, "EA ", 3))
-		return(check_data(str, cub3d));
+		return (check_data(str, cub3d));
 	else if (ft_strnstr(str, "S ", 2))
-		return(check_data(str, cub3d));
+		return (check_data(str, cub3d));
 	else if (ft_strnstr(str, "F ", 2))
-		return(check_data(str, cub3d));
+		return (check_data(str, cub3d));
 	else if (ft_strnstr(str, "C ", 2))
-		return(check_data(str, cub3d));
+		return (check_data(str, cub3d));
 	else if (ft_strnstr(str, "FT ", 3) || ft_strnstr(str, "CT ", 3))
-		return(extract_txt_fc(str, cub3d->text));
+		return (extract_txt_fc(str, cub3d->text));
 	else if (str[0] == '1' || str[0] == 32 || str[0] == '\t')
 		return (2);
 	else if (str[0] == '\0')
 		return (1);
 	else
 		ft_error("Not a valid map");
-	return(0);
+	return (0);
 }
 
 void	gnl_1(t_cub3d *cub3d)
@@ -58,12 +58,12 @@ void	gnl_1(t_cub3d *cub3d)
 			cub3d->count_rows++;
 		}
 		else
-			cub3d->count++; 
+			cub3d->count++;
 	}
 	free(str);
 }
 
-void		gnl_2(t_cub3d *cub3d)
+void	gnl_2(t_cub3d *cub3d)
 {
 	int		l;
 	char	**tmp;

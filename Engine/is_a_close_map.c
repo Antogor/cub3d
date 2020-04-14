@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   is_a_close_map.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/04/09 20:52:32 by agarzon-          #+#    #+#             */
+/*   Updated: 2020/04/09 20:53:13 by agarzon-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
 int		is_a_close_map(char **map, int x, int y, int limit)
@@ -16,5 +28,5 @@ int		is_a_close_map(char **map, int x, int y, int limit)
 	is_a_close_map(map, x - 1, y, limit);
 	is_a_close_map(map, x, y + 1, limit);
 	is_a_close_map(map, x, y - 1, limit);
-	return(1);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 12:32:42 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/03/09 12:33:06 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/04/09 21:14:36 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	count_sprite(t_cub3d *cub3d)
 	return (1);
 }
 
-int		extract_sprite(t_cub3d *cub3d)
+int	extract_sprite(t_cub3d *cub3d)
 {
 	int			y;
 	int			x;
