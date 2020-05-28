@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "../libft/libft.h"
 
 static int	ft_comp_new_line(char **s, char **line)
 {

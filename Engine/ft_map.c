@@ -67,7 +67,6 @@ void	gnl_2(t_cub3d *cub3d)
 {
 	int		l;
 	char	**tmp;
-	char	**tmp2;
 
 	l = 0;
 	if (!(tmp = (char **)malloc(sizeof(char *) *

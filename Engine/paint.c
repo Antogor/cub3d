@@ -14,13 +14,11 @@
 
 void	paint(t_cub3d *cub3d, t_raycast *raycast, t_text *text, t_mlx *mlx)
 {
-	int		l;
 	int		*tx;
 	double	step;
 	double	pos;
 	int		y;
 
-	l = 0;
 	y = raycast->draw_start;
 	step = 1.0 * text->text_h / raycast->line_height;
 	pos = (raycast->draw_start - cub3d->screen_h / 2 + raycast->line_height / 2)

@@ -17,7 +17,7 @@ void	ft_putendl_fd(char *s, int fd)
 	int		l;
 
 	l = 0;
-	if (s != '\0')
+	if (*s != '\0')
 	{
 		while (s[l] != '\0')
 		{
