@@ -63,8 +63,8 @@ char	*ft_itoa(int n)
 	char	*new;
 	int		l;
 
-	if (n < -2147483648)
-		return (NULL);
+//	if (n < -2147483648)
+//		return (NULL);
 	l = ft_count_nb(n);
 	new = (char*)malloc(sizeof(char) * l + 1);
 	if (new == 0)
