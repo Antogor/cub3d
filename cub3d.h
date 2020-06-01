@@ -12,18 +12,28 @@
 
 #ifndef _CUB3D_H
 # define _CUB3D_H
-# define A 0
-# define W 13
-# define S 1
-# define D 2
-# define LEFT 123
-# define RIGTH 124
-# define ESC 53
 
-# if defined(_APPLE_)
-#  include "./srcs/key_macos.h"
-# else
-#  include "./srcs/key_linux.h"
+# ifdef __linux__
+#  define A 38
+#  define W 13
+#  define S 1
+#  define D 2
+#  define LEFT 123
+#  define RIGTH 124
+#  define ESC 1
+#  include <mlx.h>
+#  include <X11/Xlib.h>
+# endif
+
+# ifdef __APPLE__
+#  define A 0
+#  define W 13
+#  define S 1
+#  define D 2
+#  define LEFT 123
+#  define RIGTH 124
+#  define ESC 53
+#  include "Mlx/mlx.h"
 # endif
 
 # include <stdlib.h>
@@ -32,10 +42,7 @@
 # include <stdio.h>
 # include <string.h>
 # include <math.h>
-# include <mlx.h>
-# include <X11/Xlib.h>
 # include "./srcs/libft/libft.h"
-//# include "./srcs/GNL/get_next_line.h"
 
 typedef struct		s_lib_mlx
 {
