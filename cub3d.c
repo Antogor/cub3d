@@ -64,6 +64,7 @@ void	pre_run(t_cub3d *cub3d, t_mlx *mlx)
 	mlx_loop(mlx->mlx_ptr);
 }
 
+
 int		main(int argc, char **argv)
 {
 	t_cub3d *cub3d;
