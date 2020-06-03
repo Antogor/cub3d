@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:14:36 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/04/09 21:02:07 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/03 17:06:42 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	pre_run(t_cub3d *cub3d, t_mlx *mlx)
 	mlx_loop_hook(mlx->mlx_ptr, run_game, cub3d);
 	mlx_loop(mlx->mlx_ptr);
 }
-
 
 int		main(int argc, char **argv)
 {

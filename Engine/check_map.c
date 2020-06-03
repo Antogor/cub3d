@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 14:54:45 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/04/09 21:18:00 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/03 17:07:11 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ int		extract_pos(t_cub3d *cub3d, t_player *player)
 
 int		determinate_pos(t_cub3d *cub3d, int f, int c, char **tmp)
 {
-		printf("%c", tmp[f][c]);
 	if (tmp[f][c] == 'N' || tmp[f][c] == 'S' ||
 		tmp[f][c] == 'W' || tmp[f][c] == 'E')
 	{

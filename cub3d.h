@@ -6,36 +6,43 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:24:33 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/04/09 21:13:20 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/03 17:51:48 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef _CUB3D_H
 # define _CUB3D_H
 
-# ifdef __linux__
-#  define A 38
-#  define W 13
-#  define S 1
-#  define D 2
-#  define LEFT 123
-#  define RIGTH 124
-#  define ESC 1
-#  include <mlx.h>
-#  include <X11/Xlib.h>
-# endif
+//# ifdef __linux__
+//#  define A 97
+//#  define W 13
+//#  define S 1
+//#  define D 2
+//#  define LEFT 123
+//#  define RIGTH 124
+//#  define ESC 1
+//#  include </usr/local/include/mlx.h>
+//#  include <X11/Xlib.h>
+//# endif
+//
+//# ifdef __APPLE__
+//#  define A 0
+//#  define W 13
+//#  define S 1
+//#  define D 2
+//#  define LEFT 123
+//#  define RIGTH 124
+//#  define ESC 53
+//#  include "Mlx/mlx.h"
+//# endif
 
-# ifdef __APPLE__
-#  define A 0
-#  define W 13
-#  define S 1
-#  define D 2
-#  define LEFT 123
-#  define RIGTH 124
-#  define ESC 53
-#  include "Mlx/mlx.h"
-# endif
-
+# define A 97
+# define W 119
+# define S 115
+# define D 100
+# define LEFT 65361
+# define RIGTH 65363
+# define ESC 65307
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
@@ -43,6 +50,7 @@
 # include <string.h>
 # include <math.h>
 # include "./srcs/libft/libft.h"
+# include <mlx.h>
 
 typedef struct		s_lib_mlx
 {

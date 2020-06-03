@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 13:14:28 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/04/09 21:22:20 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/03 17:48:23 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,12 @@ int	up_down(int key, t_cub3d *cub3d)
 	t_player *player;
 
 	player = cub3d->player;
+	printf("AAAAAA\n");
 	if (key == ESC)
 		close_game(cub3d);
 	if (key == W)
 	{
+		printf("AAAAAA\n");
 		if (can_move(cub3d->map[(int)(player->pos_x + player->dir_x *
 			player->speed)][(int)player->pos_y]))
 			player->pos_x += player->dir_x * player->speed;
@@ -106,6 +108,7 @@ int	up_down(int key, t_cub3d *cub3d)
 int	movement(t_cub3d *cub3d)
 {
 	cub3d->player->speed = 0.5;
-	mlx_hook(cub3d->mlx->window, 2, (1L << 0), up_down, cub3d);
+	//mlx_hook(cub3d->mlx->window, 2, 1L << 0, up_down, cub3d);
+	mlx_key_hook(cub3d->mlx->window, up_down, cub3d);
 	return (0);
 }
