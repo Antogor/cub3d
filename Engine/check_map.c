@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 14:54:45 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/03 17:07:11 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/03 20:57:49 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	map_data(char **tmp, t_cub3d *cub3d)
 		f++;
 		cub3d->count++;
 	}
-	cub3d->map[f] = '\0';
+	cub3d->map[f] = "\0";
 }
 
 int		check_map(char **tmp, t_cub3d *cub3d)
