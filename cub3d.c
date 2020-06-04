@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:14:36 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/03 17:06:42 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/04 12:53:31 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		run_game(t_cub3d *cub3d)
 	movement(cub3d);
 	ft_keys(cub3d);
 	raycast_fc(cub3d, cub3d->text, cub3d->mlx, cub3d->player);
-	raycasting(cub3d, cub3d->raycast, cub3d->player);
+	raycasting(cub3d, /*cub3d->raycast,*/ cub3d->player);
 	raycast_sprite(cub3d, cub3d->text, cub3d->player);
 	mlx_put_image_to_window(cub3d->mlx->mlx_ptr,
 		cub3d->mlx->window, cub3d->mlx->img, 0, 0);
@@ -72,7 +72,7 @@ int		main(int argc, char **argv)
 	if (argc >= 2)
 	{
 		cub3d->player = (t_player *)malloc(sizeof(t_player));
-		cub3d->raycast = (t_raycast *)malloc(sizeof(t_raycast));
+//		cub3d->raycast = (t_raycast *)malloc(sizeof(t_raycast));
 		cub3d->color = (t_color *)malloc(sizeof(t_color));
 		cub3d->mlx = (t_mlx *)malloc(sizeof(t_mlx));
 		cub3d->text = (t_text *)malloc(sizeof(t_text));
@@ -84,3 +84,4 @@ int		main(int argc, char **argv)
 		ft_error("Not a valid command");
 	return (0);
 }
+

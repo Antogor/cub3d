@@ -35,7 +35,7 @@ $(LIBFT):
 $(MLX):
 	@$(MAKE) -C $(MLX_CC)
 
-$(NAME): $(OBJ) $(LIBFT) $(MLX) cub3d.h
+$(NAME): $(OBJ) $(LIBFT) $(MLX) cub3d.h 
 	@$(FLAGS) $(FUN) $(LIBFT) $(MLX) -Lsrcs/libft -lft -L$(MLX_CC) -lmlx $(MINILIBX) -o $(NAME)
 
 clean:

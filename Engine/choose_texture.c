@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   chose_texture.c                                    :+:      :+:    :+:   */
+/*   choose_texture.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 12:21:12 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/03/04 15:18:59 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/04 13:04:52 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	calculate_text(t_text *text, t_raycast *raycast)
+int	calculate_text(t_text *text, t_raycast rayc)
 {
-	text->text = (int)(raycast->wall_x * (double)text->text_wi);
-	if (raycast->side == 0 && raycast->ray_dir_x > 0)
+	text->text = (int)(rayc.wall_x * (double)text->text_wi);
+	if (rayc.side == 0 && rayc.ray_dir_x > 0)
 		text->text = (text->text_wi - text->text - 1);
-	if (raycast->side == 1 && raycast->ray_dir_y < 0)
+	if (rayc.side == 1 && rayc.ray_dir_y < 0)
 		text->text = (text->text_wi - text->text - 1);
 	return (1);
 }
@@ -41,7 +41,7 @@ int	choose_we(t_text *text)
 	return (1);
 }
 
-int	choose_texture(t_cub3d *cub3d, t_text *text)
+int	choose_texture(t_cub3d *cub3d, t_text *text, t_raycast rayc)
 {
 	if (text->text_wall_dir == 'N')
 	{
@@ -58,6 +58,6 @@ int	choose_texture(t_cub3d *cub3d, t_text *text)
 		text->text_wi = text->text_s_w;
 	}
 	choose_we(text);
-	calculate_text(text, cub3d->raycast);
+	calculate_text(text, rayc);
 	return (1);
 }

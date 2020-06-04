@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 14:54:45 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/03 20:57:49 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/04 15:52:31 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int		determinate_pos(t_cub3d *cub3d, int f, int c, char **tmp)
 	return (0);
 }
 
-void	map_data(char **tmp, t_cub3d *cub3d)
+void	map_data(char **tmp, t_cub3d *cub3d, pl)
 {
 	int c;
 	int f;
@@ -104,18 +104,21 @@ void	map_data(char **tmp, t_cub3d *cub3d)
 
 int		check_map(char **tmp, t_cub3d *cub3d)
 {
+    	t_player *pl;
+
+	pl = (t_player *)malloc(sizeof(t_player);
 	cub3d->a = 0;
 	if (!(cub3d->map = (char **)malloc(sizeof(char *) *
 		cub3d->map_h + 1)))
 		ft_error("Couldn't reserve map memory");
-	map_data(tmp, cub3d);
+	map_data(tmp, cub3d, pl);
 	if (!cub3d->a)
 		ft_error("No player found");
 	else if (cub3d->a == 2)
 		ft_error("Only allowed one player");
 	extract_sprite(cub3d);
-	extract_pos(cub3d, cub3d->player);
-	is_a_close_map(cub3d->map, (int)cub3d->player->pos_x,
-				(int)cub3d->player->pos_y, cub3d->map_h);
+	extract_pos(cub3d, pl);
+	is_a_close_map(cub3d->map, (int)pl->pos_x,
+				(int)pl->pos_y, cub3d->map_h);
 	return (0);
 }

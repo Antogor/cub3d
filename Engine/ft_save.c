@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 20:46:00 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/04/09 20:47:51 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/04 13:09:10 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	init_save(t_cub3d *cub)
 		&cub->mlx->bpp, &cub->mlx->size_l, &cub->mlx->endian);
 	extract_textures(cub->text, cub->mlx);
 	raycast_fc(cub, cub->text, cub->mlx, cub->player);
-	raycasting(cub, cub->raycast, cub->player);
+	raycasting(cub, cub->player);
 	raycast_sprite(cub, cub->text, cub->player);
 }
 

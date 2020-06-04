@@ -6,43 +6,35 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:24:33 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/03 17:51:48 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/04 13:07:17 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef _CUB3D_H
 # define _CUB3D_H
 
-//# ifdef __linux__
-//#  define A 97
-//#  define W 13
-//#  define S 1
-//#  define D 2
-//#  define LEFT 123
-//#  define RIGTH 124
-//#  define ESC 1
-//#  include </usr/local/include/mlx.h>
-//#  include <X11/Xlib.h>
-//# endif
-//
-//# ifdef __APPLE__
-//#  define A 0
-//#  define W 13
-//#  define S 1
-//#  define D 2
-//#  define LEFT 123
-//#  define RIGTH 124
-//#  define ESC 53
-//#  include "Mlx/mlx.h"
-//# endif
+# ifdef __linux__
+#  define A 97
+#  define W 119
+#  define S 115
+#  define D 100
+#  define LEFT 65361
+#  define RIGTH 65363
+#  define ESC 65307
+#  include <X11/Xlib.h>
+# endif
 
-# define A 97
-# define W 119
-# define S 115
-# define D 100
-# define LEFT 65361
-# define RIGTH 65363
-# define ESC 65307
+# ifdef __APPLE__
+#  define A 0
+#  define W 13
+#  define S 1
+#  define D 2
+#  define LEFT 123
+#  define RIGTH 124
+#  define ESC 53
+#  include "Mlx/mlx.h"
+# endif
+
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
@@ -240,18 +232,18 @@ typedef struct		s_lib_cub3d
 	int				sprite_nb;
 	t_mlx			*mlx;
 	t_color			*color;
-	t_raycast		*raycast;
+//	t_raycast		*raycast;
 	t_player		*player;
 	t_text			*text;
 	t_sprite		*sprite;
 	t_spritetools	*tools_s;
 }					t_cub3d;
 
-int					raycasting(t_cub3d *cub3d, t_raycast *raycast,
+int					raycasting(t_cub3d *cub3d, /*t_raycast *raycast,*/
 					t_player *player);
 int					ft_keys(t_cub3d *cub3d);
 int					ft_map(char **argv, t_cub3d *map);
-void				paint(t_cub3d *cub3d, t_raycast *raycast, t_text *text,
+void				paint(t_cub3d *cub3d, t_raycast rayc, t_text *text,
 					t_mlx *mlx);
 int					create_trgb(int t, int r, int g, int b);
 int					movement(t_cub3d *cub3d);
@@ -262,7 +254,7 @@ int					check_map(char **tmp, t_cub3d *cub3d);
 int					is_a_close_map(char **map, int x, int y, int limit);
 int					extract_color(char *s, t_color *color);
 int					extract_textures(t_text *text, t_mlx *mlx);
-int					choose_texture(t_cub3d *cub3d, t_text *text);
+int					choose_texture(t_cub3d *cub3d, t_text *text, t_raycast rayc);
 int					extract_txt_fc(char *s, t_text *text);
 int					extract_sprite(t_cub3d *cub3d);
 int					raycast_fc(t_cub3d *cub3d, t_text *text, t_mlx *mlx,
