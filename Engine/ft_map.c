@@ -6,36 +6,51 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 10:43:55 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/05 11:29:47 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/05 15:14:59 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int		extract_data(char *str, t_cub3d *cub)
+int		extract_rest(char *str, t_cub3d *cub)
 {
-	if (ft_strnstr(str, "R ", 2))
-		extract_resolution(str, cub);
-	else if (ft_strnstr(str, "NO ", 3))
-		    extract_tx_ns(str, &cub->tx);
-	else if (ft_strnstr(str, "SO ", 3))
-		extract_tx_ns(str, &cub->tx);
-	else if (ft_strnstr(str, "WE ", 3))
-		extract_tx_wes(str, &cub->tx);
-	else if (ft_strnstr(str, "EA ", 3))
-		extract_tx_wes(str, &cub->tx);
-	else if (ft_strnstr(str, "S ", 2))
-		extract_tx_wes(str, &cub->tx);
-	else if (ft_strnstr(str, "F ", 2))
+	if (ft_strnstr(str, "F ", 2) || ft_strnstr(str, "C ", 2))
+	{
 		extract_color(str, &cub->color);
-	else if (ft_strnstr(str, "C ", 2))
-		extract_color(str, &cub->color);
+		cub->ch.fc++;
+	}
 	else if (ft_strnstr(str, "FT ", 3) || ft_strnstr(str, "CT ", 3))
+	{
 		extract_tx_fc(str, &cub->tx);
+		cub->ch.tfc++;
+	}
 	else if (str[0] == '\0')
 		    return (0);
 	else
 		ft_error("Not a valid map");
+	return (0);
+}
+
+int		extract_data(char *str, t_cub3d *cub)
+{
+	if (ft_strnstr(str, "R ", 2))
+	{
+		extract_resolution(str, cub);
+		cub->ch.r++;
+	}
+	else if (ft_strnstr(str, "NO ", 3) || ft_strnstr(str, "SO ", 3))
+	{
+		    extract_tx_ns(str, &cub->tx);
+		    cub->ch.ns++;
+	}
+	else if (ft_strnstr(str, "WE ", 3) || ft_strnstr(str, "EA ", 3) ||
+		ft_strnstr(str, "S ", 2))
+	{
+		extract_tx_wes(str, &cub->tx);
+		cub->ch.wes++;
+	}
+	else
+	    extract_rest(str, cub);
 	return (0);
 }
 
@@ -97,6 +112,11 @@ int		ft_map(char **argv, t_cub3d *cub)
 {
     int		fd;
 
+    cub->ch.r = 0;
+    cub->ch.ns = 0;
+    cub->ch.wes = 0;
+    cub->ch.fc = 0;
+    cub->ch.tfc = 0;
 	if ((fd = open(argv[1], O_RDONLY)) < 0)
 		ft_error("Couldn't open .cub");
 	gnl_1(fd, cub);
@@ -105,5 +125,13 @@ int		ft_map(char **argv, t_cub3d *cub)
 		ft_error("Couldn't open .cub");
 	gnl_2(fd, cub);
 	close(fd);
+	if (!cub->map.m)
+	    ft_error("Map doesn't exist");
+	if (cub->ch.r != 1 || cub->ch.ns != 2 ||cub->ch.wes != 3 ||
+		cub->ch.fc != 2 && cub->ch.fc != 0 || 
+		cub->ch.tfc != 2 && cub->ch.tfc != 0)
+	    ft_error("Invalid map");
+	cub->pl = extract_player(cub->map.m, cub->map.h);
+	extract_sprite(cub, cub->map.m);
 	return (0);
 }

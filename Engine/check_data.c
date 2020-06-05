@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 16:45:30 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/04 21:33:18 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/05 12:48:30 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,20 +108,3 @@ int	extract_tx_wes(char *s, t_tx *t)
          return (0); 
  } 
 
-
-
-/*int	check_data(char *s, t_cub3d *cub3d)
-{
-	int l;
-
-	l = 0;
-	if (s[l] == 'R')
-		return (extract_resolution(s, cub3d));
-	if (s[l] == 'N' || (s[l] == 'S' && s[l + 1] == 'O'))
-		return (extract_text_rns(s, cub3d->text));
-	if (s[l] == 'W' || s[l] == 'E' || s[l] == 'S')
-		return (extract_text_wes(s, cub3d->text));
-	if (s[l] == 'F' || s[l] == 'C')
-		return (extract_color(s, cub3d->color));
-	return (0);
-}*/

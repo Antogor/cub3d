@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:24:33 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/05 10:46:22 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/05 19:15:46 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@
 
 typedef struct		s_lib_mlx
 {
-	void			*mlx_ptr;
-	void			*window;
+	void			*ptr;
+	void			*win;
 	void			*img;
-	int				*img_data;
+	int				*i_data;
 	int				bpp;
 	int				size_l;
 	int				endian;
@@ -58,61 +58,77 @@ typedef struct		s_lib_mlx
 typedef struct			s_text_walls
 {
 	char			*north;
-	void			*ptr_north;
-	int				*data_north;
-	int				north_bpp;
-	int				north_sl;
-	int				north_end;
-	int				north_h;
-	int				north_w;
+	void			*p_no;
+	int				*data_no;
+	int				no_bpp;
+	int				no_sl;
+	int				no_end;
+	int				no_h;
+	int				no_w;
 	char			*south;
-	void			*ptr_south;
-	int				*data_south;
-	int				south_bpp;
-	int				south_sl;
-	int				south_end;
-	int				south_h;
-	int				south_w;
+	void			*p_so;
+	int				*data_so;
+	int				so_bpp;
+	int				so_sl;
+	int				so_end;
+	int				so_h;
+	int				so_w;
 	char			*east;
-	void			*ptr_east;
-	int				*data_east;
-	int				east_bpp;
-	int				east_sl;
-	int				east_end;
-	int				east_h;
-	int				east_w;
+	void			*p_ea;
+	int				*data_ea;
+	int				ea_bpp;
+	int				ea_sl;
+	int				ea_end;
+	int				ea_h;
+	int				ea_w;
 	char			*west;
-	void			*ptr_west;
-	int				*data_west;
-	int				west_bpp;
-	int				west_sl;
-	int				west_end;
-	int				west_h;
-	int				west_w;
+	void			*p_we;
+	int				*data_we;
+	int				we_bpp;
+	int				we_sl;
+	int				we_end;
+	int				we_h;
+	int				we_w;
 } 					t_walls;
 
 typedef	struct			s_tx_sprite
 {
 	char			*sprite;
-	void			*ptr_sprite;
-	int				*data_sprite;
-	int				sprite_bpp;
-	int				sprite_sl;
-	int				sprite_end;
-	int				sprite_h;
-	int				sprite_w;
+	void			*p_s;
+	int				*data;
+	int				bpp;
+	int				sl;
+	int				end;
+	int				h;
+	int				w;
 } 					t_tx_sprite;
 
 typedef struct			s_tx_floor
 {
 	char			*floor;
-	void			*ptr_floor;
-	int				*data_floor;
-	int				floor_bpp;
-	int				floor_sl;
-	int				floor_end;
-	int				floor_h;
-	int				floor_w;
+	void			*p_f;
+	int				*data;
+	int				bpp;
+	int				sl;
+	int				end;
+	int				h;
+	int				w;
+}					t_floor;
+
+typedef struct			s_tx_celling
+{
+	char			*celing;
+	void			*p_c;
+	int				*data;
+	int				bpp;
+	int				sl;
+	int				end;
+	int				h;
+	int				w;
+}					t_celling;
+
+typedef struct			s_fc_tools
+{
 	float			raydir_x0;
 	float			raydir_y0;
 	float			raydir_x1;
@@ -124,33 +140,30 @@ typedef struct			s_tx_floor
 	float			floorstep_y;
 	float			floor_x;
 	float			floor_y;
-}					t_floor;
-
-typedef struct			s_tx_celling
-{
-	char			*celing;
-	void			*ptr_celling;
-	int				*data_celling;
-	int				celling_bpp;
-	int				celling_sl;
-	int				celling_end;
-	int				celling_h;
-	int				celling_w;
 	int				cell_x;
 	int				cell_y;
 	int				tx;
 	int				ty;
-}					t_celling;
+} 				t_fc_tools;
 
 typedef struct			s_tx
 {
+    	int				txt;
+	int				*data;
+	int				bpp;
+	int				sl;
+	int				end;
+	int				h;
+	int				w;
 	int				colorc;
 	int				colorf;
 	int				colortx;
+	char		wall_dir;
 	t_walls		walls;
 	t_tx_sprite	s;
 	t_floor		f;
 	t_celling	c;
+	t_fc_tools	tool;
 }					t_tx;
 
 typedef struct		s_lib_spritetools
@@ -178,10 +191,6 @@ typedef struct		s_lib_sprite
 {
 	double			x;
 	double			y;
-	double			z_buffer[4000];
-	int				*sprite_order;
-	int				sprite_nb;
-	t_spritetools	tools;
 }					t_sprite;
 
 
@@ -245,52 +254,54 @@ typedef struct		s_map
 	int				count_colums;
 }			t_map;
 
+typedef struct		s_check
+{
+    int	r;
+    int ns;
+    int	wes;
+    int fc;
+    int tfc;
+}			t_check;
+
 typedef struct		s_lib_cub3d
 {
 	char			*resolution;
 	int				screen_w;
 	int				screen_h;
-//	char			**map;
-//	int				map_h;
-//	t_mlx			mlx;
+	double			z_buffer[4000];
+	int				*s_order;
+	int				s_nb;
+	t_mlx			mlx;
 	t_color			color;
-//	t_raycast		*raycast;
-//	t_player		player;
+	t_player		pl;
 	t_tx			tx;
-	t_sprite		sprite;
+	t_sprite		*sprite;
 	t_map			map;
+	t_check			ch;
 }					t_cub3d;
 
-//int					raycasting(t_cub3d *cub3d, /*t_raycast *raycast,*/
-//					t_player *player);
-//int					ft_keys(t_cub3d *cub3d);
+int					raycasting(t_cub3d *cub, t_player pl);
+int					ft_events(t_cub3d *cub3d);
 int					ft_map(char **argv, t_cub3d *cub3d);
-int     extract_resolution(char *s, t_cub3d *cub);
-int     extract_tx_ns(char *s, t_tx *t);
-int     extract_tx_wes(char *s, t_tx *t);
-int     extract_tx_fc(char *s, t_tx *t);
+int     				extract_resolution(char *s, t_cub3d *cub);
+int     				extract_tx_ns(char *s, t_tx *t);
+int     				extract_tx_wes(char *s, t_tx *t);
+int     				extract_tx_fc(char *s, t_tx *t);
 int					extract_color(char *s, t_color *c);
-
-
-
-//void				paint(t_cub3d *cub3d, t_raycast rayc, t_text *text,
-//					t_mlx *mlx);
+int     				up_down(int key, t_cub3d *c);
+void					paint(t_raycast rc, t_tx *t, t_mlx *ml, int h);
 int					create_trgb(int t, int r, int g, int b);
-//int					movement(t_cub3d *cub3d);
-//int					key_press(int key, t_cub3d *cub3d);
-//int					key_release(int key, t_cub3d *cub3d);
+int					movement(t_cub3d *cub3d);
 //int					check_data(char *s, t_cub3d *cub3d);
-//int					check_map(char **tmp, t_cub3d *cub3d);
+t_player				extract_player(char **m, int limit);
 //int					is_a_close_map(char **map, int x, int y, int limit);
-//int					extract_textures(t_text *text, t_mlx *mlx);
-//int					choose_texture(t_cub3d *cub3d, t_text *text, t_raycast rayc);
-//int					extract_txt_fc(char *s, t_text *text);
-//int					extract_sprite(t_cub3d *cub3d);
-//int					raycast_fc(t_cub3d *cub3d, t_text *text, t_mlx *mlx,
-//					t_player *player);
-//int					raycast_sprite(t_cub3d *cub3d, t_text *text,
-//					t_player *player);
-void				ft_error(char *s);
-//void				save_bitmap(const char *file_name, t_cub3d *cub);
-//void				close_game(t_cub3d *cub3d);
+int					extract_textures(t_tx *t, t_mlx mlx);
+int					choose_texture(t_tx *t, t_raycast r);
+int					extract_txt_fc(char *s, t_tx *text);
+int					extract_sprite(t_cub3d *c, char **m);
+int					raycast_fc(t_cub3d *c, t_fc_tools *t, t_mlx *ml, t_player pl);
+int					raycast_sprite(t_cub3d *c, t_player pl);
+void					ft_error(char *s);
+//void					save_bitmap(const char *file_name, t_cub3d *cub);
+void					close_game(t_cub3d *cub3d);
 #endif

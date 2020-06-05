@@ -6,58 +6,58 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 12:21:12 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/04 13:04:52 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/05 19:03:45 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	calculate_text(t_text *text, t_raycast rayc)
+int	calculate_text(t_tx *t, t_raycast r)
 {
-	text->text = (int)(rayc.wall_x * (double)text->text_wi);
-	if (rayc.side == 0 && rayc.ray_dir_x > 0)
-		text->text = (text->text_wi - text->text - 1);
-	if (rayc.side == 1 && rayc.ray_dir_y < 0)
-		text->text = (text->text_wi - text->text - 1);
-	return (1);
+	t->txt = (int)(r.wall_x * (double)t->w);
+	if (r.side == 0 && r.ray_dir_x > 0)
+		t->txt = (t->w - t->txt - 1);
+	if (r.side == 1 && r.ray_dir_y < 0)
+		t->txt = (t->w - t->txt - 1);
+	return (0);
 }
 
-int	choose_we(t_text *text)
+int	choose_we(t_tx *t)
 {
-	if (text->text_wall_dir == 'E')
+	if (t->wall_dir == 'E')
 	{
-		text->text_dat = text->text_d_e;
-		text->text_sl = text->text_e_sl;
-		text->text_h = text->text_e_h;
-		text->text_wi = text->text_e_w;
+		t->data = t->walls.data_ea;
+		t->sl = t->walls.ea_sl;
+		t->h = t->walls.ea_h;
+		t->w = t->walls.ea_w;
 	}
-	else if (text->text_wall_dir == 'W')
+	else if (t->wall_dir == 'W')
 	{
-		text->text_dat = text->text_d_w;
-		text->text_sl = text->text_w_sl;
-		text->text_h = text->text_w_h;
-		text->text_wi = text->text_w_w;
+		t->data = t->walls.data_we;
+		t->sl = t->walls.we_sl;
+		t->h = t->walls.we_h;
+		t->w = t->walls.we_w;
 	}
-	return (1);
+	return (0);
 }
 
-int	choose_texture(t_cub3d *cub3d, t_text *text, t_raycast rayc)
+int	choose_texture(t_tx *t, t_raycast r)
 {
-	if (text->text_wall_dir == 'N')
+	if (t->wall_dir == 'N')
 	{
-		text->text_dat = text->text_d_n;
-		text->text_sl = text->text_n_sl;
-		text->text_h = text->text_n_h;
-		text->text_wi = text->text_n_w;
+		t->data = t->walls.data_no;
+		t->sl = t->walls.no_sl;
+		t->h = t->walls.no_h;
+		t->w = t->walls.no_w;
 	}
-	else if (text->text_wall_dir == 'S')
+	else if (t->wall_dir == 'S')
 	{
-		text->text_dat = text->text_d_s;
-		text->text_sl = text->text_s_sl;
-		text->text_h = text->text_s_h;
-		text->text_wi = text->text_s_w;
+		t->data = t->walls.data_so;
+		t->sl = t->walls.so_sl;
+		t->h = t->walls.so_h;
+		t->w = t->walls.so_w;
 	}
-	choose_we(text);
-	calculate_text(text, rayc);
-	return (1);
+	choose_we(t);
+	calculate_text(t, r);
+	return (0);
 }
