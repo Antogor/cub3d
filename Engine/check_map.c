@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 14:54:45 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/04 15:52:31 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/05 11:08:18 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,14 @@ int		determinate_pos(t_cub3d *cub3d, int f, int c, char **tmp)
 	return (0);
 }
 
-void	map_data(char **tmp, t_cub3d *cub3d, pl)
+void	map_data(char *s, t_cub3d *cub)
 {
-	int c;
 	int f;
 
-	f = 0;
-	while (tmp[cub3d->count])
+	f = 1;
+	while (f < h)
 	{
+	    cub0.map.m[f] 
 		if (!(cub3d->map[f] = (char *)malloc(sizeof(char) *
 							ft_strlen(tmp[cub3d->count]) + 1)))
 			ft_error("Couldn't reserve map memory");
@@ -101,6 +101,31 @@ void	map_data(char **tmp, t_cub3d *cub3d, pl)
 	}
 	cub3d->map[f] = "\0";
 }
+//char	**map_data(char **tmp, t_cub3d *cub3d, pl)
+//{
+//	int c;
+//	int f;
+//
+//	f = 0;
+//	while (tmp[cub3d->count])
+//	{
+//		if (!(cub3d->map[f] = (char *)malloc(sizeof(char) *
+//							ft_strlen(tmp[cub3d->count]) + 1)))
+//			ft_error("Couldn't reserve map memory");
+//		c = 0;
+//		while (tmp[cub3d->count][c])
+//		{
+//			cub3d->map[f][c] = tmp[cub3d->count][c];
+//			if (ft_isalpha(tmp[cub3d->count][c]))
+//				determinate_pos(cub3d, f, c, cub3d->map);
+//			c++;
+//		}
+//		cub3d->map[f][c] = '\0';
+//		f++;
+//		cub3d->count++;
+//	}
+//	cub3d->map[f] = "\0";
+//}
 
 int		check_map(char **tmp, t_cub3d *cub3d)
 {

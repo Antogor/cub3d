@@ -10,3 +10,5 @@ a.out
 /.vs
 results.txt
 *.bmp
+test*
+*.gch

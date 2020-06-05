@@ -6,89 +6,104 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 10:43:55 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/04/09 21:00:56 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/05 11:29:47 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int		extract_data(char *str, t_cub3d *cub3d)
+int		extract_data(char *str, t_cub3d *cub)
 {
 	if (ft_strnstr(str, "R ", 2))
-		return (check_data(str, cub3d));
+		extract_resolution(str, cub);
 	else if (ft_strnstr(str, "NO ", 3))
-		return (check_data(str, cub3d));
+		    extract_tx_ns(str, &cub->tx);
 	else if (ft_strnstr(str, "SO ", 3))
-		return (check_data(str, cub3d));
+		extract_tx_ns(str, &cub->tx);
 	else if (ft_strnstr(str, "WE ", 3))
-		return (check_data(str, cub3d));
+		extract_tx_wes(str, &cub->tx);
 	else if (ft_strnstr(str, "EA ", 3))
-		return (check_data(str, cub3d));
+		extract_tx_wes(str, &cub->tx);
 	else if (ft_strnstr(str, "S ", 2))
-		return (check_data(str, cub3d));
+		extract_tx_wes(str, &cub->tx);
 	else if (ft_strnstr(str, "F ", 2))
-		return (check_data(str, cub3d));
+		extract_color(str, &cub->color);
 	else if (ft_strnstr(str, "C ", 2))
-		return (check_data(str, cub3d));
+		extract_color(str, &cub->color);
 	else if (ft_strnstr(str, "FT ", 3) || ft_strnstr(str, "CT ", 3))
-		return (extract_txt_fc(str, cub3d->text));
-	else if (str[0] == '1' || str[0] == 32 || str[0] == '\t')
-		return (2);
+		extract_tx_fc(str, &cub->tx);
 	else if (str[0] == '\0')
-		return (1);
+		    return (0);
 	else
 		ft_error("Not a valid map");
 	return (0);
 }
 
-void	gnl_1(t_cub3d *cub3d)
+void	gnl_1(int fd, t_cub3d *cub)
 {
-	int		l;
 	char	*str;
 
-	l = 0;
-	cub3d->count = 0;
-	while (get_next_line(cub3d->fd, &str) > 0)
-	{
-		l = extract_data(str, cub3d);
-		if (l == 2)
+	if (!cub->map.h)
+		cub->map.h = 0;
+	while (get_next_line(fd, &str) > 0)
+	{	
+		if (str[0] == '1' || str[0] == 32 || str[0] == '\t' ||
+		    str[0] == '0')
 		{
-			if (!cub3d->count_rows)
-				cub3d->count_rows = 0;
-			cub3d->count_rows++;
+			cub->map.h++;
+		    while (get_next_line(fd, &str) > 0)
+		    {
+			cub->map.h++;
+			if (str[0] != '1' && str[0] != 32 && 
+				str[0] != '\t' && str[0] != '0')
+			    ft_error("NOT A VALID MAP");
+		    }
 		}
-		else
-			cub3d->count++;
+		extract_data(str, cub);
 	}
 	free(str);
 }
 
-void	gnl_2(t_cub3d *cub3d)
+void	gnl_2(int fd, t_cub3d *cub)
 {
-	int		l;
-	char	**tmp;
+	char	*str;
+	char	*tmp;
+	int 	l;
 
 	l = 0;
-	if (!(tmp = (char **)malloc(sizeof(char *) *
-		(cub3d->count + cub3d->count_rows) + 1)))
-		ft_error("Couldn't reserve memory");
-	while (get_next_line(cub3d->fd, &tmp[l]) > 0)
-		l++;
-	tmp[l] = NULL;
-	check_map(tmp, cub3d);
-	free(tmp);
+	while (get_next_line(fd, &str) > 0)
+	{	
+		if (str[0] == '1' || str[0] == 32 || str[0] == '\t' ||
+		    str[0] == '0')
+		{
+			tmp = str;
+			l++;
+		    while (get_next_line(fd, &str) > 0)
+		    {
+		    	if (!cub->map.m)
+		    	{
+				cub->map.m = (char **)malloc(sizeof(char *) * cub->map.h + 1);
+				cub->map.m[0] = ft_strdup(tmp);
+		    	}
+			cub->map.m[l] = ft_strdup(str);
+		    	l++;
+		    }
+		}
+	}
+	free(str);
 }
 
-int		ft_map(char **argv, t_cub3d *cub3d)
+int		ft_map(char **argv, t_cub3d *cub)
 {
-	if ((cub3d->fd = open(argv[1], O_RDONLY)) < 0)
+    int		fd;
+
+	if ((fd = open(argv[1], O_RDONLY)) < 0)
 		ft_error("Couldn't open .cub");
-	gnl_1(cub3d);
-	close(cub3d->fd);
-	cub3d->map_h = cub3d->count_rows;
-	if ((cub3d->fd = open(argv[1], O_RDONLY)) < 0)
+	gnl_1(fd, cub);
+	close(fd);
+	if ((fd = open(argv[1], O_RDONLY)) < 0)
 		ft_error("Couldn't open .cub");
-	gnl_2(cub3d);
-	close(cub3d->fd);
-	return (1);
+	gnl_2(fd, cub);
+	close(fd);
+	return (0);
 }
