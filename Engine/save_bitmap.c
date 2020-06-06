@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 20:46:00 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/04 13:09:10 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/05 19:54:37 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,44 +38,44 @@ int		bmp_header(int fd, int w, int h)
 	header[28] = (unsigned char)(24);
 	if (!(write(fd, header, 54)))
 		return (0);
-	return (1);
+	return (0);
 }
 
-int		write_bmp(int fd, t_mlx *mlx, t_cub3d *cub)
+int		write_bmp(int fd, t_mlx ml, int h, int w)
 {
 	int	x;
 	int	y;
 	int	color;
 
-	y = cub->screen_h - 1;
+	y = h - 1;
 	while (y >= 0)
 	{
 		x = 0;
-		while (x < cub->screen_w)
+		while (x < w)
 		{
-			color = mlx->img_data[x + y * mlx->size_l / 4];
+			color = ml.i_data[x + y * ml.size_l / 4];
 			if (!(write(fd, &color, 3)))
 				return (0);
 			x++;
 		}
 		y--;
 	}
-	return (1);
+	return (0);
 }
 
-void	init_save(t_cub3d *cub)
+void	init_save(t_cub3d *c)
 {
-	if (!(cub->mlx->mlx_ptr = mlx_init()))
+	if (!(c->mlx.ptr = mlx_init()))
 		ft_error("FAIL to init mlx");
-	if (!(cub->mlx->img = mlx_new_image(cub->mlx->mlx_ptr, cub->screen_w,
-		cub->screen_h)))
+	if (!(c->mlx.img = mlx_new_image(c->mlx.ptr, c->screen_w,
+		c->screen_h)))
 		ft_error("FAIL to create image");
-	cub->mlx->img_data = (int*)mlx_get_data_addr(cub->mlx->img,
-		&cub->mlx->bpp, &cub->mlx->size_l, &cub->mlx->endian);
-	extract_textures(cub->text, cub->mlx);
-	raycast_fc(cub, cub->text, cub->mlx, cub->player);
-	raycasting(cub, cub->player);
-	raycast_sprite(cub, cub->text, cub->player);
+	c->mlx.i_data = (int*)mlx_get_data_addr(c->mlx.img,
+		&c->mlx.bpp, &c->mlx.size_l, &c->mlx.endian);
+	extract_textures(&c->tx, c->mlx);
+	raycast_fc(c, &c->tx.tool, &c->mlx, c->pl);
+	raycasting(c, c->pl);
+	raycast_sprite(c, c->pl);
 }
 
 void	save_bitmap(const char *file_name, t_cub3d *cub)
@@ -87,7 +87,7 @@ void	save_bitmap(const char *file_name, t_cub3d *cub)
 		ft_error("FAIL to open/create screenshoot.bmp");
 	if (!(bmp_header(fd, cub->screen_w, cub->screen_h)))
 		ft_error("FAIL to create screenshoot");
-	if (!(write_bmp(fd, cub->mlx, cub)))
+	if (!(write_bmp(fd, cub->mlx, cub->screen_h, cub->screen_w)))
 		ft_error("FAIL to create screenshoot");
 	close(fd);
 	close_game(cub);

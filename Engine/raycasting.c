@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 12:10:54 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/05 19:00:55 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/06 18:18:26 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,8 @@ void	calculate_line_height(int h, t_raycast *rc)
 
 int		raycasting(t_cub3d *cub, t_player pl)
 {
-    	t_raycast rc;
+	t_raycast rc;
+
 	rc.x = 0;
 	while (rc.x < cub->screen_w)
 	{

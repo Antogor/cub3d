@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 15:07:07 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/04 18:46:18 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/06 18:23:09 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	extract_floor(char *s, t_color *c)
 	}
 	else
 		ft_error("FLOOR COLOR ERROR");
-
 	return (0);
 }
 

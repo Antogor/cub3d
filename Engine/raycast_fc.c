@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:36:55 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/05 19:36:11 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/06 13:40:44 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	choose_color(t_color color, t_tx *t, int txc, int tyc)
 	}
 }
 
-void	put_fc(t_cub3d *c, t_fc_tools *t, t_mlx *ml, int *y)
+void	put_fc(t_cub3d *c, t_fc_tools *t, t_mlx *ml, int y)
 {
 	int x;
 	int txc;
@@ -40,19 +40,19 @@ void	put_fc(t_cub3d *c, t_fc_tools *t, t_mlx *ml, int *y)
 	{
 		t->cell_x = (int)t->floor_x;
 		t->cell_y = (int)t->floor_y;
-		t->tx = (int)(128 * (t->floor_x - t->cell_x)) &
-			(128 - 1);
-		t->ty = (int)(128 * (t->floor_y - t->cell_y)) &
-			(128 - 1);
-		txc = (int)(128 * (t->floor_x - t->cell_x)) &
-			(128 - 1);
-		tyc = (int)(128 * (t->floor_y - t->cell_y)) &
-			(128 - 1);
+		t->tx = (int)(256 * (t->floor_x - t->cell_x)) &
+			(256 - 1);
+		t->ty = (int)(256 * (t->floor_y - t->cell_y)) &
+			(256 - 1);
+		txc = (int)(256 * (t->floor_x - t->cell_x)) &
+			(256 - 1);
+		tyc = (int)(256 * (t->floor_y - t->cell_y)) &
+			(256 - 1);
 		t->floor_x += t->floorstep_x;
 		t->floor_y += t->floorstep_y;
 		choose_color(c->color, &c->tx, txc, tyc);
-		ml->i_data[*y * c->screen_w + x] = c->tx.colorf;
-		ml->i_data[(c->screen_h - *y - 1) * c->screen_w + x] =
+		ml->i_data[y * c->screen_w + x] = c->tx.colorf;
+		ml->i_data[(c->screen_h - y - 1) * c->screen_w + x] =
 			c->tx.colorc;
 		x++;
 	}
@@ -79,7 +79,7 @@ int		raycast_fc(t_cub3d *c, t_fc_tools *t, t_mlx *ml,
 			/ c->screen_w;
 		t->floor_x = p.pos_x + t->row_dist * t->raydir_x0;
 		t->floor_y = p.pos_y + t->row_dist * t->raydir_y0;
-		put_fc(c, t, ml, &y);
+		put_fc(c, t, ml, y);
 		y++;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 16:45:30 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/05 12:48:30 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/06 18:57:15 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,25 +86,22 @@ int	extract_tx_wes(char *s, t_tx *t)
 	return (0);
 }
 
- int     extract_tx_fc(char *s, t_tx *t)
- {
-         int l;
- 
-         l = 0; 
-         if (s[l] == 'F' && s[l + 1] == 'T') 
-         { 
-                 t->f.floor = ft_strtrim(s, "FT "); 
-                 if (!(ft_strnstr(t->f.floor, ".xpm", 
-                         ft_strlen(t->f.floor)))) 
-                         ft_error("FAIL .xpm in text floor"); 
-         } 
-         if (s[l] == 'C' && s[l + 1] == 'T') 
-         { 
-                 t->c.celing = ft_strtrim(s, "CT "); 
-                 if (!(ft_strnstr(t->c.celing, ".xpm", 
-                         ft_strlen(t->c.celing)))) 
-                         ft_error("FAIL .xpm in text celing"); 
-         } 
-         return (0); 
- } 
+int	extract_tx_fc(char *s, t_tx *t)
+{
+	int l;
 
+	l = 0;
+	if (s[l] == 'F' && s[l + 1] == 'T')
+	{
+		t->f.floor = ft_strtrim(s, "FT ");
+		if (!(ft_strnstr(t->f.floor, ".xpm", ft_strlen(t->f.floor))))
+			ft_error("FAIL .xpm in text floor");
+	}
+	if (s[l] == 'C' && s[l + 1] == 'T')
+	{
+		t->c.celing = ft_strtrim(s, "CT ");
+		if (!(ft_strnstr(t->c.celing, ".xpm", ft_strlen(t->c.celing))))
+			ft_error("FAIL .xpm in text celing");
+	}
+	return (0);
+}

@@ -6,27 +6,19 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 11:53:50 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/05 19:29:08 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/06 18:47:04 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	choose_sprite(t_cub3d *c, t_player pl)
+void	dist_sprite(t_cub3d *c)
 {
-	int		l;
 	double	sprite_dist[c->s_nb];
 	int		tmp;
 	int		dis_tmp;
+	int		l;
 
-	l = 0;
-	while (l++ < c->s_nb)
-	{
-		c->s_order[l] = l;
-		sprite_dist[l] = ((pl.pos_x - c->sprite[l].x) *
-			(pl.pos_x - c->sprite[l].x) + (pl.pos_y -
-			c->sprite[l].y) * (pl.pos_y - c->sprite[l].y));
-	}
 	l = 0;
 	while (l++ < c->s_nb)
 	{
@@ -43,7 +35,23 @@ void	choose_sprite(t_cub3d *c, t_player pl)
 	}
 }
 
-void	calcualte_sprite_h(t_spritetools *s_tools, int h)
+void	choose_sprite(t_cub3d *c, t_player pl)
+{
+	int		l;
+	double	sprite_dist[c->s_nb];
+
+	l = 0;
+	while (l++ < c->s_nb)
+	{
+		c->s_order[l] = l;
+		sprite_dist[l] = ((pl.pos_x - c->sprite[l].x) *
+		(pl.pos_x - c->sprite[l].x) + (pl.pos_y - c->sprite[l].y) *
+		(pl.pos_y - c->sprite[l].y));
+	}
+	dist_sprite(c);
+}
+
+void	calcualte_sprite_hw(t_spritetools *s_tools, int h, int w)
 {
 	s_tools->h = abs((int)(h / (s_tools->transform_y)));
 	s_tools->draw_start_y = -s_tools->h / 2 + h / 2;
@@ -52,10 +60,6 @@ void	calcualte_sprite_h(t_spritetools *s_tools, int h)
 	s_tools->draw_end_y = s_tools->h / 2 + h / 2;
 	if (s_tools->draw_end_y >= h)
 		s_tools->draw_end_y = h - 1;
-}
-
-void	calcualte_sprite_w(t_spritetools *s_tools, int h, int w)
-{
 	s_tools->w = abs((int)(h / (s_tools->transform_y)));
 	s_tools->draw_start_x = -s_tools->w / 2 + s_tools->screen_x;
 	if (s_tools->draw_start_x < 0)
@@ -65,7 +69,8 @@ void	calcualte_sprite_w(t_spritetools *s_tools, int h, int w)
 		s_tools->draw_end_x = w - 1;
 }
 
-void	draw_sprite(t_spritetools *s_tools, t_cub3d *c, t_tx_sprite s, t_mlx *ml)
+void	draw_sprite(t_spritetools *s_tools, t_cub3d *c, t_tx_sprite s,
+		t_mlx *ml)
 {
 	s_tools->stripe = s_tools->draw_start_x;
 	while (s_tools->stripe++ < s_tools->draw_end_x)
@@ -86,7 +91,7 @@ void	draw_sprite(t_spritetools *s_tools, t_cub3d *c, t_tx_sprite s, t_mlx *ml)
 					s_tools->h / 256);
 				if (s.data[s_tools->tex_x + s_tools->tex_y * s.sl / 4])
 					ml->i_data[(int)(s_tools->stripe + s_tools->y *
-					    ml->size_l / 4)] =
+					ml->size_l / 4)] =
 						s.data[s_tools->tex_x + s_tools->tex_y
 						* s.sl / 4];
 			}
@@ -115,8 +120,7 @@ int		raycast_sprite(t_cub3d *c, t_player pl)
 			s_tools.x + pl.plane_x * s_tools.y);
 		s_tools.screen_x = (int)((c->screen_w / 2) *
 			(1 + s_tools.transform_x / s_tools.transform_y));
-		calcualte_sprite_h(&s_tools, c->screen_h);
-		calcualte_sprite_w(&s_tools, c->screen_h, c->screen_w);
+		calcualte_sprite_hw(&s_tools, c->screen_h, c->screen_w);
 		draw_sprite(&s_tools, c, c->tx.s, &c->mlx);
 	}
 	return (0);
