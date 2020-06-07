@@ -6,13 +6,13 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 11:53:50 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/06 18:47:04 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/07 15:52:36 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	dist_sprite(t_cub3d *c)
+void	dist_sprite(t_cub3d *c, double *s_dist)
 {
 	double	sprite_dist[c->s_nb];
 	int		tmp;
@@ -22,11 +22,11 @@ void	dist_sprite(t_cub3d *c)
 	l = 0;
 	while (l++ < c->s_nb)
 	{
-		if (sprite_dist[l] < sprite_dist[l + 1])
+		if (s_dist[l] < s_dist[l + 1])
 		{
-			dis_tmp = sprite_dist[l];
-			sprite_dist[l] = sprite_dist[l + 1];
-			sprite_dist[l + 1] = dis_tmp;
+			dis_tmp = s_dist[l];
+			s_dist[l] = s_dist[l + 1];
+			s_dist[l + 1] = dis_tmp;
 			tmp = c->s_order[l];
 			c->s_order[l] = c->s_order[l + 1];
 			c->s_order[l + 1] = tmp;
@@ -38,17 +38,33 @@ void	dist_sprite(t_cub3d *c)
 void	choose_sprite(t_cub3d *c, t_player pl)
 {
 	int		l;
-	double	sprite_dist[c->s_nb];
+	double	s_dist[c->s_nb];
+	int		tmp;
+	int		dis_tmp;
 
 	l = 0;
 	while (l++ < c->s_nb)
 	{
-		c->s_order[l] = l;
-		sprite_dist[l] = ((pl.pos_x - c->sprite[l].x) *
+		s_dist[l] = ((pl.pos_x - c->sprite[l].x) *
 		(pl.pos_x - c->sprite[l].x) + (pl.pos_y - c->sprite[l].y) *
 		(pl.pos_y - c->sprite[l].y));
+		c->s_order[l] = l;
 	}
-	dist_sprite(c);
+	dist_sprite(c, s_dist);
+//	l = 0;
+//	while (l++ < c->s_nb)
+//	{
+//		if (s_dist[l] < s_dist[l + 1])
+//		{
+//			dis_tmp = s_dist[l];
+//			s_dist[l] = s_dist[l + 1];
+//			s_dist[l + 1] = dis_tmp;
+//			tmp = c->s_order[l];
+//			c->s_order[l] = c->s_order[l + 1];
+//			c->s_order[l + 1] = tmp;
+//			l = 0;
+//		}
+//	}
 }
 
 void	calcualte_sprite_hw(t_spritetools *s_tools, int h, int w)
