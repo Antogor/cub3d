@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 14:54:45 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/06 19:33:08 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/07 13:14:15 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,13 @@ t_player	extract_player(char **m, int limit)
 	t_player	pl;
 	int			f;
 	int			c;
-
+	
 	f = 0;
 	pl.count_player = 0;
-	while (m[++f])
+	while (f++ < limit)
 	{
 		c = 0;
-		while (m[f][++c])
+		while (c++ < (int)ft_strlen(m[f]))
 		{
 			if (ft_isalpha(m[f][c]))
 			{

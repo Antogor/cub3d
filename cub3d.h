@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:24:33 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/06 14:23:28 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/07 13:32:04 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 #  define LEFT 123
 #  define RIGTH 124
 #  define ESC 53
-#  include "Mlx/mlx.h"
+#  include <mlx.h>
 # endif
 
 # include <stdlib.h>

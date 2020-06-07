@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 10:43:55 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/07 11:38:18 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/07 13:28:57 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,24 +85,26 @@ void	gnl_2(int fd, t_cub3d *cub)
 	char	*tmp;
 	int		l;
 
-	l = 0;
+	l = 1;
 	while (get_next_line(fd, &str) > 0)
 	{
 		if (str[0] == '1' || str[0] == 32 || str[0] == '\t' ||
 			str[0] == '0')
 		{
 			tmp = str;
-			l++;
 			while (get_next_line(fd, &str) > 0)
 			{
 				if (!cub->map.m)
 				{
-					cub->map.m = (char **)malloc(sizeof(char *) *
-					cub->map.h + 1);
+					if (!(cub->map.m = (char **)malloc(sizeof(char *) *
+					cub->map.h + 1)))
+						ft_error("Couldn't reserve memory");
 					cub->map.m[0] = ft_strdup(tmp);
 				}
-				cub->map.m[l++] = ft_strdup(str);
+				cub->map.m[l] = ft_strdup(str);
+				l++;
 			}
+			cub->map.m[l] = "\0";
 		}
 	}
 	free(str);

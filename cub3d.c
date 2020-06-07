@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:14:36 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/06 18:55:07 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/07 12:25:59 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,8 @@ int		main(int argc, char **argv)
 {
 	t_cub3d *cub3d;
 
-	cub3d = (t_cub3d *)malloc(sizeof(t_cub3d));
+	if (!(cub3d = (t_cub3d *)malloc(sizeof(t_cub3d))))
+		ft_error("Couldn't reserve memory");
 	if (argc >= 2)
 	{
 		open_cub(argc, argv, cub3d);
