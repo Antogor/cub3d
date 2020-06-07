@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:14:36 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/07 12:25:59 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/07 16:43:28 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		open_cub(int argc, char **argv, t_cub3d *c)
 			ft_strnstr(argv[2], "--save", ft_strlen(argv[2])))
 		{
 			ft_map(argv, c);
-//			save_bitmap("screen_shoot.bmp", c);
+			save_bitmap("screen_shoot.bmp", c);
 		}
 		else
 			ft_error("Insert map and command --save");

@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 11:53:50 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/07 15:52:36 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/07 16:44:32 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	dist_sprite(t_cub3d *c, double *s_dist)
 {
-	double	sprite_dist[c->s_nb];
 	int		tmp;
 	int		dis_tmp;
 	int		l;
@@ -39,8 +38,6 @@ void	choose_sprite(t_cub3d *c, t_player pl)
 {
 	int		l;
 	double	s_dist[c->s_nb];
-	int		tmp;
-	int		dis_tmp;
 
 	l = 0;
 	while (l++ < c->s_nb)
@@ -51,20 +48,6 @@ void	choose_sprite(t_cub3d *c, t_player pl)
 		c->s_order[l] = l;
 	}
 	dist_sprite(c, s_dist);
-//	l = 0;
-//	while (l++ < c->s_nb)
-//	{
-//		if (s_dist[l] < s_dist[l + 1])
-//		{
-//			dis_tmp = s_dist[l];
-//			s_dist[l] = s_dist[l + 1];
-//			s_dist[l + 1] = dis_tmp;
-//			tmp = c->s_order[l];
-//			c->s_order[l] = c->s_order[l + 1];
-//			c->s_order[l + 1] = tmp;
-//			l = 0;
-//		}
-//	}
 }
 
 void	calcualte_sprite_hw(t_spritetools *s_tools, int h, int w)

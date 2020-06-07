@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_save.c                                          :+:      :+:    :+:   */
+/*   save_bitmap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 20:46:00 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/05 19:54:37 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/07 17:00:16 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int		bmp_header(int fd, int w, int h)
 	header[28] = (unsigned char)(24);
 	if (!(write(fd, header, 54)))
 		return (0);
-	return (0);
+	return (1);
 }
 
 int		write_bmp(int fd, t_mlx ml, int h, int w)
@@ -60,7 +60,7 @@ int		write_bmp(int fd, t_mlx ml, int h, int w)
 		}
 		y--;
 	}
-	return (0);
+	return (1);
 }
 
 void	init_save(t_cub3d *c)
