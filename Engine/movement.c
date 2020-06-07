@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 13:14:28 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/06 19:53:29 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/08 00:50:09 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ int	up_down(int key, t_cub3d *c)
 
 int	movement(t_cub3d *cub3d)
 {
-	mlx_hook(cub3d->mlx.win, 2, 1L << 0, up_down, cub3d);
+	//mlx_hook(cub3d->mlx.win, 2, 1L << 0, up_down, cub3d);
+	mlx_key_hook(cub3d->mlx.win, up_down, cub3d);
 	return (0);
 }
