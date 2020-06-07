@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 10:43:55 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/06 19:08:41 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/07 11:38:18 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,8 +128,8 @@ int		ft_map(char **argv, t_cub3d *cub)
 	if (!cub->map.m)
 		ft_error("Map doesn't exist");
 	if (cub->ch.r != 1 || cub->ch.ns != 2 || cub->ch.wes != 3 ||
-		cub->ch.fc != 2 && cub->ch.fc != 0 ||
-		cub->ch.tfc != 2 && cub->ch.tfc != 0)
+		(cub->ch.fc != 2 && cub->ch.fc != 0) ||
+		(cub->ch.tfc != 2 && cub->ch.tfc != 0))
 		ft_error("Invalid map");
 	cub->pl = extract_player(cub->map.m, cub->map.h);
 	extract_sprite(cub, cub->map.m);
