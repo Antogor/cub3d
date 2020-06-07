@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 12:32:42 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/06 18:48:58 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/07 14:26:24 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ int	count_sprite(t_cub3d *c, char **m)
 
 	y = 0;
 	c->s_nb = 0;
-	while (m[y])
+	while (y < c->map.h)
 	{
 		x = 0;
-		while (m[y][x])
+		while (x < (int)ft_strlen(m[y]))
 		{
 			if (m[y][x] == '4')
 				c->s_nb++;
@@ -48,10 +48,10 @@ int	extract_sprite(t_cub3d *c, char **m)
 		ft_error("Couldn't reserve sprite memory");
 	if (!(c->s_order = (int *)malloc(c->s_nb * sizeof(int))))
 		ft_error("Couldn't reserve memory");
-	while (m[++x])
+	while (x++ < c->map.h)
 	{
 		y = 0;
-		while (m[x][++y])
+		while (y++ < (int)ft_strlen(m[x]))
 		{
 			if (m[x][y] == '4')
 			{
