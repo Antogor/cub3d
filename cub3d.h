@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:24:33 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/07 17:51:04 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/08 13:34:56 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,6 +229,17 @@ typedef struct	s_lib_raycast
 	int			draw_end;
 }				t_raycast;
 
+typedef	struct	s_keys;
+{
+	int			up;
+	int			down;
+	int			left;
+	int			right;
+	int			rot_l;
+	int			rot_r;
+	int			esc;
+}				t_keys;
+
 typedef struct	s_libpalyer
 {
 	char		dir_player;
@@ -239,9 +250,8 @@ typedef struct	s_libpalyer
 	double		plane_x;
 	double		plane_y;
 	double		speed;
-	int			up;
-	int			down;
 	int			count_player;
+	t_keys		k;
 }				t_player;
 
 typedef struct	s_map
@@ -299,5 +309,7 @@ int				extract_sprite(t_cub3d *c, char **m);
 int				raycast_fc(t_cub3d *c, t_fc_tools *t, t_mlx *ml, t_player pl);
 int				raycast_sprite(t_cub3d *c, t_player pl);
 void			ft_error(char *s);
+int 			key_press(int k, t_cub3d *c);
+int 			key_release(int k, t_cub3d *c);
 void			close_game(t_cub3d *cub3d);
 #endif

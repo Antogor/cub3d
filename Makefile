@@ -6,7 +6,7 @@ FLAGS = gcc -I -Wall -Wextra -Werror
 
 FUN = cub3d.c ./Engine/create_trgb.c ./Engine/ft_events.c ./Engine/paint.c ./Engine/ft_map.c ./Engine/raycasting.c ./Engine/check_data.c  ./Engine/extract_color.c \
  ./Engine/extract_textures.c ./Engine/movement.c ./Engine/choose_texture.c  ./Engine/raycast_fc.c ./Engine/save_bitmap.c ./Engine/raycast_sprite.c \
-./Engine/check_sprite.c ./Engine/extract_txt_fc.c ./Engine/ft_error.c  ./Engine/ft_close.c ./Engine/check_player.c 
+./Engine/check_sprite.c ./Engine/extract_txt_fc.c ./Engine/ft_error.c  ./Engine/ft_close.c ./Engine/check_player.c ./Engine/ft_keys.c 
 
 OBJ = $(FUN:.c=.o) 
 

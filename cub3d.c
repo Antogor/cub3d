@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:14:36 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/07 16:43:28 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/08 13:38:03 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ int		open_cub(int argc, char **argv, t_cub3d *c)
 
 int		run_game(t_cub3d *c)
 {
-	movement(c);
-	ft_events(c);
-	raycast_fc(c, &c->tx.tool, &c->mlx, c->pl);
-	raycasting(c, c->pl);
-	raycast_sprite(c, c->pl);
-	mlx_put_image_to_window(c->mlx.ptr,
-		c->mlx.win, c->mlx.img, 0, 0);
+//	movement(c);
+//	ft_events(c);
+//	raycast_fc(c, &c->tx.tool, &c->mlx, c->pl);
+//	raycasting(c, c->pl);
+//	raycast_sprite(c, c->pl);
+//	mlx_put_image_to_window(c->mlx.ptr,
+//		c->mlx.win, c->mlx.img, 0, 0);
 	return (0);
 }
 
@@ -60,12 +60,37 @@ void	init_mlx(t_cub3d *c)
 	extract_textures(&c->tx, c->mlx);
 	c->mlx.win = mlx_new_window(c->mlx.ptr,
 		c->screen_w, c->screen_h, "cub3D");
-	mlx_loop_hook(c->mlx.ptr, run_game, c);
+	mlx_key_hook(c->mlx.win, key_press, c);
+	mlx_key_hook(c->mlx.win, key_release, c);
+	movement(c);
+//	ft_events(c);
+	raycast_fc(c, &c->tx.tool, &c->mlx, c->pl);
+	raycasting(c, c->pl);
+	raycast_sprite(c, c->pl);
+//	mlx_loop_hook(c->mlx.ptr, movement, c);
+	mlx_put_image_to_window(c->mlx.ptr,
+		c->mlx.win, c->mlx.img, 0, 0);
 	mlx_loop(c->mlx.ptr);
+}
+
+typedef struct  s_vars {
+    void        *mlx;
+    void        *win;
+}               t_vars;
+
+int             print(int keycode, t_vars *vars)
+{
+    printf("%d\n", keycode);
 }
 
 int		main(int argc, char **argv)
 {
+	/*	 t_vars      vars;
+
+    vars.mlx = mlx_init();
+    vars.win = mlx_new_window(vars.mlx, 1920, 1080, "Hello world!");
+    mlx_key_hook(vars.win, print, &vars);
+    mlx_loop(vars.mlx);*/
 	t_cub3d *cub3d;
 
 	if (!(cub3d = (t_cub3d *)malloc(sizeof(t_cub3d))))
