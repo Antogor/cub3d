@@ -6,20 +6,19 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 14:36:55 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/06 13:40:44 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/08 18:47:22 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	choose_color(t_color color, t_tx *t, int txc, int tyc)
+void	choose_color(t_color color, t_tx *t, int tx, int ty)
 {
 	if (t->f.floor && t->c.celing)
 	{
-		t->colorc = (int)t->c.data[t->c.w * tyc + txc];
+		t->colorc = (int)t->c.data[ty * t->c.w + tx];
 		t->colorc = t->colorc >> 1 & 8355711;
-		t->colorf = (int)t->f.data[t->f.w * t->tool.ty +
-			t->tool.ty];
+		t->colorf = (int)t->f.data[ty * t->f.w + tx];
 		t->colorf = t->colorf >> 1 & 8355711;
 	}
 	else
@@ -32,8 +31,6 @@ void	choose_color(t_color color, t_tx *t, int txc, int tyc)
 void	put_fc(t_cub3d *c, t_fc_tools *t, t_mlx *ml, int y)
 {
 	int x;
-	int txc;
-	int tyc;
 
 	x = 0;
 	while (x < c->screen_w)
@@ -44,13 +41,9 @@ void	put_fc(t_cub3d *c, t_fc_tools *t, t_mlx *ml, int y)
 			(256 - 1);
 		t->ty = (int)(256 * (t->floor_y - t->cell_y)) &
 			(256 - 1);
-		txc = (int)(256 * (t->floor_x - t->cell_x)) &
-			(256 - 1);
-		tyc = (int)(256 * (t->floor_y - t->cell_y)) &
-			(256 - 1);
 		t->floor_x += t->floorstep_x;
 		t->floor_y += t->floorstep_y;
-		choose_color(c->color, &c->tx, txc, tyc);
+		choose_color(c->color, &c->tx, t->tx, t->ty);
 		ml->i_data[y * c->screen_w + x] = c->tx.colorf;
 		ml->i_data[(c->screen_h - y - 1) * c->screen_w + x] =
 			c->tx.colorc;

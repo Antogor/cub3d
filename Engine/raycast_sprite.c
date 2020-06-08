@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 11:53:50 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/08 16:01:17 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/08 18:13:06 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	dist_sprite(t_cub3d *c, double *s_dist)
 	int		dis_tmp;
 	int		l;
 
-	l = -1;
-	while (++l < c->s_nb - 1)
+	l = 0;
+	while (l < c->s_nb)
 	{
 		if (s_dist[l] < s_dist[l + 1])
 		{
@@ -29,8 +29,9 @@ void	dist_sprite(t_cub3d *c, double *s_dist)
 			tmp = c->s_order[l];
 			c->s_order[l] = c->s_order[l + 1];
 			c->s_order[l + 1] = tmp;
-			l = -1;
+			l = 0;
 		}
+		l++;
 	}
 }
 
@@ -39,13 +40,14 @@ void	choose_sprite(t_cub3d *c, t_player pl)
 	int		l;
 	double	s_dist[c->s_nb];
 
-	l = -1;
-	while (++l < c->s_nb)
+	l = 0;
+	while (l < c->s_nb)
 	{
 		s_dist[l] = ((pl.pos_x - c->sprite[l].x) *
 		(pl.pos_x - c->sprite[l].x) + (pl.pos_y - c->sprite[l].y) *
 		(pl.pos_y - c->sprite[l].y));
 		c->s_order[l] = l;
+		l++;
 	}
 	dist_sprite(c, s_dist);
 }
