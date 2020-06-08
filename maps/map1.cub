@@ -1,4 +1,4 @@
-R 1280 720
+R 1920 1080
 NO ./textures/Bricks.xpm
 SO ./textures/Bricks.xpm
 WE ./textures/Wood.xpm

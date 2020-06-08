@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/19 14:54:45 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/07 17:06:27 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/08 14:12:39 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,8 @@ t_player	extract_player(char **m, int limit)
 	if (pl.count_player != 1)
 		ft_error("Only allowed one player");
 	extract_pos(&pl);
-	pl.speed = 0.5;
+	init_key(&pl);
+	pl.speed = 0.05;
 	is_a_close_map(m, (int)pl.pos_x, (int)pl.pos_y, limit);
 	return (pl);
 }

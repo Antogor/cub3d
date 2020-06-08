@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:24:33 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/08 13:34:56 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/08 14:14:21 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #  define S 115
 #  define D 100
 #  define LEFT 65361
-#  define RIGTH 65363
+#  define RIGHT 65363
 #  define ESC 65307
 #  include <X11/Xlib.h>
 # endif
@@ -229,7 +229,7 @@ typedef struct	s_lib_raycast
 	int			draw_end;
 }				t_raycast;
 
-typedef	struct	s_keys;
+typedef	struct	s_keys
 {
 	int			up;
 	int			down;
@@ -311,5 +311,6 @@ int				raycast_sprite(t_cub3d *c, t_player pl);
 void			ft_error(char *s);
 int 			key_press(int k, t_cub3d *c);
 int 			key_release(int k, t_cub3d *c);
+int				init_key(t_player *p);
 void			close_game(t_cub3d *cub3d);
 #endif
