@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/30 10:43:55 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/07 13:28:57 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/08 15:34:45 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	gnl_1(int fd, t_cub3d *cub)
 	free(str);
 }
 
-void	gnl_2(int fd, t_cub3d *cub)
+void	gnl_2(int fd, t_map *m)
 {
 	char	*str;
 	char	*tmp;
@@ -94,17 +94,15 @@ void	gnl_2(int fd, t_cub3d *cub)
 			tmp = str;
 			while (get_next_line(fd, &str) > 0)
 			{
-				if (!cub->map.m)
+				if (!m->m)
 				{
-					if (!(cub->map.m = (char **)malloc(sizeof(char *) *
-					cub->map.h + 1)))
+					if (!(m->m = (char **)malloc(sizeof(char *) * m->h + 1)))
 						ft_error("Couldn't reserve memory");
-					cub->map.m[0] = ft_strdup(tmp);
+					m->m[0] = ft_strdup(tmp);
 				}
-				cub->map.m[l] = ft_strdup(str);
-				l++;
+				m->m[l++] = ft_strdup(str);
 			}
-			cub->map.m[l] = "\0";
+			m->m[l] = "\0";
 		}
 	}
 	free(str);
@@ -125,7 +123,7 @@ int		ft_map(char **argv, t_cub3d *cub)
 	close(fd);
 	if ((fd = open(argv[1], O_RDONLY)) < 0)
 		ft_error("Couldn't open .cub");
-	gnl_2(fd, cub);
+	gnl_2(fd, &cub->map);
 	close(fd);
 	if (!cub->map.m)
 		ft_error("Map doesn't exist");

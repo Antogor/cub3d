@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:24:33 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/08 14:14:21 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/08 15:29:29 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -309,8 +309,8 @@ int				extract_sprite(t_cub3d *c, char **m);
 int				raycast_fc(t_cub3d *c, t_fc_tools *t, t_mlx *ml, t_player pl);
 int				raycast_sprite(t_cub3d *c, t_player pl);
 void			ft_error(char *s);
-int 			key_press(int k, t_cub3d *c);
-int 			key_release(int k, t_cub3d *c);
+int				key_press(int k, t_cub3d *c);
+int				key_release(int k, t_cub3d *c);
 int				init_key(t_player *p);
 void			close_game(t_cub3d *cub3d);
 #endif

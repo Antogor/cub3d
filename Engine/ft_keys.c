@@ -6,13 +6,13 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 13:42:18 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/08 14:14:29 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/08 15:28:51 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int init_key(t_player *p)
+int	init_key(t_player *p)
 {
 	p->k.up = 0;
 	p->k.down = 0;
@@ -20,7 +20,7 @@ int init_key(t_player *p)
 	p->k.right = 0;
 	p->k.rot_l = 0;
 	p->k.rot_r = 0;
-	return(0);
+	return (0);
 }
 
 int	key_press(int k, t_cub3d *c)

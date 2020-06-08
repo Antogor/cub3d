@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 13:14:28 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/08 14:09:22 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/08 15:41:48 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	can_move(char pos)
 
 int	left_right(t_player *p, t_keys k, char **m)
 {
-	if (k.right)
+	if (k.left)
 	{
 		if (can_move(m[(int)p->pos_x][(int)(p->pos_y +
 			p->dir_x * p->speed)]))
@@ -56,7 +56,7 @@ int	left_right(t_player *p, t_keys k, char **m)
 			p->speed)][(int)p->pos_y]))
 			p->pos_x -= p->dir_y * p->speed;
 	}
-	if (k.left)
+	if (k.right)
 	{
 		if (can_move(m[(int)p->pos_x][(int)(p->pos_y -
 			p->dir_x * p->speed)]))
