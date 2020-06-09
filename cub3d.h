@@ -22,6 +22,7 @@
 #  define RIGHT 65363
 #  define ESC 65307
 #  include <X11/Xlib.h>
+#  include "./Mlx/minilibx-linux/mlx.h"
 # endif
 
 # ifdef __APPLE__
@@ -42,7 +43,6 @@
 # include <string.h>
 # include <math.h>
 # include "./srcs/libft/libft.h"
-# include <mlx.h>
 
 typedef struct	s_lib_mlx
 {
