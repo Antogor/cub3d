@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 11:53:50 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/08 18:13:06 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/09 16:30:40 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ int		raycast_sprite(t_cub3d *c, t_player pl)
 
 	choose_sprite(c, pl);
 	l = 0;
-	while (l++ < c->s_nb)
+	while (l < c->s_nb)
 	{
 		s = c->sprite[c->s_order[l]];
 		s_tools.x = ((s.x + 0.5) - pl.pos_x);
@@ -123,6 +123,7 @@ int		raycast_sprite(t_cub3d *c, t_player pl)
 			(1 + s_tools.transform_x / s_tools.transform_y));
 		calcualte_sprite_hw(&s_tools, c->screen_h, c->screen_w);
 		draw_sprite(&s_tools, c, c->tx.s, &c->mlx);
+		l++;
 	}
 	return (0);
 }

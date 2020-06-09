@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 12:24:33 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/08 15:29:29 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/09 17:50:50 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@
 # include <string.h>
 # include <math.h>
 # include "./srcs/libft/libft.h"
+# define X_EXIT 17
 
 typedef struct	s_lib_mlx
 {
@@ -291,7 +292,6 @@ typedef struct	s_lib_cub3d
 
 int				raycasting(t_cub3d *cub, t_player pl);
 void			save_bitmap(const char *file_name, t_cub3d *cub);
-int				ft_events(t_cub3d *cub3d);
 int				ft_map(char **argv, t_cub3d *cub3d);
 int				extract_resolution(char *s, t_cub3d *cub);
 int				extract_tx_ns(char *s, t_tx *t);
@@ -312,5 +312,5 @@ void			ft_error(char *s);
 int				key_press(int k, t_cub3d *c);
 int				key_release(int k, t_cub3d *c);
 int				init_key(t_player *p);
-void			close_game(t_cub3d *cub3d);
+int				close_game(t_cub3d *cub3d);
 #endif

@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 12:10:54 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/08 16:21:55 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/09 17:14:26 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ int		raycasting(t_cub3d *cub, t_player pl)
 {
 	t_raycast rc;
 
+	raycast_fc(cub, &cub->tx.tool, &cub->mlx, pl);
 	rc.x = 0;
 	while (rc.x < cub->screen_w)
 	{
@@ -125,5 +126,6 @@ int		raycasting(t_cub3d *cub, t_player pl)
 		paint(rc, &cub->tx, &cub->mlx, cub->screen_h);
 		rc.x++;
 	}
+	raycast_sprite(cub, pl);
 	return (0);
 }

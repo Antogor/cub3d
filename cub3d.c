@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:14:36 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/08 17:23:52 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/09 17:29:11 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,7 @@ int		open_cub(int argc, char **argv, t_cub3d *c)
 int		run_game(t_cub3d *c)
 {
 	movement(c);
-	ft_events(c);
-	raycast_fc(c, &c->tx.tool, &c->mlx, c->pl);
 	raycasting(c, c->pl);
-	raycast_sprite(c, c->pl);
 	mlx_put_image_to_window(c->mlx.ptr,
 		c->mlx.win, c->mlx.img, 0, 0);
 	return (0);
@@ -60,6 +57,7 @@ void	init_mlx(t_cub3d *c)
 	extract_textures(&c->tx, c->mlx);
 	c->mlx.win = mlx_new_window(c->mlx.ptr,
 		c->screen_w, c->screen_h, "cub3D");
+	mlx_hook(c->mlx.win, X_EXIT, 0, close_game, c);
 	mlx_hook(c->mlx.win, 2, 1, key_press, c);
 	mlx_key_hook(c->mlx.win, key_release, c);
 	mlx_loop_hook(c->mlx.ptr, run_game, c);
