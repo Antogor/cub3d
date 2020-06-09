@@ -6,7 +6,7 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:14:36 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/09 17:29:11 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/09 21:03:58 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	init_mlx(t_cub3d *c)
 	extract_textures(&c->tx, c->mlx);
 	c->mlx.win = mlx_new_window(c->mlx.ptr,
 		c->screen_w, c->screen_h, "cub3D");
-	mlx_hook(c->mlx.win, X_EXIT, 0, close_game, c);
+	mlx_hook(c->mlx.win, X_EXIT, 1L<<17, close_game, c);
 	mlx_hook(c->mlx.win, 2, 1, key_press, c);
 	mlx_key_hook(c->mlx.win, key_release, c);
 	mlx_loop_hook(c->mlx.ptr, run_game, c);
