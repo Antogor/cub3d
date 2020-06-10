@@ -6,39 +6,34 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/17 13:14:28 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/06/03 17:48:23 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/08 15:41:48 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	rotation(int key, t_player *player)
+int	rotation(t_player *p, t_keys k)
 {
 	double old_dir_x;
 	double old_plane_x;
-	double speed;
+	double s;
 
-	speed = 0.6;
-	old_dir_x = player->dir_x;
-	old_plane_x = player->plane_x;
-	if (key == RIGTH)
+	s = 0.05;
+	old_dir_x = p->dir_x;
+	old_plane_x = p->plane_x;
+	if (k.rot_r)
 	{
-		player->dir_x = player->dir_x * cos(-speed) - player->dir_y *
-			sin(-speed);
-		player->plane_x = player->plane_x * cos(-speed) - player->plane_y *
-			sin(-speed);
-		player->dir_y = old_dir_x * sin(-speed) + player->dir_y * cos(-speed);
-		player->plane_y = old_plane_x * sin(-speed) + player->plane_y *
-			cos(-speed);
+		p->dir_x = p->dir_x * cos(-s) - p->dir_y * sin(-s);
+		p->plane_x = p->plane_x * cos(-s) - p->plane_y * sin(-s);
+		p->dir_y = old_dir_x * sin(-s) + p->dir_y * cos(-s);
+		p->plane_y = old_plane_x * sin(-s) + p->plane_y * cos(-s);
 	}
-	if (key == LEFT)
+	if (k.rot_l)
 	{
-		player->dir_x = player->dir_x * cos(speed) - player->dir_y * sin(speed);
-		player->plane_x = player->plane_x * cos(speed) - player->plane_y *
-			sin(speed);
-		player->dir_y = old_dir_x * sin(speed) + player->dir_y * cos(speed);
-		player->plane_y = old_plane_x * sin(speed) + player->plane_y *
-			cos(speed);
+		p->dir_x = p->dir_x * cos(s) - p->dir_y * sin(s);
+		p->plane_x = p->plane_x * cos(s) - p->plane_y * sin(s);
+		p->dir_y = old_dir_x * sin(s) + p->dir_y * cos(s);
+		p->plane_y = old_plane_x * sin(s) + p->plane_y * cos(s);
 	}
 	return (0);
 }
@@ -50,65 +45,56 @@ int	can_move(char pos)
 	return (1);
 }
 
-int	left_right(int key, t_cub3d *cub3d, t_player *player)
+int	left_right(t_player *p, t_keys k, char **m)
 {
-	if (key == D)
+	if (k.left)
 	{
-		if (can_move(cub3d->map[(int)player->pos_x][(int)(player->pos_y +
-			player->dir_x * player->speed)]))
-			player->pos_y += player->dir_x * player->speed;
-		if (can_move(cub3d->map[(int)(player->pos_x - player->dir_y *
-			player->speed)][(int)player->pos_y]))
-			player->pos_x -= player->dir_y * player->speed;
+		if (can_move(m[(int)p->pos_x][(int)(p->pos_y +
+			p->dir_x * p->speed)]))
+			p->pos_y += p->dir_x * p->speed;
+		if (can_move(m[(int)(p->pos_x - p->dir_y *
+			p->speed)][(int)p->pos_y]))
+			p->pos_x -= p->dir_y * p->speed;
 	}
-	else if (key == A)
+	if (k.right)
 	{
-		if (can_move(cub3d->map[(int)player->pos_x][(int)(player->pos_y -
-			player->dir_x * player->speed)]))
-			player->pos_y -= player->dir_x * player->speed;
-		if (can_move(cub3d->map[(int)(player->pos_x + player->dir_y *
-			player->speed)][(int)player->pos_y]))
-			player->pos_x += player->dir_y * player->speed;
+		if (can_move(m[(int)p->pos_x][(int)(p->pos_y -
+			p->dir_x * p->speed)]))
+			p->pos_y -= p->dir_x * p->speed;
+		if (can_move(m[(int)(p->pos_x + p->dir_y *
+			p->speed)][(int)p->pos_y]))
+			p->pos_x += p->dir_y * p->speed;
 	}
 	return (0);
 }
 
-int	up_down(int key, t_cub3d *cub3d)
+int	up_down(t_player *p, t_keys k, char **m)
 {
-	t_player *player;
-
-	player = cub3d->player;
-	printf("AAAAAA\n");
-	if (key == ESC)
-		close_game(cub3d);
-	if (key == W)
+	if (k.up == 1)
 	{
-		printf("AAAAAA\n");
-		if (can_move(cub3d->map[(int)(player->pos_x + player->dir_x *
-			player->speed)][(int)player->pos_y]))
-			player->pos_x += player->dir_x * player->speed;
-		if (can_move(cub3d->map[(int)player->pos_x][(int)(player->pos_y +
-			player->dir_y * player->speed)]))
-			player->pos_y += player->dir_y * player->speed;
+		if (can_move(m[(int)(p->pos_x + p->dir_x * p->speed)]
+			[(int)p->pos_y]))
+			p->pos_x += p->dir_x * p->speed;
+		if (can_move(m[(int)p->pos_x][(int)(p->pos_y +
+			p->dir_y * p->speed)]))
+			p->pos_y += p->dir_y * p->speed;
 	}
-	else if (key == S)
+	if (k.down)
 	{
-		if (can_move(cub3d->map[(int)(player->pos_x - player->dir_x *
-			player->speed)][(int)player->pos_y]))
-			player->pos_x -= player->dir_x * player->speed;
-		if (can_move(cub3d->map[(int)player->pos_x][(int)(player->pos_y -
-			player->dir_y * player->speed)]))
-			player->pos_y -= player->dir_y * player->speed;
+		if (can_move(m[(int)(p->pos_x - p->dir_x *
+			p->speed)][(int)p->pos_y]))
+			p->pos_x -= p->dir_x * p->speed;
+		if (can_move(m[(int)p->pos_x][(int)(p->pos_y -
+			p->dir_y * p->speed)]))
+			p->pos_y -= p->dir_y * p->speed;
 	}
-	left_right(key, cub3d, player);
-	rotation(key, player);
 	return (0);
 }
 
 int	movement(t_cub3d *cub3d)
 {
-	cub3d->player->speed = 0.5;
-	//mlx_hook(cub3d->mlx->window, 2, 1L << 0, up_down, cub3d);
-	mlx_key_hook(cub3d->mlx->window, up_down, cub3d);
+	up_down(&cub3d->pl, cub3d->pl.k, cub3d->map.m);
+	left_right(&cub3d->pl, cub3d->pl.k, cub3d->map.m);
+	rotation(&cub3d->pl, cub3d->pl.k);
 	return (0);
 }

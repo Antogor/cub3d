@@ -6,61 +6,61 @@
 /*   By: agarzon- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 12:30:05 by agarzon-          #+#    #+#             */
-/*   Updated: 2020/04/09 21:21:05 by agarzon-         ###   ########.fr       */
+/*   Updated: 2020/06/05 19:17:19 by agarzon-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-int	extract_data_sprite(t_text *text, t_mlx *mlx)
+int	extract_data_sprite(t_tx *t, t_mlx mlx)
 {
-	if (!(text->text_ptr_sprite = mlx_xpm_file_to_image(mlx->mlx_ptr,
-		text->text_sprite, &text->text_sprite_w, &text->text_sprite_h)))
+	if (!(t->s.p_s = mlx_xpm_file_to_image(mlx.ptr,
+		t->s.sprite, &t->s.w, &t->s.h)))
 		ft_error("FAIL to charge text sprite");
-	text->text_d_sprite = (int *)mlx_get_data_addr(text->text_ptr_sprite,
-		&text->text_sprite_bpp, &text->text_sprite_sl, &text->text_sprite_end);
-	return (1);
+	t->s.data = (int *)mlx_get_data_addr(t->s.p_s,
+		&t->s.bpp, &t->s.sl, &t->s.end);
+	return (0);
 }
 
-int	extract_data_fc(t_text *text, t_mlx *mlx)
+int	extract_data_fc(t_tx *t, t_mlx mlx)
 {
-	if (!(text->text_ptr_floor = mlx_xpm_file_to_image(mlx->mlx_ptr,
-		text->text_floor, &text->text_floor_w, &text->text_floor_h)))
+	if (!(t->f.p_f = mlx_xpm_file_to_image(mlx.ptr,
+		t->f.floor, &t->f.w, &t->f.h)))
 		ft_error("FAIL to charge text floor");
-	text->text_d_floor = (int *)mlx_get_data_addr(text->text_ptr_floor,
-		&text->text_floor_bpp, &text->text_floor_sl, &text->text_floor_end);
-	if (!(text->text_ptr_celing = mlx_xpm_file_to_image(mlx->mlx_ptr,
-		text->text_celing, &text->text_celing_w, &text->text_celing_h)))
+	t->f.data = (int *)mlx_get_data_addr(t->f.p_f,
+		&t->f.bpp, &t->f.sl, &t->f.end);
+	if (!(t->c.p_c = mlx_xpm_file_to_image(mlx.ptr,
+		t->c.celing, &t->c.w, &t->c.h)))
 		ft_error("FAIL to charge text celing");
-	text->text_d_celing = (int *)mlx_get_data_addr(text->text_ptr_celing,
-		&text->text_celing_bpp, &text->text_celing_sl, &text->text_celing_end);
-	return (1);
+	t->c.data = (int *)mlx_get_data_addr(t->c.p_c,
+		&t->c.bpp, &t->c.sl, &t->c.end);
+	return (0);
 }
 
-int	extract_textures(t_text *text, t_mlx *mlx)
+int	extract_textures(t_tx *t, t_mlx mlx)
 {
-	if (!(text->text_ptr_n = mlx_xpm_file_to_image(mlx->mlx_ptr, text->text_n,
-		&text->text_n_w, &text->text_n_h)))
+	if (!(t->walls.p_no = mlx_xpm_file_to_image(mlx.ptr, t->walls.north,
+		&t->walls.no_w, &t->walls.no_h)))
 		ft_error("FAIL to charge text NO");
-	text->text_d_n = (int *)mlx_get_data_addr(text->text_ptr_n,
-		&text->text_n_bpp, &text->text_n_sl, &text->text_n_end);
-	if (!(text->text_ptr_s = mlx_xpm_file_to_image(mlx->mlx_ptr, text->text_s,
-		&text->text_s_w, &text->text_s_h)))
+	t->walls.data_no = (int *)mlx_get_data_addr(t->walls.p_no,
+		&t->walls.no_bpp, &t->walls.no_sl, &t->walls.no_end);
+	if (!(t->walls.p_so = mlx_xpm_file_to_image(mlx.ptr, t->walls.south,
+		&t->walls.so_w, &t->walls.so_h)))
 		ft_error("FAIL to charge text SO");
-	text->text_d_s = (int *)mlx_get_data_addr(text->text_ptr_s,
-		&text->text_s_bpp, &text->text_s_sl, &text->text_s_end);
-	if (!(text->text_ptr_w = mlx_xpm_file_to_image(mlx->mlx_ptr, text->text_w,
-		&text->text_w_w, &text->text_w_h)))
+	t->walls.data_so = (int *)mlx_get_data_addr(t->walls.p_so,
+		&t->walls.so_bpp, &t->walls.so_sl, &t->walls.so_end);
+	if (!(t->walls.p_we = mlx_xpm_file_to_image(mlx.ptr, t->walls.west,
+		&t->walls.we_w, &t->walls.we_h)))
 		ft_error("FAIL to charge text WE");
-	text->text_d_w = (int *)mlx_get_data_addr(text->text_ptr_w,
-		&text->text_w_bpp, &text->text_w_sl, &text->text_w_end);
-	if (!(text->text_ptr_e = mlx_xpm_file_to_image(mlx->mlx_ptr, text->text_e,
-		&text->text_e_w, &text->text_e_h)))
+	t->walls.data_we = (int *)mlx_get_data_addr(t->walls.p_we,
+		&t->walls.we_bpp, &t->walls.we_sl, &t->walls.we_end);
+	if (!(t->walls.p_ea = mlx_xpm_file_to_image(mlx.ptr, t->walls.east,
+		&t->walls.ea_w, &t->walls.ea_h)))
 		ft_error("FAIL to charge text EA");
-	text->text_d_e = (int *)mlx_get_data_addr(text->text_ptr_e,
-		&text->text_e_bpp, &text->text_e_sl, &text->text_e_end);
-	if (text->text_floor && text->text_celing)
-		extract_data_fc(text, mlx);
-	extract_data_sprite(text, mlx);
-	return (1);
+	t->walls.data_ea = (int *)mlx_get_data_addr(t->walls.p_ea,
+		&t->walls.ea_bpp, &t->walls.ea_sl, &t->walls.ea_end);
+	if (t->f.floor && t->c.celing)
+		extract_data_fc(t, mlx);
+	extract_data_sprite(t, mlx);
+	return (0);
 }
